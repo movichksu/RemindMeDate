@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_dates"
+        android:icon="@drawable/ic_notifications"
+        android:title="@string/title_dates" />
+
+    <item
+        android:id="@+id/navigation_birthdays"
+        android:icon="@drawable/ic_cake"
+        android:title="@string/title_birthdays" />
+
+    <item
+        android:id="@+id/navigation_calendar"
+        android:icon="@drawable/ic_calendar"
+        android:title="@string/title_calendar" />
+
+    <item
+        android:id="@+id/navigation_settings"
+        android:icon="@drawable/ic_settings"
+        android:title="@string/title_settings" />
+
+
+</menu>

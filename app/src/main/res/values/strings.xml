@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Remind Me Date</string>
+    <string name="title_dates">Dates</string>
+    <string name="title_calendar">Calendar</string>
+    <string name="title_birthdays">Birthdays</string>
+    <string name="title_settings">Settings</string>
+</resources>

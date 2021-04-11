@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/dates_navigation"
+        android:name="com.pahomovichk.remindMeDate.ui.dates.DatesFragment"
+        android:label="@string/title_dates"
+        tools:layout="@layout/dates_fragment" />
+
+    <fragment
+        android:id="@+id/birthdays_navigation"
+        android:name="com.pahomovichk.remindMeDate.ui.birthdays.BirthdaysFragment"
+        android:label="@string/title_birthdays"
+        tools:layout="@layout/birthdays_fragment" />
+
+    <fragment
+        android:id="@+id/calendar_navigation"
+        android:name="com.pahomovichk.remindMeDate.ui.calendar.CalendarFragment"
+        android:label="@string/title_calendar"
+        tools:layout="@layout/calendar_fragment" />
+
+    <fragment
+        android:id="@+id/settings_navigation"
+        android:name="com.pahomovichk.remindMeDate.ui.settings.SettingsFragment"
+        android:label="@string/title_settings"
+        tools:layout="@layout/settings_fragment" />
+
+
+
+</navigation>

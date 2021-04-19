@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 class DatesViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is dates Fragment"
+        value = "No dates"
     }
     val text: LiveData<String> = _text
 }

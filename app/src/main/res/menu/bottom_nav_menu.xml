@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
         android:id="@+id/dates_navigation"
@@ -10,7 +11,9 @@
         android:id="@+id/birthdays_navigation"
         android:icon="@drawable/ic_cake"
         android:title="@string/title_birthdays" />
-
+    <item
+        android:id="@+id/placeholder"
+        android:title="" />
     <item
         android:id="@+id/calendar_navigation"
         android:icon="@drawable/ic_calendar"
@@ -20,6 +23,5 @@
         android:id="@+id/settings_navigation"
         android:icon="@drawable/ic_settings"
         android:title="@string/title_settings" />
-
 
 </menu>

@@ -1,4 +1,4 @@
-package com.pahomovichk.remindMeDate.ui.calendar
+package com.pahomovichk.remindMeDate.presentation.ui.settings
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,20 +10,20 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.pahomovichk.remindMeDate.R
 
-class CalendarFragment : Fragment() {
+class SettingsFragment : Fragment() {
 
-    private lateinit var calendarViewModel: CalendarViewModel
+    private lateinit var settingsViewModel: SettingsViewModel
 
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        calendarViewModel =
-                ViewModelProvider(this).get(CalendarViewModel::class.java)
-        val root = inflater.inflate(R.layout.calendar_fragment, container, false)
-        val textView: TextView = root.findViewById(R.id.calendar_text)
-        calendarViewModel.text.observe(viewLifecycleOwner, Observer {
+        settingsViewModel =
+                ViewModelProvider(this).get(SettingsViewModel::class.java)
+        val root = inflater.inflate(R.layout.settings_fragment, container, false)
+        val textView: TextView = root.findViewById(R.id.settings_text)
+        settingsViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
         return root

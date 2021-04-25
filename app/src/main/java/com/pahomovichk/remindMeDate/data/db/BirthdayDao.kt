@@ -13,6 +13,9 @@ interface BirthdayDao {
     @Delete
     fun delete(birthday: Birthday)
 
+    @Update
+    fun update(birthday:Birthday)
+
     @Query("Select * From Birthday")
     fun selectAll(): Flow<List<Birthday>>
 

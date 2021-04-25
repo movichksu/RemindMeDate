@@ -1,4 +1,4 @@
-package com.pahomovichk.remindMeDate.ui.calendar
+package com.pahomovichk.remindMeDate.presentation.ui.calendar
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

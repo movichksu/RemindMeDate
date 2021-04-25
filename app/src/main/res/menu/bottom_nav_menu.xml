@@ -3,25 +3,25 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/dates_navigation"
+        android:id="@+id/events_navigation"
         android:icon="@drawable/ic_notifications"
-        android:title="@string/title_dates" />
+        android:title="@string/events_title" />
 
     <item
         android:id="@+id/birthdays_navigation"
         android:icon="@drawable/ic_cake"
-        android:title="@string/title_birthdays" />
+        android:title="@string/birthdays_title" />
     <item
         android:id="@+id/placeholder"
         android:title="" />
     <item
         android:id="@+id/calendar_navigation"
         android:icon="@drawable/ic_calendar"
-        android:title="@string/title_calendar" />
+        android:title="@string/calendar_title" />
 
     <item
         android:id="@+id/settings_navigation"
         android:icon="@drawable/ic_settings"
-        android:title="@string/title_settings" />
+        android:title="@string/settings_title" />
 
 </menu>

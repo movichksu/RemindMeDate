@@ -23,7 +23,7 @@ class BirthdayAdapter internal constructor(
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         val birthday = birthdays[position]
         viewHolder.birthdayName.text = birthday.name
-        viewHolder.birthdayDate.text = "${birthday.date}"
+        viewHolder.birthdayDate.text = "${birthday.date.dayOfMonth} ${birthday.date.month}-${birthday.date.year}"
         viewHolder.birthdayTime.text = "${birthday.time}"
         viewHolder.container.setOnClickListener {
             listener?.onClick(birthday)

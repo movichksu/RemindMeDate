@@ -1,4 +1,4 @@
-package com.pahomovichk.remindMeDate.presentation.ui.birthdays
+package com.pahomovichk.remindMeDate.presentation.viewModel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -19,7 +19,7 @@ class BirthdaysViewModel : ViewModel() {
     private val birthdaysUseCase: BirthdayUseCase by lazy { Dependencies.getBirthdayUseCase() }
     //val birthday = Birthday()
 
-    private val _text = MutableLiveData<String>().apply {
+    private var _text = MutableLiveData<String>().apply {
         value = "No birthdays"
     }
     val text: LiveData<String> = _text
@@ -31,17 +31,19 @@ class BirthdaysViewModel : ViewModel() {
 
     init{
         viewModelScope.launch {
-                birthdaysUseCase.getBirthdays().collect { birthdaysList ->
-                    birthdays.value = birthdaysList.sortedBy { it.date }
+                birthdaysUseCase.getBirthdays().collect {
+                    //birthdaysList ->
+                    //birthdays.value = birthdaysList.sortedBy { it.date }
+                    birthdays.value = it
             }
             }
     }
 
-    fun addBirthday() {
+    fun addBirthday(birthday: Birthday) {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 delay(1000)
-                //birthdaysUseCase.addBirthday(birthday)
+                birthdaysUseCase.addBirthday(birthday)
             }
         }
     }

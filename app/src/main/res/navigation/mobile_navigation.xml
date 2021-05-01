@@ -7,25 +7,25 @@
 
     <fragment
         android:id="@+id/events_navigation"
-        android:name="com.pahomovichk.remindMeDate.presentation.ui.dates.DatesFragment"
+        android:name="com.pahomovichk.remindMeDate.presentation.ui.DatesFragment"
         android:label="@string/events_title"
         tools:layout="@layout/events_fragment" />
 
     <fragment
         android:id="@+id/birthdays_navigation"
-        android:name="com.pahomovichk.remindMeDate.presentation.ui.birthdays.BirthdaysFragment"
+        android:name="com.pahomovichk.remindMeDate.presentation.ui.BirthdaysFragment"
         android:label="@string/birthdays_title"
         tools:layout="@layout/birthdays_fragment" />
 
     <fragment
         android:id="@+id/calendar_navigation"
-        android:name="com.pahomovichk.remindMeDate.presentation.ui.calendar.CalendarFragment"
+        android:name="com.pahomovichk.remindMeDate.presentation.ui.CalendarFragment"
         android:label="@string/calendar_title"
         tools:layout="@layout/calendar_fragment" />
 
     <fragment
         android:id="@+id/settings_navigation"
-        android:name="com.pahomovichk.remindMeDate.presentation.ui.settings.SettingsFragment"
+        android:name="com.pahomovichk.remindMeDate.presentation.ui.SettingsFragment"
         android:label="@string/settings_title"
         tools:layout="@layout/settings_fragment" />
 

@@ -1,4 +1,4 @@
-package com.pahomovichk.remindMeDate.presentation.ui.settings
+package com.pahomovichk.remindMeDate.presentation.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.pahomovichk.remindMeDate.R
+import com.pahomovichk.remindMeDate.presentation.viewModel.SettingsViewModel
 
 class SettingsFragment : Fragment() {
 

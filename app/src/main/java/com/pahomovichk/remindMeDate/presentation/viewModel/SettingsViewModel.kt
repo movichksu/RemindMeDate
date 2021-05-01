@@ -1,13 +1,13 @@
-package com.pahomovichk.remindMeDate.presentation.ui.calendar
+package com.pahomovichk.remindMeDate.presentation.viewModel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class CalendarViewModel : ViewModel() {
+class SettingsViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "Calendar"
+        value = "Settings"
     }
     val text: LiveData<String> = _text
 }

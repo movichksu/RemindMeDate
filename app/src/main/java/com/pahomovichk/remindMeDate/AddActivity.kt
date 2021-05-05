@@ -3,11 +3,14 @@ package com.pahomovichk.remindMeDate
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProvider
 import com.pahomovichk.remindMeDate.entity.Birthday
 import com.pahomovichk.remindMeDate.presentation.viewModel.BirthdaysViewModel
@@ -19,8 +22,9 @@ import java.util.*
 class AddActivity : AppCompatActivity() {
 
     private lateinit var viewModel: BirthdaysViewModel
+    private lateinit var toolBar: Toolbar
 
-    private var birthDate: LocalDate = LocalDate.of(2000,5,31)
+    private var birthDate: LocalDate = LocalDate.of(2000, 5, 31)
     private var birthTime: LocalTime = LocalTime.now()
 
     private lateinit var nameInput: EditText
@@ -39,11 +43,19 @@ class AddActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(this).get(BirthdaysViewModel::class.java)
         setContentView(R.layout.add_activity)
+        toolBar = findViewById(R.id.add_activity_toolbar)
+        setSupportActionBar(toolBar)
         nameInput = findViewById(R.id.name_input)
         dateInput = findViewById(R.id.date_input)
         timeInput = findViewById(R.id.time_input)
         commentInput = findViewById(R.id.comments_input)
         createBirthdayBtn = findViewById(R.id.create_btn)
+
+        toolBar.setNavigationOnClickListener {
+            Toast.makeText(this, "Back clicked!", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this.baseContext, MainActivity::class.java)
+            startActivity(intent)
+        }
 
         dateInput.setOnClickListener {
             val getCalendar = Calendar.getInstance()
@@ -57,7 +69,7 @@ class AddActivity : AppCompatActivity() {
                     selectDate.set(Calendar.DAY_OF_MONTH, day)
                     val date = dateFormat.format(selectDate.time)
                     dateInput.setText(date)
-                    birthDate = LocalDate.of(Calendar.YEAR, Calendar.MONTH,Calendar.DAY_OF_MONTH)
+                    birthDate = LocalDate.of(Calendar.YEAR, Calendar.MONTH, Calendar.DAY_OF_MONTH)
                 },
                 getCalendar.get(Calendar.YEAR),
                 getCalendar.get(Calendar.MONTH),
@@ -84,13 +96,19 @@ class AddActivity : AppCompatActivity() {
         }
 
         createBirthdayBtn.setOnClickListener {
-            if (nameInput.text.isEmpty() || dateInput.text.isEmpty() || timeInput.text.isEmpty()){
-                Toast.makeText( this, "input fields are empty!", Toast.LENGTH_SHORT).show()
-            }
-            else {
+            if (nameInput.text.isEmpty() || dateInput.text.isEmpty() || timeInput.text.isEmpty()) {
+                Toast.makeText(this, "input fields are empty!", Toast.LENGTH_SHORT).show()
+            } else {
                 val birthday = Birthday(0, nameInput.text.toString(), birthDate, birthTime)
                 viewModel.addBirthday(birthday)
+                val intent = Intent(this.baseContext, MainActivity::class.java)
+                startActivity(intent)
             }
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        super.onCreateOptionsMenu(menu)
+        return true
     }
 }

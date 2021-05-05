@@ -37,13 +37,13 @@ class BirthdaysFragment : Fragment(), ItemClickListener {
         savedInstanceState: Bundle?
     ): View? {
         viewModel =
-                ViewModelProvider(this).get(BirthdaysViewModel::class.java)
+            ViewModelProvider(this).get(BirthdaysViewModel::class.java)
 
         val root = inflater.inflate(R.layout.birthdays_fragment, container, false)
         val textView: TextView = root.findViewById(R.id.birthdays_text)
         viewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
-            if (birthdaysList.isEmpty()){
+            if (!birthdaysList.isEmpty()) {
                 textView.setVisibility(INVISIBLE)
             }
         })

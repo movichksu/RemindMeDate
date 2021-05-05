@@ -39,7 +39,7 @@ class BirthdayAdapter internal constructor(
     }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val container: View = view.findViewById(R.id.birthday_container)
+        val container: View = view.findViewById(R.id.birthday_card)
         val birthdayName: TextView = view.findViewById<TextView>(R.id.birth_name)
         val birthdayDate: TextView = view.findViewById<TextView>(R.id.birth_date)
         val birthdayTime: TextView = view.findViewById<TextView>(R.id.birth_time)

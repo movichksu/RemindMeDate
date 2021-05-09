@@ -1,9 +1,14 @@
 package com.pahomovichk.remindMeDate.presentation.viewModel
 
+import android.content.Intent
+import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.cleanarchitechture.App
+import com.pahomovichk.remindMeDate.AddActivity
+import com.pahomovichk.remindMeDate.Constants
 import com.pahomovichk.remindMeDate.Dependencies
 import com.pahomovichk.remindMeDate.domain.BirthdayUseCase
 import com.pahomovichk.remindMeDate.entity.Birthday
@@ -12,6 +17,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+
 
 class BirthdaysViewModel : ViewModel() {
 
@@ -42,7 +48,6 @@ class BirthdaysViewModel : ViewModel() {
     fun addBirthday(birthday: Birthday) {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
-                delay(1000)
                 birthdaysUseCase.addBirthday(birthday)
             }
         }
@@ -51,6 +56,9 @@ class BirthdaysViewModel : ViewModel() {
     fun onItemSelected(birthday: Birthday) =
         viewModelScope.launch {
             birthdaysUseCase.deleteBirthday(birthday)
+//            val intent = Intent(App.instance, AddActivity::class.java)
+//            intent.putExtra(Constants.BIRTHDAY_KEY, birthday);
+//            startActivity(intent)
         }
 
 

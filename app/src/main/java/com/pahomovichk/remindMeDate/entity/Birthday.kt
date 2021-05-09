@@ -3,8 +3,10 @@ package com.pahomovichk.remindMeDate.entity
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
+import java.io.Serializable
 import java.time.LocalDate
 import java.time.LocalTime
+import java.util.*
 
 @Entity
 @TypeConverters(BirthdayConverter::class)

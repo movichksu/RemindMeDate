@@ -99,7 +99,7 @@ class AddActivity : AppCompatActivity() {
             if (nameInput.text.isEmpty() || dateInput.text.isEmpty() || timeInput.text.isEmpty()) {
                 Toast.makeText(this, "input fields are empty!", Toast.LENGTH_SHORT).show()
             } else {
-                val birthday = Birthday(0, nameInput.text.toString(), birthDate, birthTime)
+                val birthday = Birthday(0L, nameInput.text.toString(), birthDate, birthTime)
                 viewModel.addBirthday(birthday)
                 val intent = Intent(this.baseContext, MainActivity::class.java)
                 startActivity(intent)

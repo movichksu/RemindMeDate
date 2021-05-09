@@ -1,5 +1,6 @@
 package com.pahomovichk.remindMeDate.presentation.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.pahomovichk.remindMeDate.Constants
+import com.pahomovichk.remindMeDate.ItemActivity
 import com.pahomovichk.remindMeDate.R
 import com.pahomovichk.remindMeDate.entity.Birthday
 import com.pahomovichk.remindMeDate.presentation.adapter.BirthdayAdapter
@@ -36,8 +39,7 @@ class BirthdaysFragment : Fragment(), ItemClickListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewModel =
-            ViewModelProvider(this).get(BirthdaysViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(BirthdaysViewModel::class.java)
 
         val root = inflater.inflate(R.layout.birthdays_fragment, container, false)
         val textView: TextView = root.findViewById(R.id.birthdays_text)
@@ -68,7 +70,14 @@ class BirthdaysFragment : Fragment(), ItemClickListener {
     }
 
     override fun onClick(birthday: Birthday) {
-        viewModel.onItemSelected(birthday)
+        //viewModel.onItemSelected(birthday)
+
+        val intent = Intent(this.context, ItemActivity::class.java)
+        intent.putExtra(Constants.BIRTHDAY_NAME, birthday.name)
+        intent.putExtra(Constants.BIRTHDAY_TIME, birthday.time.toString())
+        intent.putExtra(Constants.BIRTHDAY_DATE, "${birthday.date.month.toString().toLowerCase()} ${birthday.date.dayOfMonth}, ${birthday.date.year}");
+        //intent.putExtra(Constants.BIRTHDAY_COMMENT, birthday.comment);
+        startActivity(intent)
     }
 
     override fun onDestroyView() {

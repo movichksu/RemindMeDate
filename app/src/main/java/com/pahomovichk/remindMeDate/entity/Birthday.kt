@@ -9,11 +9,11 @@ import java.time.LocalDate
 @TypeConverters(DateConverter::class)
 data class Birthday (
         @PrimaryKey(autoGenerate = true)
-        val birthdayID: Long,
+        val id: Long,
 
-        val birthdayName: String,
+        val name: String,
 
-        val birthdayDate: LocalDate,
+        val date: LocalDate,
 
-        val birthdayComments: String
+        val comments: String
         )

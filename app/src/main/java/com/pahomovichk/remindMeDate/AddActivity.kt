@@ -2,7 +2,6 @@ package com.pahomovichk.remindMeDate
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
-import android.app.TimePickerDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
@@ -11,15 +10,17 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProvider
 import com.pahomovichk.remindMeDate.entity.Birthday
+import com.pahomovichk.remindMeDate.entity.Event
 import com.pahomovichk.remindMeDate.presentation.viewModel.BirthdaysViewModel
+import com.pahomovichk.remindMeDate.presentation.viewModel.EventsViewModel
 import java.text.SimpleDateFormat
 import java.time.LocalDate
-import java.time.LocalTime
 import java.util.*
 
 class AddActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: BirthdaysViewModel
+    private lateinit var birthdaysViewModel: BirthdaysViewModel
+    private lateinit var eventsViewModel: EventsViewModel
     private lateinit var toolBar: Toolbar
 
     private var birthDate: LocalDate = LocalDate.of(2000, 5, 31)
@@ -38,10 +39,12 @@ class AddActivity : AppCompatActivity() {
     @SuppressLint("ShowToast")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(BirthdaysViewModel::class.java)
+        birthdaysViewModel = ViewModelProvider(this).get(BirthdaysViewModel::class.java)
+        eventsViewModel = ViewModelProvider(this).get(EventsViewModel::class.java)
         setContentView(R.layout.add_activity)
         toolBar = findViewById(R.id.add_activity_toolbar)
         setSupportActionBar(toolBar)
+
         nameInput = findViewById(R.id.name_input)
         dateInput = findViewById(R.id.date_input)
         commentInput = findViewById(R.id.comments_input)
@@ -83,10 +86,21 @@ class AddActivity : AppCompatActivity() {
             if (nameInput.text.isEmpty() || dateInput.text.isEmpty()) {
                 Toast.makeText(this, "input fields are empty!", Toast.LENGTH_SHORT).show()
             } else {
-                val birthday = Birthday(0L, nameInput.text.toString(), birthDate, commentInput.text.toString())
-                viewModel.addBirthday(birthday)
-                val intent = Intent(this.baseContext, MainActivity::class.java)
-                startActivity(intent)
+                    if (selectionInput.text.toString() == selection.get(0)){
+                        val birthday = Birthday(0L, nameInput.text.toString(), birthDate, commentInput.text.toString())
+                        birthdaysViewModel.addBirthday(birthday)
+                        val intent = Intent(this.baseContext, MainActivity::class.java)
+                        startActivity(intent)
+                    }
+                    else if (selectionInput.text.toString() == selection.get(1)) {
+                        val event = Event(0L, nameInput.text.toString(), birthDate, commentInput.text.toString())
+                        eventsViewModel.addEvent(event)
+                        val intent = Intent(this.baseContext, MainActivity::class.java)
+                        startActivity(intent)
+                    }
+                else{
+                        Toast.makeText(this, "Choose database!", Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }

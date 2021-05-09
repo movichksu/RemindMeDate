@@ -21,8 +21,8 @@ class EventAdapter internal constructor(
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         val event = events[position]
-        viewHolder.birthdayName.text = event.eventName
-        viewHolder.birthdayDate.text = "${event.eventDate.dayOfMonth} ${event.eventDate.month}-${event.eventDate.year}"
+        viewHolder.birthdayName.text = event.name
+        viewHolder.birthdayDate.text = "${event.date.dayOfMonth} ${event.date.month}-${event.date.year}"
         viewHolder.container.setOnClickListener {
             listener?.onClick(event)
             notifyItemRemoved(position)

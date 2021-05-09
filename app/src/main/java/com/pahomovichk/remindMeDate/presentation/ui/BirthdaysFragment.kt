@@ -13,7 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.pahomovichk.remindMeDate.Constants
-import com.pahomovichk.remindMeDate.ItemActivity
+import com.pahomovichk.remindMeDate.BirthdayItemActivity
 import com.pahomovichk.remindMeDate.R
 import com.pahomovichk.remindMeDate.entity.Birthday
 import com.pahomovichk.remindMeDate.presentation.adapter.BirthdayAdapter
@@ -68,10 +68,10 @@ class BirthdaysFragment : Fragment(), BirthdayClickListener {
     override fun onClick(birthday: Birthday) {
         //viewModel.onItemSelected(birthday)
 
-        val intent = Intent(this.context, ItemActivity::class.java)
-        intent.putExtra(Constants.BIRTHDAY_NAME, birthday.birthdayName)
-        intent.putExtra(Constants.BIRTHDAY_DATE, "${birthday.birthdayDate.month.toString().toLowerCase()} ${birthday.birthdayDate.dayOfMonth}, ${birthday.birthdayDate.year}");
-        intent.putExtra(Constants.BIRTHDAY_COMMENT, birthday.birthdayComments);
+        val intent = Intent(this.context, BirthdayItemActivity::class.java)
+        intent.putExtra(Constants.BIRTHDAY_NAME, birthday.name)
+        intent.putExtra(Constants.BIRTHDAY_DATE, "${birthday.date.month.toString().toLowerCase()} ${birthday.date.dayOfMonth}, ${birthday.date.year}");
+        intent.putExtra(Constants.BIRTHDAY_COMMENT, birthday.comments);
         startActivity(intent)
     }
 

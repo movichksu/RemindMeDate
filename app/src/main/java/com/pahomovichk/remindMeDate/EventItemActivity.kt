@@ -9,38 +9,37 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProvider
-import com.pahomovichk.remindMeDate.entity.Birthday
-import com.pahomovichk.remindMeDate.presentation.adapter.BirthdayClickListener
-import com.pahomovichk.remindMeDate.presentation.viewModel.BirthdaysViewModel
+import com.pahomovichk.remindMeDate.entity.Event
+import com.pahomovichk.remindMeDate.presentation.adapter.EventClickListener
+import com.pahomovichk.remindMeDate.presentation.viewModel.EventsViewModel
 
-class ItemActivity : AppCompatActivity(), BirthdayClickListener {
-
+class EventItemActivity: AppCompatActivity(), EventClickListener {
     private lateinit var toolBar: Toolbar
-    private lateinit var viewModel: BirthdaysViewModel
+    private lateinit var viewModel: EventsViewModel
 
-    private lateinit var birth_name : String
-    private lateinit var birth_date : String
-    private lateinit var birth_comments : String
+    private lateinit var eventName : String
+    private lateinit var eventDate : String
+    private lateinit var eventComments : String
 
-    private lateinit var birthCardData : TextView
-    private lateinit var birthCommentsData: TextView
+    private lateinit var eventCardData : TextView
+    private lateinit var eventCommentsData: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.item_activity)
-        viewModel = ViewModelProvider(this).get(BirthdaysViewModel::class.java)
-        birthCardData = findViewById(R.id.date_card_data)
-        birthCommentsData = findViewById(R.id.date_comment_data)
+        viewModel = ViewModelProvider(this).get(EventsViewModel::class.java)
+        eventCardData = findViewById(R.id.date_card_data)
+        eventCommentsData = findViewById(R.id.date_comment_data)
 
-        birth_name = intent.getStringExtra(Constants.BIRTHDAY_NAME) ?: ""
-        birth_date = intent.getStringExtra(Constants.BIRTHDAY_DATE) ?: ""
-        birth_comments = intent.getStringExtra(Constants.BIRTHDAY_COMMENT) ?: ""
+        eventName = intent.getStringExtra(Constants.EVENT_NAME) ?: ""
+        eventDate = intent.getStringExtra(Constants.EVENT_DATE) ?: ""
+        eventComments = intent.getStringExtra(Constants.EVENT_COMMENT) ?: ""
 
         toolBar = findViewById(R.id.item_activity_toolbar)
         setSupportActionBar(toolBar)
         supportActionBar?.apply {
             titleColor = resources.getColor(R.color.white)
-            title = birth_name
+            title = eventName
         }
 
         toolBar.setNavigationOnClickListener {
@@ -49,8 +48,8 @@ class ItemActivity : AppCompatActivity(), BirthdayClickListener {
             startActivity(intent)
         }
 
-        birthCardData.text = birth_date
-        birthCommentsData.text = birth_comments
+        eventCardData.text = eventDate
+        eventCommentsData.text = eventComments
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -75,8 +74,7 @@ class ItemActivity : AppCompatActivity(), BirthdayClickListener {
         }
     }
 
-    override fun onClick(birthday: Birthday) {
-        viewModel.onItemSelected(birthday)
+    override fun onClick(event: Event) {
+        viewModel.onItemSelected(event)
     }
-
 }

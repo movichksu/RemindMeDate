@@ -9,11 +9,11 @@ import java.time.LocalDate
 @TypeConverters(DateConverter::class)
 data class Event(
         @PrimaryKey(autoGenerate = true)
-        val eventID: Long,
+        val id: Long,
 
-        val eventName: String,
+        val name: String,
 
-        val eventDate: LocalDate,
+        val date: LocalDate,
 
-        val eventComment: String
+        val comments: String
 )

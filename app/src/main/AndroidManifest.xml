@@ -25,7 +25,10 @@
 
         </activity>
         <activity
-            android:name=".ItemActivity">
+            android:name=".BirthdayItemActivity">
+        </activity>
+        <activity
+            android:name=".EventItemActivity">
         </activity>
     </application>
 

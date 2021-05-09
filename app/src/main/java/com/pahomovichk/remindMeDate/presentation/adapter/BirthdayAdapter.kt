@@ -22,8 +22,8 @@ class BirthdayAdapter internal constructor(
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         val birthday = birthdays[position]
-        viewHolder.birthdayName.text = birthday.birthdayName
-        viewHolder.birthdayDate.text = "${birthday.birthdayDate.dayOfMonth} ${birthday.birthdayDate.month}-${birthday.birthdayDate.year}"
+        viewHolder.birthdayName.text = birthday.name
+        viewHolder.birthdayDate.text = "${birthday.date.dayOfMonth} ${birthday.date.month}-${birthday.date.year}"
         viewHolder.container.setOnClickListener {
             listener?.onClick(birthday)
             notifyItemRemoved(position)

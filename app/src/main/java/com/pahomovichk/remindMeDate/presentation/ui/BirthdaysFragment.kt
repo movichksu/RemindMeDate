@@ -7,7 +7,6 @@ import android.view.View
 import android.view.View.INVISIBLE
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.core.view.isEmpty
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -18,11 +17,11 @@ import com.pahomovichk.remindMeDate.ItemActivity
 import com.pahomovichk.remindMeDate.R
 import com.pahomovichk.remindMeDate.entity.Birthday
 import com.pahomovichk.remindMeDate.presentation.adapter.BirthdayAdapter
-import com.pahomovichk.remindMeDate.presentation.adapter.ItemClickListener
+import com.pahomovichk.remindMeDate.presentation.adapter.BirthdayClickListener
 import com.pahomovichk.remindMeDate.presentation.viewModel.BirthdaysViewModel
 
 
-class BirthdaysFragment : Fragment(), ItemClickListener {
+class BirthdaysFragment : Fragment(), BirthdayClickListener {
 
     companion object {
         fun newInstance() =
@@ -70,9 +69,9 @@ class BirthdaysFragment : Fragment(), ItemClickListener {
         //viewModel.onItemSelected(birthday)
 
         val intent = Intent(this.context, ItemActivity::class.java)
-        intent.putExtra(Constants.BIRTHDAY_NAME, birthday.name)
-        intent.putExtra(Constants.BIRTHDAY_DATE, "${birthday.date.month.toString().toLowerCase()} ${birthday.date.dayOfMonth}, ${birthday.date.year}");
-        intent.putExtra(Constants.BIRTHDAY_COMMENT, birthday.comments);
+        intent.putExtra(Constants.BIRTHDAY_NAME, birthday.birthdayName)
+        intent.putExtra(Constants.BIRTHDAY_DATE, "${birthday.birthdayDate.month.toString().toLowerCase()} ${birthday.birthdayDate.dayOfMonth}, ${birthday.birthdayDate.year}");
+        intent.putExtra(Constants.BIRTHDAY_COMMENT, birthday.birthdayComments);
         startActivity(intent)
     }
 

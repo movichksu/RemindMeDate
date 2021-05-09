@@ -23,7 +23,7 @@ class BirthdayUseCaseImpl(
     }
 
     override suspend fun cleanDb() {
-        birthdayRepository.cleanDb()
+        birthdayRepository.cleanBirthdaysDb()
     }
 
 

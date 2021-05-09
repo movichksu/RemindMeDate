@@ -6,20 +6,19 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface BirthdayDao {
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(birthday: Birthday)
+    fun insertBirthday(birthday: Birthday)
 
     @Delete
-    fun delete(birthday: Birthday)
+    fun deleteBirthday(birthday: Birthday)
 
     @Update
-    fun update(birthday:Birthday)
+    fun updateBirthday(birthday:Birthday)
 
     @Query("Select * From Birthday")
-    fun selectAll(): Flow<List<Birthday>>
+    fun selectAllBirthdays(): Flow<List<Birthday>>
 
     @Query("Delete From Birthday")
-    fun deleteAll()
+    fun deleteAllBirthdays()
 
 }

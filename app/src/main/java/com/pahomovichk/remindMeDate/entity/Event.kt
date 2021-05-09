@@ -7,13 +7,13 @@ import java.time.LocalDate
 
 @Entity
 @TypeConverters(DateConverter::class)
-data class Birthday (
+data class Event(
         @PrimaryKey(autoGenerate = true)
-        val birthdayID: Long,
+        val eventID: Long,
 
-        val birthdayName: String,
+        val eventName: String,
 
-        val birthdayDate: LocalDate,
+        val eventDate: LocalDate,
 
-        val birthdayComments: String
-        )
+        val eventComment: String
+)

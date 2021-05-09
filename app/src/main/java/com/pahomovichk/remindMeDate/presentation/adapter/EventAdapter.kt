@@ -6,34 +6,33 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.pahomovichk.remindMeDate.R
-import com.pahomovichk.remindMeDate.entity.Birthday
+import com.pahomovichk.remindMeDate.entity.Event
 
-class BirthdayAdapter internal constructor(
-    private var birthdays: List<Birthday>
-) : RecyclerView.Adapter<BirthdayAdapter.ViewHolder>() {
-
-    private var listener: BirthdayClickListener? = null
+class EventAdapter internal constructor(
+        private var events: List<Event>
+) : RecyclerView.Adapter<EventAdapter.ViewHolder>() {
+    private var listener: EventClickListener? = null
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(viewGroup.context)
-            .inflate(R.layout.birthday_item, viewGroup, false)
+                .inflate(R.layout.birthday_item, viewGroup, false)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-        val birthday = birthdays[position]
-        viewHolder.birthdayName.text = birthday.birthdayName
-        viewHolder.birthdayDate.text = "${birthday.birthdayDate.dayOfMonth} ${birthday.birthdayDate.month}-${birthday.birthdayDate.year}"
+        val event = events[position]
+        viewHolder.birthdayName.text = event.eventName
+        viewHolder.birthdayDate.text = "${event.eventDate.dayOfMonth} ${event.eventDate.month}-${event.eventDate.year}"
         viewHolder.container.setOnClickListener {
-            listener?.onClick(birthday)
+            listener?.onClick(event)
             notifyItemRemoved(position)
         }
     }
 
-    override fun getItemCount() = birthdays.size
+    override fun getItemCount() = events.size
 
-    fun setData(data: List<Birthday>) {
-        this.birthdays = data
+    fun setData(data: List<Event>) {
+        this.events = data
         notifyDataSetChanged()
     }
 
@@ -43,7 +42,7 @@ class BirthdayAdapter internal constructor(
         val birthdayDate: TextView = view.findViewById<TextView>(R.id.birth_date)
     }
 
-    fun setListener(birthdayClickListener: BirthdayClickListener?) {
-        listener = birthdayClickListener
+    fun setListener(eventClickListener: EventClickListener?) {
+        listener = eventClickListener
     }
 }

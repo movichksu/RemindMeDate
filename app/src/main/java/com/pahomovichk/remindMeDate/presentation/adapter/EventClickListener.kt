@@ -1,8 +1,8 @@
 package com.pahomovichk.remindMeDate.presentation.adapter
 
 import com.pahomovichk.remindMeDate.entity.Birthday
+import com.pahomovichk.remindMeDate.entity.Event
 
-interface ItemClickListener {
-
-    fun onClick(birthday: Birthday)
+interface EventClickListener {
+    fun onClick(event: Event)
 }

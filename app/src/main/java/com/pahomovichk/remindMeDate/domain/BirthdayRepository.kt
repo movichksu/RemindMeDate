@@ -10,5 +10,5 @@ interface BirthdayRepository {
     suspend fun deleteBirthday(birthday: Birthday)
     suspend fun addBirthday(birthday: Birthday)
     suspend fun editBirthday(birthday: Birthday)
-    suspend fun cleanDb()
+    suspend fun cleanBirthdaysDb()
 }

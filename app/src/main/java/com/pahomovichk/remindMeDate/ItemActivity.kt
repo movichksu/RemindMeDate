@@ -9,18 +9,11 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.pahomovichk.remindMeDate.entity.Birthday
-import com.pahomovichk.remindMeDate.presentation.adapter.ItemClickListener
+import com.pahomovichk.remindMeDate.presentation.adapter.BirthdayClickListener
 import com.pahomovichk.remindMeDate.presentation.viewModel.BirthdaysViewModel
-import java.time.LocalDate
-import java.time.LocalTime
 
-class ItemActivity : AppCompatActivity(), ItemClickListener {
+class ItemActivity : AppCompatActivity(), BirthdayClickListener {
 
     private lateinit var toolBar: Toolbar
     private lateinit var viewModel: BirthdaysViewModel

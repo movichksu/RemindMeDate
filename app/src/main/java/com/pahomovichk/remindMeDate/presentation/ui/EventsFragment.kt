@@ -13,18 +13,18 @@ import com.pahomovichk.remindMeDate.presentation.viewModel.EventsViewModel
 
 class EventsFragment : Fragment() {
 
-    private lateinit var datesViewModel: EventsViewModel
+    private lateinit var viewModel: EventsViewModel
 
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        datesViewModel =
+        viewModel =
                 ViewModelProvider(this).get(EventsViewModel::class.java)
         val root = inflater.inflate(R.layout.events_fragment, container, false)
         val textView: TextView = root.findViewById(R.id.dates_text)
-        datesViewModel.text.observe(viewLifecycleOwner, Observer {
+        viewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
             textView.setVisibility(View.INVISIBLE)
         })

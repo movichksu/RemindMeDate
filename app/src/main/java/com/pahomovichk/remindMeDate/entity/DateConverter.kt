@@ -4,7 +4,7 @@ import androidx.room.TypeConverter
 import java.time.LocalDate
 import java.time.LocalTime
 
-class BirthdayConverter {
+class DateConverter {
 
     @TypeConverter
     fun fromLocalDate(date: LocalDate): String{
@@ -13,15 +13,6 @@ class BirthdayConverter {
     @TypeConverter
     fun toLocalDate(date: String): LocalDate{
         return LocalDate.parse(date)
-    }
-
-    @TypeConverter
-    fun fromLocalTime(date: LocalTime): String{
-        return date.toString()
-    }
-    @TypeConverter
-    fun toLocalTime(date: String): LocalTime{
-        return LocalTime.parse(date)
     }
 
 }

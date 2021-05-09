@@ -12,11 +12,8 @@ import com.pahomovichk.remindMeDate.Constants
 import com.pahomovichk.remindMeDate.Dependencies
 import com.pahomovichk.remindMeDate.domain.BirthdayUseCase
 import com.pahomovichk.remindMeDate.entity.Birthday
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 
 class BirthdaysViewModel : ViewModel() {
@@ -53,9 +50,9 @@ class BirthdaysViewModel : ViewModel() {
         }
     }
 
-    fun onItemSelected(birthday: Birthday) =
-        viewModelScope.launch {
-            birthdaysUseCase.deleteBirthday(birthday)
+    fun onItemSelected(id: Long) =
+            viewModelScope.launch(Dispatchers.IO) {
+            birthdaysUseCase.deleteBirthday(id)
         }
 
 

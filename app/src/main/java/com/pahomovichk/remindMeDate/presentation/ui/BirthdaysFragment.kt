@@ -69,10 +69,15 @@ class BirthdaysFragment : Fragment(), BirthdayClickListener {
         //viewModel.onItemSelected(birthday)
 
         val intent = Intent(this.context, BirthdayItemActivity::class.java)
+        intent.putExtra(Constants.BIRTHDAY_ID, birthday.id)
         intent.putExtra(Constants.BIRTHDAY_NAME, birthday.name)
         intent.putExtra(Constants.BIRTHDAY_DATE, "${birthday.date.month.toString().toLowerCase()} ${birthday.date.dayOfMonth}, ${birthday.date.year}");
         intent.putExtra(Constants.BIRTHDAY_COMMENT, birthday.comments);
         startActivity(intent)
+    }
+
+    fun onClickDelete(){
+
     }
 
     override fun onDestroyView() {

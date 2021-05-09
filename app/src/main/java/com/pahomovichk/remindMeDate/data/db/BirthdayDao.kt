@@ -13,7 +13,7 @@ interface BirthdayDao {
     fun deleteBirthday(birthday: Birthday)
 
     @Update
-    fun updateBirthday(birthday:Birthday)
+    fun updateBirthday(birthday: Birthday)
 
     @Query("Select * From Birthday")
     fun selectAllBirthdays(): Flow<List<Birthday>>
@@ -21,4 +21,6 @@ interface BirthdayDao {
     @Query("Delete From Birthday")
     fun deleteAllBirthdays()
 
+    @Query("Delete From Birthday Where id = :id")
+    fun deleteBirthday(id: Long)
 }

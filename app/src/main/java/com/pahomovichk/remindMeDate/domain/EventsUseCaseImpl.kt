@@ -14,6 +14,10 @@ class EventsUseCaseImpl(
         eventsRepository.deleteEvent(event)
     }
 
+    override suspend fun deleteEvent(id: Long) {
+        eventsRepository.deleteEvent(id)
+    }
+
     override suspend fun addEvent(event: Event) {
         eventsRepository.addEvent(event)
     }

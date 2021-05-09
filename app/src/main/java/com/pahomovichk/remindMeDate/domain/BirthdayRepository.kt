@@ -8,6 +8,7 @@ import kotlinx.coroutines.withContext
 interface BirthdayRepository {
     fun getBirthdays(): Flow<List<Birthday>>
     suspend fun deleteBirthday(birthday: Birthday)
+    suspend fun deleteBirthday(id: Long)
     suspend fun addBirthday(birthday: Birthday)
     suspend fun editBirthday(birthday: Birthday)
     suspend fun cleanBirthdaysDb()

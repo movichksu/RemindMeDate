@@ -14,6 +14,10 @@ class BirthdayUseCaseImpl(
         birthdayRepository.deleteBirthday(birthday)
     }
 
+    override suspend fun deleteBirthday(id: Long) {
+        birthdayRepository.deleteBirthday(id)
+    }
+
     override suspend fun addBirthday(birthday: Birthday) {
         birthdayRepository.addBirthday(birthday)
     }

@@ -33,6 +33,10 @@ class LocalDatabaseSource(
         }
     }
 
+    override suspend fun deleteBirthday(id: Long) {
+        birthdaysDatabase.getBirthdayDao().deleteBirthday(id)
+    }
+
     override suspend fun addBirthday(birthday: Birthday) {
         withContext(Dispatchers.IO) {
             birthdaysDatabase.getBirthdayDao().insertBirthday(birthday)
@@ -56,6 +60,10 @@ class LocalDatabaseSource(
 
     override suspend fun deleteEvent(event: Event) {
         eventsDatabase.getEventsDao().deleteEvent(event)
+    }
+
+    override suspend fun deleteEvent(id: Long) {
+        eventsDatabase.getEventsDao().deleteEvent(id)
     }
 
     override suspend fun addEvent(event: Event) {

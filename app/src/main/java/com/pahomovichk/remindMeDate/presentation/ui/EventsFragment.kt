@@ -68,6 +68,7 @@ class EventsFragment : Fragment(), EventClickListener {
         //viewModel.onItemSelected(birthday)
 
         val intent = Intent(this.context, EventItemActivity::class.java)
+        intent.putExtra(Constants.EVENT_ID, event.id)
         intent.putExtra(Constants.EVENT_NAME, event.name)
         intent.putExtra(Constants.EVENT_DATE, "${event.date.month.toString().toLowerCase()} ${event.date.dayOfMonth}, ${event.date.year}");
         intent.putExtra(Constants.EVENT_COMMENT, event.comments);

@@ -9,15 +9,19 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.viewModelScope
 import com.pahomovichk.remindMeDate.entity.Birthday
 import com.pahomovichk.remindMeDate.presentation.adapter.BirthdayClickListener
 import com.pahomovichk.remindMeDate.presentation.viewModel.BirthdaysViewModel
+import kotlinx.coroutines.*
 
-class BirthdayItemActivity : AppCompatActivity(), BirthdayClickListener {
+class BirthdayItemActivity : AppCompatActivity() {
 
     private lateinit var toolBar: Toolbar
     private lateinit var viewModel: BirthdaysViewModel
 
+    private var birthId = 0L
     private lateinit var birthName : String
     private lateinit var birthDate : String
     private lateinit var birthComments : String
@@ -32,6 +36,7 @@ class BirthdayItemActivity : AppCompatActivity(), BirthdayClickListener {
         birthCardData = findViewById(R.id.date_card_data)
         birthCommentsData = findViewById(R.id.date_comment_data)
 
+        birthId = intent.getLongExtra(Constants.BIRTHDAY_ID, 0L)
         birthName = intent.getStringExtra(Constants.BIRTHDAY_NAME) ?: ""
         birthDate = intent.getStringExtra(Constants.BIRTHDAY_DATE) ?: ""
         birthComments = intent.getStringExtra(Constants.BIRTHDAY_COMMENT) ?: ""
@@ -44,7 +49,6 @@ class BirthdayItemActivity : AppCompatActivity(), BirthdayClickListener {
         }
 
         toolBar.setNavigationOnClickListener {
-            Toast.makeText(this, "Back clicked!", Toast.LENGTH_SHORT).show()
             val intent = Intent(this.baseContext, MainActivity::class.java)
             startActivity(intent)
         }
@@ -63,8 +67,10 @@ class BirthdayItemActivity : AppCompatActivity(), BirthdayClickListener {
         // Handle item selection
         return when (item.itemId) {
             R.id.item_bar_delete -> {
-                //onClick()
+                viewModel.onItemSelected(birthId)
                 Toast.makeText(this, "Delete is clicked!", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this.baseContext, MainActivity::class.java)
+                startActivity(intent)
                 true
             }
             R.id.item_bar_edit -> {
@@ -75,8 +81,5 @@ class BirthdayItemActivity : AppCompatActivity(), BirthdayClickListener {
         }
     }
 
-    override fun onClick(birthday: Birthday) {
-        viewModel.onItemSelected(birthday)
-    }
 
 }

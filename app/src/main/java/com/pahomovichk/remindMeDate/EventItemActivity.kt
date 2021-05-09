@@ -13,10 +13,11 @@ import com.pahomovichk.remindMeDate.entity.Event
 import com.pahomovichk.remindMeDate.presentation.adapter.EventClickListener
 import com.pahomovichk.remindMeDate.presentation.viewModel.EventsViewModel
 
-class EventItemActivity: AppCompatActivity(), EventClickListener {
+class EventItemActivity: AppCompatActivity() {
     private lateinit var toolBar: Toolbar
     private lateinit var viewModel: EventsViewModel
 
+    private var eventId: Long = 0L
     private lateinit var eventName : String
     private lateinit var eventDate : String
     private lateinit var eventComments : String
@@ -31,6 +32,7 @@ class EventItemActivity: AppCompatActivity(), EventClickListener {
         eventCardData = findViewById(R.id.date_card_data)
         eventCommentsData = findViewById(R.id.date_comment_data)
 
+        eventId = intent.getLongExtra(Constants.EVENT_ID, 0L)
         eventName = intent.getStringExtra(Constants.EVENT_NAME) ?: ""
         eventDate = intent.getStringExtra(Constants.EVENT_DATE) ?: ""
         eventComments = intent.getStringExtra(Constants.EVENT_COMMENT) ?: ""
@@ -62,8 +64,10 @@ class EventItemActivity: AppCompatActivity(), EventClickListener {
         // Handle item selection
         return when (item.itemId) {
             R.id.item_bar_delete -> {
-                //onClick()
+                viewModel.onItemSelected(eventId)
                 Toast.makeText(this, "Delete is clicked!", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this.baseContext, MainActivity::class.java)
+                startActivity(intent)
                 true
             }
             R.id.item_bar_edit -> {
@@ -74,7 +78,4 @@ class EventItemActivity: AppCompatActivity(), EventClickListener {
         }
     }
 
-    override fun onClick(event: Event) {
-        viewModel.onItemSelected(event)
-    }
 }

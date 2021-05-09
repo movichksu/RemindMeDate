@@ -42,8 +42,8 @@ class EventsViewModel : ViewModel() {
         }
     }
 
-    fun onItemSelected(event: Event) =
-            viewModelScope.launch {
-                eventsUseCase.deleteEvent(event)
+    fun onItemSelected(id: Long) =
+            viewModelScope.launch(Dispatchers.IO) {
+                eventsUseCase.deleteEvent(id)
             }
 }

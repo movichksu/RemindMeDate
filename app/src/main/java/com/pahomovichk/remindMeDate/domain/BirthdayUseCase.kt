@@ -6,6 +6,7 @@ import kotlinx.coroutines.flow.Flow
 interface BirthdayUseCase {
     fun getBirthdays(): Flow<List<Birthday>>
     suspend fun deleteBirthday(birthday: Birthday)
+    suspend fun deleteBirthday(id: Long)
     suspend fun addBirthday(birthday: Birthday)
     suspend fun editBirthday(birthday: Birthday)
     suspend fun cleanDb()

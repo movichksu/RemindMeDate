@@ -16,12 +16,12 @@ class BirthdayConverter {
     }
 
     @TypeConverter
-    fun fromLocalTime(time: LocalTime): String{
-        return time.toString()
+    fun fromLocalTime(date: LocalTime): String{
+        return date.toString()
     }
     @TypeConverter
-    fun toLocalTime(time: String): LocalTime{
-        return LocalTime.parse(time)
+    fun toLocalTime(date: String): LocalTime{
+        return LocalTime.parse(date)
     }
 
 }

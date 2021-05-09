@@ -9,11 +9,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.pahomovichk.remindMeDate.R
-import com.pahomovichk.remindMeDate.presentation.viewModel.DatesViewModel
+import com.pahomovichk.remindMeDate.presentation.viewModel.EventsViewModel
 
-class DatesFragment : Fragment() {
+class EventsFragment : Fragment() {
 
-    private lateinit var datesViewModel: DatesViewModel
+    private lateinit var datesViewModel: EventsViewModel
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -21,11 +21,12 @@ class DatesFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
         datesViewModel =
-                ViewModelProvider(this).get(DatesViewModel::class.java)
+                ViewModelProvider(this).get(EventsViewModel::class.java)
         val root = inflater.inflate(R.layout.events_fragment, container, false)
         val textView: TextView = root.findViewById(R.id.dates_text)
         datesViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
+            textView.setVisibility(View.INVISIBLE)
         })
         return root
     }

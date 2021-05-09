@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.pahomovichk.remindMeDate.R
 import com.pahomovichk.remindMeDate.entity.Birthday
+import org.w3c.dom.Text
 
 class BirthdayAdapter internal constructor(
     private var birthdays: List<Birthday>
@@ -24,7 +25,6 @@ class BirthdayAdapter internal constructor(
         val birthday = birthdays[position]
         viewHolder.birthdayName.text = birthday.name
         viewHolder.birthdayDate.text = "${birthday.date.dayOfMonth} ${birthday.date.month}-${birthday.date.year}"
-        viewHolder.birthdayTime.text = "${birthday.time}"
         viewHolder.container.setOnClickListener {
             listener?.onClick(birthday)
             notifyItemRemoved(position)
@@ -42,7 +42,6 @@ class BirthdayAdapter internal constructor(
         val container: View = view.findViewById(R.id.birthday_card)
         val birthdayName: TextView = view.findViewById<TextView>(R.id.birth_name)
         val birthdayDate: TextView = view.findViewById<TextView>(R.id.birth_date)
-        val birthdayTime: TextView = view.findViewById<TextView>(R.id.birth_time)
     }
 
     fun setListener(itemClickListener: ItemClickListener?) {

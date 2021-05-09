@@ -40,14 +40,11 @@ class BirthdaysFragment : Fragment(), ItemClickListener {
         savedInstanceState: Bundle?
     ): View? {
         viewModel = ViewModelProvider(this).get(BirthdaysViewModel::class.java)
-
         val root = inflater.inflate(R.layout.birthdays_fragment, container, false)
         val textView: TextView = root.findViewById(R.id.birthdays_text)
         viewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
-            if (!birthdaysList.isEmpty()) {
-                textView.setVisibility(INVISIBLE)
-            }
+            textView.setVisibility(INVISIBLE)
         })
         return root
     }
@@ -74,9 +71,8 @@ class BirthdaysFragment : Fragment(), ItemClickListener {
 
         val intent = Intent(this.context, ItemActivity::class.java)
         intent.putExtra(Constants.BIRTHDAY_NAME, birthday.name)
-        intent.putExtra(Constants.BIRTHDAY_TIME, birthday.time.toString())
         intent.putExtra(Constants.BIRTHDAY_DATE, "${birthday.date.month.toString().toLowerCase()} ${birthday.date.dayOfMonth}, ${birthday.date.year}");
-        //intent.putExtra(Constants.BIRTHDAY_COMMENT, birthday.comment);
+        intent.putExtra(Constants.BIRTHDAY_COMMENT, birthday.comments);
         startActivity(intent)
     }
 

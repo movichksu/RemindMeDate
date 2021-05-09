@@ -3,7 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/main_bar_delete_all"
-        android:title="Clear database" />
+        android:id="@+id/main_bar_delete_all_birthdays"
+        android:title="Clear Birthdays database" />
+    <item
+        android:id="@+id/main_bar_delete_all_events"
+        android:title="Clear Events database" />
 
 </menu>

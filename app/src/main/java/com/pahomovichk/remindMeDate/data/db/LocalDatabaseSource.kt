@@ -39,5 +39,11 @@ class LocalDatabaseSource(
         }
     }
 
+    override suspend fun cleanDb(){
+        withContext(Dispatchers.IO) {
+            birthdaysDatabase.getBirthdayDao().deleteAll()
+        }
+    }
+
 
 }

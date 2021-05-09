@@ -1,5 +1,6 @@
 package com.pahomovichk.remindMeDate.entity
 
+import androidx.annotation.Nullable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
@@ -14,9 +15,12 @@ data class Birthday (
         @PrimaryKey(autoGenerate = true)
         val id: Long,
 
+        @Nullable
         val name: String,
 
+        @Nullable
         val date: LocalDate,
 
-        val time: LocalTime
+        @Nullable
+        val comments: String
         )

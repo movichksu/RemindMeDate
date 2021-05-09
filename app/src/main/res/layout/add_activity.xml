@@ -65,26 +65,26 @@
             android:focusable="false" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/time_input_field"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="20dp"
-        android:hint="Time"
-        app:endIconMode="dropdown_menu"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/date_input_field">
+<!--    <com.google.android.material.textfield.TextInputLayout-->
+<!--        android:id="@+id/time_input_field"-->
+<!--        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginLeft="20dp"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:layout_marginRight="20dp"-->
+<!--        android:hint="Time"-->
+<!--        app:endIconMode="dropdown_menu"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/date_input_field">-->
 
-        <AutoCompleteTextView
-            android:id="@+id/time_input"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:focusable="false" />
-    </com.google.android.material.textfield.TextInputLayout>
+<!--        <AutoCompleteTextView-->
+<!--            android:id="@+id/time_input"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:focusable="false" />-->
+<!--    </com.google.android.material.textfield.TextInputLayout>-->
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/comments_input_field"
@@ -97,13 +97,34 @@
         android:hint="Comments"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/time_input_field">
+        app:layout_constraintTop_toBottomOf="@+id/date_input_field">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/comments_input"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/db_selection_field"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:hint="Select list"
+        app:endIconMode="dropdown_menu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/comments_input_field">
+
+        <AutoCompleteTextView
+            android:id="@+id/selection_input"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:focusable="false" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
@@ -116,6 +137,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/comments_input_field" />
+        app:layout_constraintTop_toBottomOf="@+id/db_selection_field" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

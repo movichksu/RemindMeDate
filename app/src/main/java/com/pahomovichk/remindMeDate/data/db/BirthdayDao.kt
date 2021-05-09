@@ -19,4 +19,7 @@ interface BirthdayDao {
     @Query("Select * From Birthday")
     fun selectAll(): Flow<List<Birthday>>
 
+    @Query("Delete From Birthday")
+    fun deleteAll()
+
 }

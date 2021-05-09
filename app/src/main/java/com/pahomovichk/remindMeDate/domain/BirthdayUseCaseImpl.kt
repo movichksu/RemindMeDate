@@ -22,5 +22,9 @@ class BirthdayUseCaseImpl(
         birthdayRepository.editBirthday(birthday)
     }
 
+    override suspend fun cleanDb() {
+        birthdayRepository.cleanDb()
+    }
+
 
 }

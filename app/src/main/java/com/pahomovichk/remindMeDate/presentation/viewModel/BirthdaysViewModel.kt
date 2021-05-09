@@ -56,9 +56,6 @@ class BirthdaysViewModel : ViewModel() {
     fun onItemSelected(birthday: Birthday) =
         viewModelScope.launch {
             birthdaysUseCase.deleteBirthday(birthday)
-//            val intent = Intent(App.instance, AddActivity::class.java)
-//            intent.putExtra(Constants.BIRTHDAY_KEY, birthday);
-//            startActivity(intent)
         }
 
 

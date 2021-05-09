@@ -6,9 +6,7 @@ import android.app.TimePickerDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProvider
@@ -25,12 +23,11 @@ class AddActivity : AppCompatActivity() {
     private lateinit var toolBar: Toolbar
 
     private var birthDate: LocalDate = LocalDate.of(2000, 5, 31)
-    private var birthTime: LocalTime = LocalTime.now()
 
     private lateinit var nameInput: EditText
     private lateinit var dateInput: EditText
-    private lateinit var timeInput: EditText
     private lateinit var commentInput: EditText
+    private lateinit var selectionInput: AutoCompleteTextView
     private lateinit var createBirthdayBtn: Button
 
     private val dateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.US)
@@ -47,8 +44,8 @@ class AddActivity : AppCompatActivity() {
         setSupportActionBar(toolBar)
         nameInput = findViewById(R.id.name_input)
         dateInput = findViewById(R.id.date_input)
-        timeInput = findViewById(R.id.time_input)
         commentInput = findViewById(R.id.comments_input)
+        selectionInput = findViewById(R.id.selection_input)
         createBirthdayBtn = findViewById(R.id.create_btn)
 
         toolBar.setNavigationOnClickListener {
@@ -78,28 +75,15 @@ class AddActivity : AppCompatActivity() {
             datePicker.show()
         }
 
-        timeInput.setOnClickListener {
-            val getCalendar = Calendar.getInstance()
-            val timePicker = TimePickerDialog.OnTimeSetListener { timePicker, hour, minute ->
-                getCalendar.set(Calendar.HOUR_OF_DAY, hour)
-                getCalendar.set(Calendar.MINUTE, minute)
-                timeInput.setText(timeFormat.format(getCalendar.time))
-                birthTime = LocalTime.parse(timeFormat.format(getCalendar.time).toString())
-            }
-            TimePickerDialog(
-                this,
-                timePicker,
-                getCalendar.get(Calendar.HOUR_OF_DAY),
-                getCalendar.get(Calendar.MINUTE),
-                true
-            ).show()
-        }
+        val selection = resources.getStringArray(R.array.add_selection)
+        val arrayAdapter = ArrayAdapter(this.baseContext, R.layout.selection_db_dropdown_item, selection)
+        selectionInput.setAdapter(arrayAdapter)
 
         createBirthdayBtn.setOnClickListener {
-            if (nameInput.text.isEmpty() || dateInput.text.isEmpty() || timeInput.text.isEmpty()) {
+            if (nameInput.text.isEmpty() || dateInput.text.isEmpty()) {
                 Toast.makeText(this, "input fields are empty!", Toast.LENGTH_SHORT).show()
             } else {
-                val birthday = Birthday(0L, nameInput.text.toString(), birthDate, birthTime)
+                val birthday = Birthday(0L, nameInput.text.toString(), birthDate, commentInput.text.toString())
                 viewModel.addBirthday(birthday)
                 val intent = Intent(this.baseContext, MainActivity::class.java)
                 startActivity(intent)

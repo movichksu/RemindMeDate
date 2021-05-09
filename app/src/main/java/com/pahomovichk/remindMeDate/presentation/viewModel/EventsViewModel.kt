@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class DatesViewModel : ViewModel() {
+class EventsViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = "No dates"

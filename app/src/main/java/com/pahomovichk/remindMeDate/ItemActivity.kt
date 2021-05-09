@@ -26,20 +26,22 @@ class ItemActivity : AppCompatActivity(), ItemClickListener {
     private lateinit var viewModel: BirthdaysViewModel
 
     private lateinit var birth_name : String
-    private lateinit var birth_time : String
     private lateinit var birth_date : String
+    private lateinit var birth_comments : String
 
     private lateinit var birthCardData : TextView
+    private lateinit var birthCommentsData: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.item_activity)
         viewModel = ViewModelProvider(this).get(BirthdaysViewModel::class.java)
         birthCardData = findViewById(R.id.date_card_data)
+        birthCommentsData = findViewById(R.id.date_comment_data)
 
         birth_name = intent.getStringExtra(Constants.BIRTHDAY_NAME) ?: ""
-        birth_time = intent.getStringExtra(Constants.BIRTHDAY_TIME) ?: ""
         birth_date = intent.getStringExtra(Constants.BIRTHDAY_DATE) ?: ""
+        birth_comments = intent.getStringExtra(Constants.BIRTHDAY_COMMENT) ?: ""
 
         toolBar = findViewById(R.id.item_activity_toolbar)
         setSupportActionBar(toolBar)
@@ -55,6 +57,7 @@ class ItemActivity : AppCompatActivity(), ItemClickListener {
         }
 
         birthCardData.text = birth_date
+        birthCommentsData.text = birth_comments
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

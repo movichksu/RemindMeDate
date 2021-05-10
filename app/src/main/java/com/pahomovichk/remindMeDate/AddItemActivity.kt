@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -15,14 +16,16 @@ import com.pahomovichk.remindMeDate.presentation.viewModel.BirthdaysViewModel
 import com.pahomovichk.remindMeDate.presentation.viewModel.EventsViewModel
 import java.text.SimpleDateFormat
 import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.*
 
-class AddActivity : AppCompatActivity() {
+class AddItemActivity : AppCompatActivity() {
 
     private lateinit var birthdaysViewModel: BirthdaysViewModel
     private lateinit var eventsViewModel: EventsViewModel
     private lateinit var toolBar: Toolbar
 
+    val localFormatter = DateTimeFormatter.ofPattern("dd MMMM yyyy")
     private var birthDate: LocalDate = LocalDate.of(2000, 5, 31)
 
     private lateinit var nameInput: EditText
@@ -31,7 +34,7 @@ class AddActivity : AppCompatActivity() {
     private lateinit var selectionInput: AutoCompleteTextView
     private lateinit var createBirthdayBtn: Button
 
-    private val dateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.US)
+    private val dateFormat = SimpleDateFormat("dd MMMM yyyy", Locale.US)
 
     @SuppressLint("SimpleDateFormat")
     private val timeFormat = SimpleDateFormat("HH:mm")
@@ -69,7 +72,7 @@ class AddActivity : AppCompatActivity() {
                     selectDate.set(Calendar.DAY_OF_MONTH, day)
                     val date = dateFormat.format(selectDate.time)
                     dateInput.setText(date)
-                    birthDate = LocalDate.of(Calendar.YEAR, Calendar.MONTH, Calendar.DAY_OF_MONTH)
+                    birthDate = LocalDate.parse(dateInput.text.toString(),localFormatter)
                 },
                 getCalendar.get(Calendar.YEAR),
                 getCalendar.get(Calendar.MONTH),

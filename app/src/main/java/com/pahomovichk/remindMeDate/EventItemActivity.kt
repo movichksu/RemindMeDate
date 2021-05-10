@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -28,6 +29,7 @@ class EventItemActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.item_activity)
+        setActivityContent()
         viewModel = ViewModelProvider(this).get(EventsViewModel::class.java)
         eventCardData = findViewById(R.id.date_card_data)
         eventCommentsData = findViewById(R.id.date_comment_data)
@@ -45,7 +47,6 @@ class EventItemActivity: AppCompatActivity() {
         }
 
         toolBar.setNavigationOnClickListener {
-            Toast.makeText(this, "Back clicked!", Toast.LENGTH_SHORT).show()
             val intent = Intent(this.baseContext, MainActivity::class.java)
             startActivity(intent)
         }
@@ -61,21 +62,23 @@ class EventItemActivity: AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle item selection
         return when (item.itemId) {
             R.id.item_bar_delete -> {
                 viewModel.onItemSelected(eventId)
-                Toast.makeText(this, "Delete is clicked!", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this.baseContext, MainActivity::class.java)
                 startActivity(intent)
                 true
             }
             R.id.item_bar_edit -> {
-                Toast.makeText(this, "Edit is clicked!", Toast.LENGTH_SHORT).show()
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun setActivityContent(){
+        findViewById<TextView>(R.id.date_card_label).setText("Event date")
+        findViewById<ImageView>(R.id.date_card_icon).setImageResource(R.drawable.ic_notifications)
     }
 
 }

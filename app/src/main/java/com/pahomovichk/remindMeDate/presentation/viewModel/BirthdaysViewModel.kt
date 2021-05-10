@@ -1,14 +1,9 @@
 package com.pahomovichk.remindMeDate.presentation.viewModel
 
-import android.content.Intent
-import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.cleanarchitechture.App
-import com.pahomovichk.remindMeDate.AddActivity
-import com.pahomovichk.remindMeDate.Constants
 import com.pahomovichk.remindMeDate.Dependencies
 import com.pahomovichk.remindMeDate.domain.BirthdayUseCase
 import com.pahomovichk.remindMeDate.entity.Birthday
@@ -20,7 +15,6 @@ class BirthdaysViewModel : ViewModel() {
 
 
     private val birthdaysUseCase: BirthdayUseCase by lazy { Dependencies.getBirthdayUseCase() }
-    //val birthday = Birthday()
 
     private var _text = MutableLiveData<String>().apply {
         value = "No birthdays"

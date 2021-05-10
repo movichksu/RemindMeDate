@@ -33,6 +33,8 @@ class BirthdaysFragment : Fragment(), BirthdayClickListener {
     private lateinit var birthdaysList: RecyclerView
     private var adapter = BirthdayAdapter(listOf())
 
+
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -71,7 +73,7 @@ class BirthdaysFragment : Fragment(), BirthdayClickListener {
         val intent = Intent(this.context, BirthdayItemActivity::class.java)
         intent.putExtra(Constants.BIRTHDAY_ID, birthday.id)
         intent.putExtra(Constants.BIRTHDAY_NAME, birthday.name)
-        intent.putExtra(Constants.BIRTHDAY_DATE, "${birthday.date.month.toString().toLowerCase()} ${birthday.date.dayOfMonth}, ${birthday.date.year}");
+        intent.putExtra(Constants.BIRTHDAY_DATE, "${birthday.date.month.toString().toLowerCase()} ${birthday.date.dayOfMonth.toString().toLowerCase()}, ${birthday.date.year}");
         intent.putExtra(Constants.BIRTHDAY_COMMENT, birthday.comments);
         startActivity(intent)
     }

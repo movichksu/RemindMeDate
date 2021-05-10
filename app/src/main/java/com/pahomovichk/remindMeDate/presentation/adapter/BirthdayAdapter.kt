@@ -7,12 +7,14 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.pahomovichk.remindMeDate.R
 import com.pahomovichk.remindMeDate.entity.Birthday
+import java.time.format.DateTimeFormatter
 
 class BirthdayAdapter internal constructor(
     private var birthdays: List<Birthday>
 ) : RecyclerView.Adapter<BirthdayAdapter.ViewHolder>() {
 
     private var listener: BirthdayClickListener? = null
+    val localFormatter = DateTimeFormatter.ofPattern("MMMM dd, yyyy")
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(viewGroup.context)
@@ -23,7 +25,7 @@ class BirthdayAdapter internal constructor(
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         val birthday = birthdays[position]
         viewHolder.birthdayName.text = birthday.name
-        viewHolder.birthdayDate.text = "${birthday.date.dayOfMonth} ${birthday.date.month}-${birthday.date.year}"
+        viewHolder.birthdayDate.text = "${birthday.date.format(localFormatter)}"
         viewHolder.container.setOnClickListener {
             listener?.onClick(birthday)
             notifyItemRemoved(position)

@@ -79,6 +79,7 @@ class EventItemActivity: AppCompatActivity() {
     private fun setActivityContent(){
         findViewById<TextView>(R.id.date_card_label).setText("Event date")
         findViewById<ImageView>(R.id.date_card_icon).setImageResource(R.drawable.ic_notifications)
+        findViewById<ImageView>(R.id.appbar_background).setImageResource(R.drawable.book_1)
     }
 
 }

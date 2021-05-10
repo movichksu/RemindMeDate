@@ -18,8 +18,8 @@
             android:id="@+id/birth_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:layout_margin="5dp"
+            android:layout_marginTop="8dp"
             android:padding="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -36,28 +36,25 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/birth_date" />
 
-        <TextView
-            android:id="@+id/birth_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="26sp"
-            android:layout_margin="5dp"
-            android:padding="10dp"
+        <ImageView
+            android:id="@+id/birthday_item_icon"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_margin="15dp"
+            android:src="@drawable/ic_cake"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/divider"
-
-            tools:text="10:00" />
+            app:layout_constraintTop_toBottomOf="@id/divider" />
 
         <TextView
             android:id="@+id/birth_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
             android:layout_marginLeft="10dp"
             android:padding="10dp"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/birth_time"
+            app:layout_constraintStart_toEndOf="@+id/birthday_item_icon"
             app:layout_constraintTop_toBottomOf="@id/divider"
 
             tools:text="Mom" />

@@ -11,27 +11,28 @@
         android:id="@+id/item_activity_appbar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        >
+        app:layout_constraintTop_toTopOf="parent">
+
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:expandedTitleGravity="bottom">
 
             <ImageView
+                android:id="@+id/appbar_background"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
-                android:src="@drawable/pink_cacke"
-                android:scaleType="centerCrop"/>
+                android:scaleType="centerCrop"
+                android:src="@drawable/pink_cacke" />
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/item_activity_toolbar"
-                app:navigationIcon="@drawable/ic_arrow_back"
-                app:titleTextColor="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin"/>
+                app:layout_collapseMode="pin"
+                app:navigationIcon="@drawable/ic_arrow_back"
+                app:titleTextColor="@color/white" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
@@ -51,40 +52,40 @@
             android:id="@+id/inner_date_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="5dp"
-            >
-                <ImageView
-                    android:id="@+id/date_card_icon"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_margin="15dp"
-                    android:src="@drawable/ic_cake"
-                    app:layout_constraintTop_toTopOf="@+id/inner_date_card"
-                    app:layout_constraintStart_toStartOf="@+id/inner_date_card"
-                    />
-                <TextView
-                    android:id="@+id/date_card_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:padding="5dp"
-                    android:layout_marginTop="5dp"
-                    app:layout_constraintTop_toTopOf="@+id/inner_date_card"
-                    app:layout_constraintStart_toEndOf="@+id/date_card_icon"
-                    />
-                <TextView
-                    android:id="@+id/date_card_data"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:padding="5dp"
-                    app:layout_constraintTop_toBottomOf="@+id/date_card_label"
-                    app:layout_constraintStart_toEndOf="@+id/date_card_icon"
-                    android:textStyle="bold"
-                    tools:text="April 26, 2006"
-                    />
+            android:paddingBottom="5dp">
+
+            <ImageView
+                android:id="@+id/date_card_icon"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="15dp"
+                android:src="@drawable/ic_cake"
+                app:layout_constraintStart_toStartOf="@+id/inner_date_card"
+                app:layout_constraintTop_toTopOf="@+id/inner_date_card" />
+
+            <TextView
+                android:id="@+id/date_card_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:padding="5dp"
+                app:layout_constraintStart_toEndOf="@+id/date_card_icon"
+                app:layout_constraintTop_toTopOf="@+id/inner_date_card" />
+
+            <TextView
+                android:id="@+id/date_card_data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:padding="5dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/date_card_icon"
+                app:layout_constraintTop_toBottomOf="@+id/date_card_label"
+                tools:text="April 26, 2006" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
+
     <androidx.cardview.widget.CardView
         android:id="@+id/comments_card"
         android:layout_width="match_parent"
@@ -94,46 +95,45 @@
         android:layout_marginRight="10dp"
         app:cardCornerRadius="0dp"
         app:cardElevation="4dp"
-        app:layout_constraintTop_toBottomOf="@+id/date_card"
-        >
+        app:layout_constraintTop_toBottomOf="@+id/date_card">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/inner_comment_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="5dp"
-            >
+            android:paddingBottom="5dp">
+
             <ImageView
                 android:id="@+id/comment_card_icon"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_margin="15dp"
                 android:src="@drawable/ic_note"
-                app:layout_constraintTop_toTopOf="@+id/inner_comment_card"
                 app:layout_constraintStart_toStartOf="@+id/inner_comment_card"
-                />
+                app:layout_constraintTop_toTopOf="@+id/inner_comment_card" />
+
             <TextView
                 android:id="@+id/comment_card_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:padding="5dp"
                 android:layout_marginTop="5dp"
-                app:layout_constraintTop_toTopOf="@+id/inner_comment_card"
-                app:layout_constraintStart_toEndOf="@+id/comment_card_icon"
+                android:padding="5dp"
                 android:text="Notes"
-                />
+                app:layout_constraintStart_toEndOf="@+id/comment_card_icon"
+                app:layout_constraintTop_toTopOf="@+id/inner_comment_card" />
+
             <TextView
                 android:id="@+id/date_comment_data"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
+                android:breakStrategy="balanced"
                 android:padding="5dp"
-                app:layout_constraintTop_toBottomOf="@+id/comment_card_label"
-                app:layout_constraintStart_toEndOf="@+id/comment_card_icon"
                 android:textStyle="bold"
-                tools:text="asdfgyhuioiuytreswasdrfgyhujiopoiuytrfd"
-                />
+                app:layout_constraintStart_toEndOf="@+id/comment_card_icon"
+                app:layout_constraintTop_toBottomOf="@+id/comment_card_label"
+                tools:text="asdfgyhuioiuytreswasdrfgyhujiopoiuytrfd" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

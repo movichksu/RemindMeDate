@@ -18,8 +18,8 @@
             android:id="@+id/event_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:layout_margin="5dp"
+            android:layout_marginTop="8dp"
             android:padding="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -36,19 +36,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/event_date" />
 
-<!--        <TextView-->
-<!--            android:id="@+id/event_time"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:textSize="26sp"-->
-<!--            android:layout_margin="5dp"-->
-<!--            android:padding="10dp"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/divider"-->
-
-<!--            tools:text="10:00" />-->
-
         <ImageView
             android:id="@+id/event_item_icon"
             android:layout_width="35dp"
@@ -57,16 +44,15 @@
             android:src="@drawable/ic_notifications"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/divider"
-            />
+            app:layout_constraintTop_toBottomOf="@id/divider" />
 
         <TextView
             android:id="@+id/event_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
             android:layout_marginLeft="10dp"
             android:padding="10dp"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/event_item_icon"
             app:layout_constraintTop_toBottomOf="@id/divider"

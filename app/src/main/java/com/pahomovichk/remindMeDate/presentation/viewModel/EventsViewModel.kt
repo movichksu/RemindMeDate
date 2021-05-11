@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.pahomovichk.remindMeDate.Dependencies
 import com.pahomovichk.remindMeDate.domain.EventsUseCase
+import com.pahomovichk.remindMeDate.entity.Birthday
 import com.pahomovichk.remindMeDate.entity.Event
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
@@ -38,6 +39,14 @@ class EventsViewModel : ViewModel() {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 eventsUseCase.addEvent(event)
+            }
+        }
+    }
+
+    fun editEvent(event: Event) {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                eventsUseCase.editEvent(event)
             }
         }
     }

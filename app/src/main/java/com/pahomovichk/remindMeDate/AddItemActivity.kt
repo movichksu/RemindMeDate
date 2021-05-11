@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -32,7 +31,7 @@ class AddItemActivity : AppCompatActivity() {
     private lateinit var dateInput: EditText
     private lateinit var commentInput: EditText
     private lateinit var selectionInput: AutoCompleteTextView
-    private lateinit var createBirthdayBtn: Button
+    private lateinit var createItemBtn: Button
 
     private val dateFormat = SimpleDateFormat("dd MMMM yyyy", Locale.US)
 
@@ -52,10 +51,10 @@ class AddItemActivity : AppCompatActivity() {
         dateInput = findViewById(R.id.date_input)
         commentInput = findViewById(R.id.comments_input)
         selectionInput = findViewById(R.id.selection_input)
-        createBirthdayBtn = findViewById(R.id.create_btn)
+        createItemBtn = findViewById(R.id.create_btn)
+        createItemBtn.setText("Create")
 
         toolBar.setNavigationOnClickListener {
-            Toast.makeText(this, "Back clicked!", Toast.LENGTH_SHORT).show()
             val intent = Intent(this.baseContext, MainActivity::class.java)
             startActivity(intent)
         }
@@ -85,7 +84,7 @@ class AddItemActivity : AppCompatActivity() {
         val arrayAdapter = ArrayAdapter(this.baseContext, R.layout.selection_db_dropdown_item, selection)
         selectionInput.setAdapter(arrayAdapter)
 
-        createBirthdayBtn.setOnClickListener {
+        createItemBtn.setOnClickListener {
             if (nameInput.text.isEmpty() || dateInput.text.isEmpty()) {
                 Toast.makeText(this, "input fields are empty!", Toast.LENGTH_SHORT).show()
             } else {

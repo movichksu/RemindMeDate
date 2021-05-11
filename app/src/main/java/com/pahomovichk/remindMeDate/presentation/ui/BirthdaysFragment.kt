@@ -19,6 +19,7 @@ import com.pahomovichk.remindMeDate.entity.Birthday
 import com.pahomovichk.remindMeDate.presentation.adapter.BirthdayAdapter
 import com.pahomovichk.remindMeDate.presentation.adapter.BirthdayClickListener
 import com.pahomovichk.remindMeDate.presentation.viewModel.BirthdaysViewModel
+import java.time.format.DateTimeFormatter
 
 
 class BirthdaysFragment : Fragment(), BirthdayClickListener {
@@ -33,7 +34,7 @@ class BirthdaysFragment : Fragment(), BirthdayClickListener {
     private lateinit var birthdaysList: RecyclerView
     private var adapter = BirthdayAdapter(listOf())
 
-
+    val localFormatter = DateTimeFormatter.ofPattern("dd MMMM yyyy")
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -68,13 +69,11 @@ class BirthdaysFragment : Fragment(), BirthdayClickListener {
     }
 
     override fun onClick(birthday: Birthday) {
-        //viewModel.onItemSelected(birthday)
-
         val intent = Intent(this.context, BirthdayItemActivity::class.java)
-        intent.putExtra(Constants.BIRTHDAY_ID, birthday.id)
-        intent.putExtra(Constants.BIRTHDAY_NAME, birthday.name)
-        intent.putExtra(Constants.BIRTHDAY_DATE, "${birthday.date.month.toString().toLowerCase()} ${birthday.date.dayOfMonth.toString().toLowerCase()}, ${birthday.date.year}");
-        intent.putExtra(Constants.BIRTHDAY_COMMENT, birthday.comments);
+        intent.putExtra(Constants.ID, birthday.id)
+        intent.putExtra(Constants.NAME, birthday.name)
+        intent.putExtra(Constants.DATE, "${birthday.date.format(localFormatter)}")
+        intent.putExtra(Constants.COMMENT, birthday.comments)
         startActivity(intent)
     }
 

@@ -22,7 +22,10 @@
         <activity
             android:name=".AddItemActivity"
             android:label="@string/add_activity_name">
-
+        </activity>
+        <activity
+            android:name=".EditItemActivity"
+            android:label="@string/add_activity_name">
         </activity>
         <activity
             android:name=".BirthdayItemActivity">

@@ -44,6 +44,14 @@ class BirthdaysViewModel : ViewModel() {
         }
     }
 
+    fun editBirthday(birthday: Birthday) {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                birthdaysUseCase.editBirthday(birthday)
+            }
+        }
+    }
+
     fun onItemSelected(id: Long) =
             viewModelScope.launch(Dispatchers.IO) {
             birthdaysUseCase.deleteBirthday(id)

@@ -6,16 +6,10 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.viewModelScope
-import com.pahomovichk.remindMeDate.entity.Birthday
-import com.pahomovichk.remindMeDate.presentation.adapter.BirthdayClickListener
 import com.pahomovichk.remindMeDate.presentation.viewModel.BirthdaysViewModel
-import kotlinx.coroutines.*
 
 class BirthdayItemActivity : AppCompatActivity() {
 
@@ -38,10 +32,10 @@ class BirthdayItemActivity : AppCompatActivity() {
         birthCardData = findViewById(R.id.date_card_data)
         birthCommentsData = findViewById(R.id.date_comment_data)
 
-        birthId = intent.getLongExtra(Constants.BIRTHDAY_ID, 0L)
-        birthName = intent.getStringExtra(Constants.BIRTHDAY_NAME) ?: ""
-        birthDate = intent.getStringExtra(Constants.BIRTHDAY_DATE) ?: ""
-        birthComments = intent.getStringExtra(Constants.BIRTHDAY_COMMENT) ?: ""
+        birthId = intent.getLongExtra(Constants.ID, 0L)
+        birthName = intent.getStringExtra(Constants.NAME) ?: ""
+        birthDate = intent.getStringExtra(Constants.DATE) ?: ""
+        birthComments = intent.getStringExtra(Constants.COMMENT) ?: ""
 
         toolBar = findViewById(R.id.item_activity_toolbar)
         setSupportActionBar(toolBar)
@@ -74,6 +68,13 @@ class BirthdayItemActivity : AppCompatActivity() {
                 true
             }
             R.id.item_bar_edit -> {
+                val intent = Intent(this.baseContext, EditItemActivity::class.java)
+                intent.putExtra(Constants.ID, birthId)
+                intent.putExtra(Constants.NAME, birthName)
+                intent.putExtra(Constants.DATE, birthDate)
+                intent.putExtra(Constants.COMMENT, birthComments)
+                intent.putExtra(Constants.SELECTION_ITEM, "Birthday")
+                startActivity(intent)
                 true
             }
             else -> super.onOptionsItemSelected(item)

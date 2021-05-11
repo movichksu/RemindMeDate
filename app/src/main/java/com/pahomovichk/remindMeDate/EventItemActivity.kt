@@ -6,12 +6,9 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProvider
-import com.pahomovichk.remindMeDate.entity.Event
-import com.pahomovichk.remindMeDate.presentation.adapter.EventClickListener
 import com.pahomovichk.remindMeDate.presentation.viewModel.EventsViewModel
 
 class EventItemActivity: AppCompatActivity() {
@@ -34,10 +31,10 @@ class EventItemActivity: AppCompatActivity() {
         eventCardData = findViewById(R.id.date_card_data)
         eventCommentsData = findViewById(R.id.date_comment_data)
 
-        eventId = intent.getLongExtra(Constants.EVENT_ID, 0L)
-        eventName = intent.getStringExtra(Constants.EVENT_NAME) ?: ""
-        eventDate = intent.getStringExtra(Constants.EVENT_DATE) ?: ""
-        eventComments = intent.getStringExtra(Constants.EVENT_COMMENT) ?: ""
+        eventId = intent.getLongExtra(Constants.ID, 0L)
+        eventName = intent.getStringExtra(Constants.NAME) ?: ""
+        eventDate = intent.getStringExtra(Constants.DATE) ?: ""
+        eventComments = intent.getStringExtra(Constants.COMMENT) ?: ""
 
         toolBar = findViewById(R.id.item_activity_toolbar)
         setSupportActionBar(toolBar)
@@ -70,6 +67,13 @@ class EventItemActivity: AppCompatActivity() {
                 true
             }
             R.id.item_bar_edit -> {
+                val intent = Intent(this.baseContext, EditItemActivity::class.java)
+                intent.putExtra(Constants.ID, eventId)
+                intent.putExtra(Constants.NAME, eventName)
+                intent.putExtra(Constants.DATE, eventDate)
+                intent.putExtra(Constants.COMMENT, eventComments)
+                intent.putExtra(Constants.SELECTION_ITEM, "Event")
+                startActivity(intent)
                 true
             }
             else -> super.onOptionsItemSelected(item)

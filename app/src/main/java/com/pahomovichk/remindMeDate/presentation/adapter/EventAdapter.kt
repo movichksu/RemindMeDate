@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.pahomovichk.remindMeDate.R
-import com.pahomovichk.remindMeDate.entity.Event
+import com.pahomovichk.remindMeDate.domain.entity.Event
 import java.time.format.DateTimeFormatter
 
 class EventAdapter internal constructor(

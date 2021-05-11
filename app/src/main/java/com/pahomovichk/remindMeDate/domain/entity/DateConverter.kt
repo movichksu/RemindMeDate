@@ -1,8 +1,7 @@
-package com.pahomovichk.remindMeDate.entity
+package com.pahomovichk.remindMeDate.domain.entity
 
 import androidx.room.TypeConverter
 import java.time.LocalDate
-import java.time.LocalTime
 
 class DateConverter {
 

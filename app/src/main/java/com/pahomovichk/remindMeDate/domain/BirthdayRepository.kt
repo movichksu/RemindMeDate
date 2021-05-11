@@ -1,9 +1,7 @@
 package com.pahomovichk.remindMeDate.domain
 
-import com.pahomovichk.remindMeDate.entity.Birthday
-import kotlinx.coroutines.Dispatchers
+import com.pahomovichk.remindMeDate.domain.entity.Birthday
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.withContext
 
 interface BirthdayRepository {
     fun getBirthdays(): Flow<List<Birthday>>

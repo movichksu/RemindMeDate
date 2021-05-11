@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.pahomovichk.remindMeDate.Dependencies
 import com.pahomovichk.remindMeDate.domain.BirthdayUseCase
-import com.pahomovichk.remindMeDate.entity.Birthday
+import com.pahomovichk.remindMeDate.domain.entity.Birthday
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collect
 

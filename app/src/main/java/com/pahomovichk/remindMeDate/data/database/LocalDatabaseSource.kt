@@ -1,11 +1,11 @@
-package com.pahomovichk.remindMeDate.data.db
+package com.pahomovichk.remindMeDate.data.database
 
 import android.content.Context
 import androidx.room.Room
 import com.pahomovichk.remindMeDate.domain.BirthdayRepository
 import com.pahomovichk.remindMeDate.domain.EventsRepository
-import com.pahomovichk.remindMeDate.entity.Birthday
-import com.pahomovichk.remindMeDate.entity.Event
+import com.pahomovichk.remindMeDate.domain.entity.Birthday
+import com.pahomovichk.remindMeDate.domain.entity.Event
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext

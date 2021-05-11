@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.pahomovichk.remindMeDate.Constants
 import com.pahomovichk.remindMeDate.EventItemActivity
 import com.pahomovichk.remindMeDate.R
-import com.pahomovichk.remindMeDate.entity.Event
+import com.pahomovichk.remindMeDate.domain.entity.Event
 import com.pahomovichk.remindMeDate.presentation.adapter.EventAdapter
 import com.pahomovichk.remindMeDate.presentation.adapter.EventClickListener
 import com.pahomovichk.remindMeDate.presentation.viewModel.EventsViewModel

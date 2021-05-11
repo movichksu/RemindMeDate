@@ -1,6 +1,6 @@
 package com.pahomovichk.remindMeDate.domain
 
-import com.pahomovichk.remindMeDate.entity.Event
+import com.pahomovichk.remindMeDate.domain.entity.Event
 import kotlinx.coroutines.flow.Flow
 
 interface EventsRepository {

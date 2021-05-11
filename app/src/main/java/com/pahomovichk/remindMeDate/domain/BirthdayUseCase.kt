@@ -1,6 +1,6 @@
 package com.pahomovichk.remindMeDate.domain
 
-import com.pahomovichk.remindMeDate.entity.Birthday
+import com.pahomovichk.remindMeDate.domain.entity.Birthday
 import kotlinx.coroutines.flow.Flow
 
 interface BirthdayUseCase {

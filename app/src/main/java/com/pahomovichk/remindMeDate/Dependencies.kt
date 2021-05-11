@@ -1,7 +1,7 @@
 package com.pahomovichk.remindMeDate
 
 import com.example.cleanarchitechture.App
-import com.pahomovichk.remindMeDate.data.db.LocalDatabaseSource
+import com.pahomovichk.remindMeDate.data.database.LocalDatabaseSource
 import com.pahomovichk.remindMeDate.domain.*
 
 object Dependencies {

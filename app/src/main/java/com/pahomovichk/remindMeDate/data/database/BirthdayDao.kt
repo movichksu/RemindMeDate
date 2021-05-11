@@ -1,7 +1,7 @@
-package com.pahomovichk.remindMeDate.data.db
+package com.pahomovichk.remindMeDate.data.database
 
 import androidx.room.*
-import com.pahomovichk.remindMeDate.entity.Birthday
+import com.pahomovichk.remindMeDate.domain.entity.Birthday
 import kotlinx.coroutines.flow.Flow
 
 @Dao

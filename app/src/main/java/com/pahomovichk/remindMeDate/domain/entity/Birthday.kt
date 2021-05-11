@@ -1,4 +1,4 @@
-package com.pahomovichk.remindMeDate.entity
+package com.pahomovichk.remindMeDate.domain.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -7,7 +7,7 @@ import java.time.LocalDate
 
 @Entity
 @TypeConverters(DateConverter::class)
-data class Event(
+data class Birthday (
         @PrimaryKey(autoGenerate = true)
         val id: Long,
 
@@ -16,4 +16,4 @@ data class Event(
         val date: LocalDate,
 
         val comments: String
-)
+        )

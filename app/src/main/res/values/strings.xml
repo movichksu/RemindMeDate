@@ -3,6 +3,11 @@
     <string name="events_title">Events</string>
     <string name="calendar_title">Calendar</string>
     <string name="birthdays_title">Birthdays</string>
-    <string name="settings_title">Settings</string>
+    <string name="settings_title">More</string>
     <string name="add_activity_name">Form</string>
+    
+    <string-array name="add_selection">
+        <item>Birthday</item>
+        <item>Event</item>
+    </string-array>
 </resources>

@@ -6,18 +6,15 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.pahomovichk.remindMeDate.Dependencies
 import com.pahomovichk.remindMeDate.domain.BirthdayUseCase
-import com.pahomovichk.remindMeDate.entity.Birthday
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
+import com.pahomovichk.remindMeDate.domain.entity.Birthday
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+
 
 class BirthdaysViewModel : ViewModel() {
 
 
     private val birthdaysUseCase: BirthdayUseCase by lazy { Dependencies.getBirthdayUseCase() }
-    //val birthday = Birthday()
 
     private var _text = MutableLiveData<String>().apply {
         value = "No birthdays"
@@ -42,15 +39,22 @@ class BirthdaysViewModel : ViewModel() {
     fun addBirthday(birthday: Birthday) {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
-                delay(1000)
                 birthdaysUseCase.addBirthday(birthday)
             }
         }
     }
 
-    fun onItemSelected(birthday: Birthday) =
+    fun editBirthday(birthday: Birthday) {
         viewModelScope.launch {
-            birthdaysUseCase.deleteBirthday(birthday)
+            withContext(Dispatchers.IO) {
+                birthdaysUseCase.editBirthday(birthday)
+            }
+        }
+    }
+
+    fun onItemSelected(id: Long) =
+            viewModelScope.launch(Dispatchers.IO) {
+            birthdaysUseCase.deleteBirthday(id)
         }
 
 

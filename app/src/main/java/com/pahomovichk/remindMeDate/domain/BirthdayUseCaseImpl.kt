@@ -1,6 +1,6 @@
 package com.pahomovichk.remindMeDate.domain
 
-import com.pahomovichk.remindMeDate.entity.Birthday
+import com.pahomovichk.remindMeDate.domain.entity.Birthday
 import kotlinx.coroutines.flow.Flow
 
 class BirthdayUseCaseImpl(
@@ -14,12 +14,20 @@ class BirthdayUseCaseImpl(
         birthdayRepository.deleteBirthday(birthday)
     }
 
+    override suspend fun deleteBirthday(id: Long) {
+        birthdayRepository.deleteBirthday(id)
+    }
+
     override suspend fun addBirthday(birthday: Birthday) {
         birthdayRepository.addBirthday(birthday)
     }
 
     override suspend fun editBirthday(birthday: Birthday) {
         birthdayRepository.editBirthday(birthday)
+    }
+
+    override suspend fun cleanDb() {
+        birthdayRepository.cleanBirthdaysDb()
     }
 
 

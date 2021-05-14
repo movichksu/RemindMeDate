@@ -1,4 +1,4 @@
-package com.pahomovichk.remindMeDate
+package com.pahomovichk.remindMeDate.presentation.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,6 +9,10 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProvider
+import com.pahomovichk.remindMeDate.Constants
+import com.pahomovichk.remindMeDate.EditItemActivity
+import com.pahomovichk.remindMeDate.MainActivity
+import com.pahomovichk.remindMeDate.R
 import com.pahomovichk.remindMeDate.presentation.viewModel.BirthdaysViewModel
 
 class BirthdayItemActivity : AppCompatActivity() {

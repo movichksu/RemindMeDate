@@ -27,6 +27,6 @@ class EventsUseCaseImpl(
     }
 
     override suspend fun cleanDb() {
-        eventsRepository.cleanDb()
+        eventsRepository.cleanEventsDb()
     }
 }

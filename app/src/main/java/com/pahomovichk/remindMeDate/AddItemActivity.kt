@@ -33,10 +33,7 @@ class AddItemActivity : AppCompatActivity() {
     private lateinit var selectionInput: AutoCompleteTextView
     private lateinit var createItemBtn: Button
 
-    private val dateFormat = SimpleDateFormat("dd MMMM yyyy", Locale.US)
-
-    @SuppressLint("SimpleDateFormat")
-    private val timeFormat = SimpleDateFormat("HH:mm")
+    private val dateFormat = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault())
 
     @SuppressLint("ShowToast")
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -74,7 +74,7 @@ class LocalDatabaseSource(
         eventsDatabase.getEventsDao().updateEvent(event)
     }
 
-    override suspend fun cleanDb() {
+    override suspend fun cleanEventsDb() {
         eventsDatabase.getEventsDao().deleteAllEvents()
     }
 

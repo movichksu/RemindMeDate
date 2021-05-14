@@ -9,5 +9,5 @@ interface EventsRepository {
     suspend fun deleteEvent(id: Long)
     suspend fun addEvent(event: Event)
     suspend fun editEvent(event: Event)
-    suspend fun cleanDb()
+    suspend fun cleanEventsDb()
 }

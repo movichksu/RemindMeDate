@@ -11,6 +11,8 @@ import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProvider
 import com.pahomovichk.remindMeDate.domain.entity.Birthday
 import com.pahomovichk.remindMeDate.domain.entity.Event
+import com.pahomovichk.remindMeDate.presentation.ui.BirthdayItemActivity
+import com.pahomovichk.remindMeDate.presentation.ui.EventItemActivity
 import com.pahomovichk.remindMeDate.presentation.viewModel.BirthdaysViewModel
 import com.pahomovichk.remindMeDate.presentation.viewModel.EventsViewModel
 import java.text.SimpleDateFormat

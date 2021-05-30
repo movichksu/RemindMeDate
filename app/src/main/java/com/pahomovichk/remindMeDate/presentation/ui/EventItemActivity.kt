@@ -48,8 +48,7 @@ class EventItemActivity: AppCompatActivity() {
         }
 
         toolBar.setNavigationOnClickListener {
-            val intent = Intent(this.baseContext, MainActivity::class.java)
-            startActivity(intent)
+            finish()
         }
 
         eventCardData.text = eventDate
@@ -66,8 +65,9 @@ class EventItemActivity: AppCompatActivity() {
         return when (item.itemId) {
             R.id.item_bar_delete -> {
                 viewModel.onItemSelected(eventId)
-                val intent = Intent(this.baseContext, MainActivity::class.java)
-                startActivity(intent)
+                finish()
+//                val intent = Intent(this.baseContext, MainActivity::class.java)
+//                startActivity(intent)
                 true
             }
             R.id.item_bar_edit -> {

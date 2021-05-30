@@ -49,8 +49,7 @@ class BirthdayItemActivity : AppCompatActivity() {
         }
 
         toolBar.setNavigationOnClickListener {
-            val intent = Intent(this.baseContext, MainActivity::class.java)
-            startActivity(intent)
+            finish()
         }
 
         birthCardData.text = birthDate
@@ -67,8 +66,9 @@ class BirthdayItemActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.item_bar_delete -> {
                 viewModel.onItemSelected(birthId)
-                val intent = Intent(this.baseContext, MainActivity::class.java)
-                startActivity(intent)
+                finish()
+//                val intent = Intent(this.baseContext, MainActivity::class.java)
+//                startActivity(intent)
                 true
             }
             R.id.item_bar_edit -> {

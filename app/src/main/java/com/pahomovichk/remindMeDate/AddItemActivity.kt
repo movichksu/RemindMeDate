@@ -49,8 +49,7 @@ class AddItemActivity : AppCompatActivity() {
         createItemBtn.setText("Create")
 
         toolBar.setNavigationOnClickListener {
-            val intent = Intent(this.baseContext, MainActivity::class.java)
-            startActivity(intent)
+            finish()
         }
 
         dateInput.setOnClickListener {
@@ -85,14 +84,12 @@ class AddItemActivity : AppCompatActivity() {
                     if (selectionInput.text.toString() == selection.get(0)){
                         val birthday = Birthday(0L, nameInput.text.toString(), birthDate, commentInput.text.toString())
                         birthdaysViewModel.addBirthday(birthday)
-                        val intent = Intent(this.baseContext, MainActivity::class.java)
-                        startActivity(intent)
+                        finish()
                     }
                     else if (selectionInput.text.toString() == selection.get(1)) {
                         val event = Event(0L, nameInput.text.toString(), birthDate, commentInput.text.toString())
                         eventsViewModel.addEvent(event)
-                        val intent = Intent(this.baseContext, MainActivity::class.java)
-                        startActivity(intent)
+                        finish()
                     }
                 else{
                         Toast.makeText(this, "Choose database!", Toast.LENGTH_SHORT).show()

@@ -3,7 +3,7 @@ package com.pahomovichk.remindMeDate.domain
 import com.pahomovichk.remindMeDate.domain.entity.Birthday
 import kotlinx.coroutines.flow.Flow
 
-interface BirthdayRepository {
+interface YearlyEventsRepository {
     fun getBirthdays(): Flow<List<Birthday>>
     suspend fun deleteBirthday(birthday: Birthday)
     suspend fun deleteBirthday(id: Long)

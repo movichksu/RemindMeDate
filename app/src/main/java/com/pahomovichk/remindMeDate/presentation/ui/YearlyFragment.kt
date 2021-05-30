@@ -15,31 +15,30 @@ import androidx.recyclerview.widget.RecyclerView
 import com.pahomovichk.remindMeDate.Constants
 import com.pahomovichk.remindMeDate.R
 import com.pahomovichk.remindMeDate.domain.entity.Birthday
-import com.pahomovichk.remindMeDate.presentation.adapter.BirthdayAdapter
-import com.pahomovichk.remindMeDate.presentation.adapter.BirthdayClickListener
-import com.pahomovichk.remindMeDate.presentation.viewModel.BirthdaysViewModel
-import java.time.format.DateTimeFormatter
+import com.pahomovichk.remindMeDate.presentation.adapter.YearlyEventAdapter
+import com.pahomovichk.remindMeDate.presentation.adapter.YearlyEventClickListener
+import com.pahomovichk.remindMeDate.presentation.viewModel.YearlyViewModel
 
 
-class BirthdaysFragment : Fragment(), BirthdayClickListener {
+class YearlyFragment : Fragment(), YearlyEventClickListener {
 
     companion object {
         fun newInstance() =
-            BirthdaysFragment()
+            YearlyFragment()
     }
 
-    private lateinit var viewModel: BirthdaysViewModel
+    private lateinit var viewModel: YearlyViewModel
 
     private lateinit var birthdaysList: RecyclerView
-    private var adapter = BirthdayAdapter(listOf())
+    private var adapter = YearlyEventAdapter(listOf())
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewModel = ViewModelProvider(this).get(BirthdaysViewModel::class.java)
-        val root = inflater.inflate(R.layout.birthdays_fragment, container, false)
+        viewModel = ViewModelProvider(this).get(YearlyViewModel::class.java)
+        val root = inflater.inflate(R.layout.yearly_events_fragment, container, false)
         val textView: TextView = root.findViewById(R.id.birthdays_text)
         viewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
@@ -58,7 +57,7 @@ class BirthdaysFragment : Fragment(), BirthdayClickListener {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(BirthdaysViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(YearlyViewModel::class.java)
 
         viewModel.getBirthdays().observe(viewLifecycleOwner, Observer {
             adapter.setData(it)
@@ -66,7 +65,7 @@ class BirthdaysFragment : Fragment(), BirthdayClickListener {
     }
 
     override fun onClick(birthday: Birthday) {
-        val intent = Intent(this.context, BirthdayItemActivity::class.java)
+        val intent = Intent(this.context, YearlyItemActivity::class.java)
         intent.putExtra(Constants.ID, birthday.id)
         intent.putExtra(Constants.NAME, birthday.name)
         intent.putExtra(Constants.DATE, "${birthday.date.format(Constants.gettingLocalFormatter)}")

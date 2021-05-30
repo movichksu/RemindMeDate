@@ -4,9 +4,9 @@
 
     <item
         android:id="@+id/main_bar_delete_all_birthdays"
-        android:title="Clear Birthdays database" />
+        android:title="Clear yearly events" />
     <item
         android:id="@+id/main_bar_delete_all_events"
-        android:title="Clear Events database" />
+        android:title="Clear one-time events" />
 
 </menu>

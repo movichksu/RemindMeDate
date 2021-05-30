@@ -5,16 +5,16 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.pahomovichk.remindMeDate.Dependencies
-import com.pahomovichk.remindMeDate.domain.EventsUseCase
+import com.pahomovichk.remindMeDate.domain.OnetimeEventsUseCase
 import com.pahomovichk.remindMeDate.domain.entity.Event
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class EventsViewModel : ViewModel() {
+class OnetimeViewModel : ViewModel() {
 
-    private val eventsUseCase: EventsUseCase by lazy { Dependencies.getEventsUseCase() }
+    private val onetimeEventsUseCase: OnetimeEventsUseCase by lazy { Dependencies.getEventsUseCase() }
 
     private val _text = MutableLiveData<String>().apply {
         value = "No dates"
@@ -28,7 +28,7 @@ class EventsViewModel : ViewModel() {
 
     init{
         viewModelScope.launch {
-            eventsUseCase.getEvents().collect {
+            onetimeEventsUseCase.getEvents().collect {
                 events.value = it
             }
         }
@@ -37,7 +37,7 @@ class EventsViewModel : ViewModel() {
     fun addEvent(event: Event) {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
-                eventsUseCase.addEvent(event)
+                onetimeEventsUseCase.addEvent(event)
             }
         }
     }
@@ -45,13 +45,13 @@ class EventsViewModel : ViewModel() {
     fun editEvent(event: Event) {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
-                eventsUseCase.editEvent(event)
+                onetimeEventsUseCase.editEvent(event)
             }
         }
     }
 
     fun onItemSelected(id: Long) =
             viewModelScope.launch(Dispatchers.IO) {
-                eventsUseCase.deleteEvent(id)
+                onetimeEventsUseCase.deleteEvent(id)
             }
 }

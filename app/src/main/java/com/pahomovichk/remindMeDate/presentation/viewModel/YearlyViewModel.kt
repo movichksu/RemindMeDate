@@ -5,16 +5,16 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.pahomovichk.remindMeDate.Dependencies
-import com.pahomovichk.remindMeDate.domain.BirthdayUseCase
+import com.pahomovichk.remindMeDate.domain.YearlyEventsUseCase
 import com.pahomovichk.remindMeDate.domain.entity.Birthday
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collect
 
 
-class BirthdaysViewModel : ViewModel() {
+class YearlyViewModel : ViewModel() {
 
 
-    private val birthdaysUseCase: BirthdayUseCase by lazy { Dependencies.getBirthdayUseCase() }
+    private val birthdaysUseCase: YearlyEventsUseCase by lazy { Dependencies.getBirthdayUseCase() }
 
     private var _text = MutableLiveData<String>().apply {
         value = "No birthdays"

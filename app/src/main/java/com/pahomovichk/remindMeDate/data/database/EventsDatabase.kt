@@ -8,6 +8,6 @@ import com.pahomovichk.remindMeDate.domain.entity.Event
 @Database(entities = [Event::class, Birthday::class], version = 1)
 abstract class EventsDatabase: RoomDatabase() {
 
-    abstract fun getEventsDao(): EventsDao
-    abstract fun getBirthdaysDao(): BirthdaysDao
+    abstract fun getEventsDao(): OnetimeEventsDao
+    abstract fun getBirthdaysDao(): YearlyEventsDao
 }

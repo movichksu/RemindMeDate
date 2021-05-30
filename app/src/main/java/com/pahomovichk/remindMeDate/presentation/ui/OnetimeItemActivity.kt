@@ -11,13 +11,12 @@ import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProvider
 import com.pahomovichk.remindMeDate.Constants
 import com.pahomovichk.remindMeDate.EditItemActivity
-import com.pahomovichk.remindMeDate.MainActivity
 import com.pahomovichk.remindMeDate.R
-import com.pahomovichk.remindMeDate.presentation.viewModel.EventsViewModel
+import com.pahomovichk.remindMeDate.presentation.viewModel.OnetimeViewModel
 
-class EventItemActivity: AppCompatActivity() {
+class OnetimeItemActivity: AppCompatActivity() {
     private lateinit var toolBar: Toolbar
-    private lateinit var viewModel: EventsViewModel
+    private lateinit var viewModel: OnetimeViewModel
 
     private var eventId: Long = 0L
     private lateinit var eventName : String
@@ -31,7 +30,7 @@ class EventItemActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.item_activity)
         setActivityContent()
-        viewModel = ViewModelProvider(this).get(EventsViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(OnetimeViewModel::class.java)
         eventCardData = findViewById(R.id.date_card_data)
         eventCommentsData = findViewById(R.id.date_comment_data)
 

@@ -9,16 +9,16 @@ import com.pahomovichk.remindMeDate.Constants
 import com.pahomovichk.remindMeDate.R
 import com.pahomovichk.remindMeDate.domain.entity.Event
 
-class EventAdapter internal constructor(
+class OnetimeEventAdapter internal constructor(
         private var events: List<Event>
-) : RecyclerView.Adapter<EventAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<OnetimeEventAdapter.ViewHolder>() {
 
-    private var listener: EventClickListener? = null
+    private var listenerOnetime: OnetimeEventClickListener? = null
     //val localFormatter = DateTimeFormatter.ofPattern("MMMM dd, yyyy")
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(viewGroup.context)
-                .inflate(R.layout.event_item, viewGroup, false)
+                .inflate(R.layout.onetime_event_item, viewGroup, false)
         return ViewHolder(view)
     }
 
@@ -27,7 +27,7 @@ class EventAdapter internal constructor(
         viewHolder.eventName.text = event.name
         viewHolder.eventDate.text = "${event.date.format(Constants.viewLocalFormatter)}"
         viewHolder.container.setOnClickListener {
-            listener?.onClick(event)
+            listenerOnetime?.onClick(event)
             notifyItemRemoved(position)
         }
     }
@@ -45,7 +45,7 @@ class EventAdapter internal constructor(
         val eventDate: TextView = view.findViewById<TextView>(R.id.event_date)
     }
 
-    fun setListener(eventClickListener: EventClickListener?) {
-        listener = eventClickListener
+    fun setListener(onetimeEventClickListener: OnetimeEventClickListener?) {
+        listenerOnetime = onetimeEventClickListener
     }
 }

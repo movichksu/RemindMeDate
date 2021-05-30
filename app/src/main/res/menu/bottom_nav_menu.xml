@@ -5,12 +5,12 @@
     <item
         android:id="@+id/events_navigation"
         android:icon="@drawable/ic_notifications"
-        android:title="@string/events_title" />
+        android:title="@string/onetime_events_title" />
 
     <item
         android:id="@+id/birthdays_navigation"
         android:icon="@drawable/ic_cake"
-        android:title="@string/birthdays_title" />
+        android:title="@string/yearly_events_title" />
     <item
         android:id="@+id/placeholder"
         android:title="" />

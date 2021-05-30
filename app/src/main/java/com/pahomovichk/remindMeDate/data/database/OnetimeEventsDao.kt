@@ -5,7 +5,7 @@ import com.pahomovichk.remindMeDate.domain.entity.Event
 import kotlinx.coroutines.flow.Flow
 
 @Dao
-interface EventsDao {
+interface OnetimeEventsDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertEvent(event: Event)
 

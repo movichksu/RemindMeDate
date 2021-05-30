@@ -11,14 +11,13 @@ import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProvider
 import com.pahomovichk.remindMeDate.Constants
 import com.pahomovichk.remindMeDate.EditItemActivity
-import com.pahomovichk.remindMeDate.MainActivity
 import com.pahomovichk.remindMeDate.R
-import com.pahomovichk.remindMeDate.presentation.viewModel.BirthdaysViewModel
+import com.pahomovichk.remindMeDate.presentation.viewModel.YearlyViewModel
 
-class BirthdayItemActivity : AppCompatActivity() {
+class YearlyItemActivity : AppCompatActivity() {
 
     private lateinit var toolBar: Toolbar
-    private lateinit var viewModel: BirthdaysViewModel
+    private lateinit var viewModel: YearlyViewModel
 
     private var birthId = 0L
     private lateinit var birthName : String
@@ -32,7 +31,7 @@ class BirthdayItemActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.item_activity)
         setActivityContent()
-        viewModel = ViewModelProvider(this).get(BirthdaysViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(YearlyViewModel::class.java)
         birthCardData = findViewById(R.id.date_card_data)
         birthCommentsData = findViewById(R.id.date_comment_data)
 

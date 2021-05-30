@@ -11,19 +11,17 @@ import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProvider
 import com.pahomovichk.remindMeDate.domain.entity.Birthday
 import com.pahomovichk.remindMeDate.domain.entity.Event
-import com.pahomovichk.remindMeDate.presentation.ui.BirthdayItemActivity
-import com.pahomovichk.remindMeDate.presentation.ui.EventItemActivity
-import com.pahomovichk.remindMeDate.presentation.viewModel.BirthdaysViewModel
-import com.pahomovichk.remindMeDate.presentation.viewModel.EventsViewModel
-import java.text.SimpleDateFormat
+import com.pahomovichk.remindMeDate.presentation.ui.YearlyItemActivity
+import com.pahomovichk.remindMeDate.presentation.ui.OnetimeItemActivity
+import com.pahomovichk.remindMeDate.presentation.viewModel.YearlyViewModel
+import com.pahomovichk.remindMeDate.presentation.viewModel.OnetimeViewModel
 import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 class EditItemActivity : AppCompatActivity() {
 
-    private lateinit var birthdaysViewModel: BirthdaysViewModel
-    private lateinit var eventsViewModel: EventsViewModel
+    private lateinit var yearlyViewModel: YearlyViewModel
+    private lateinit var onetimeViewModel: OnetimeViewModel
     private lateinit var toolBar: Toolbar
 
     private var id = 0L
@@ -44,8 +42,8 @@ class EditItemActivity : AppCompatActivity() {
     @SuppressLint("ShowToast")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        birthdaysViewModel = ViewModelProvider(this).get(BirthdaysViewModel::class.java)
-        eventsViewModel = ViewModelProvider(this).get(EventsViewModel::class.java)
+        yearlyViewModel = ViewModelProvider(this).get(YearlyViewModel::class.java)
+        onetimeViewModel = ViewModelProvider(this).get(OnetimeViewModel::class.java)
         setContentView(R.layout.add_activity)
         toolBar = findViewById(R.id.add_activity_toolbar)
         setSupportActionBar(toolBar)
@@ -69,7 +67,7 @@ class EditItemActivity : AppCompatActivity() {
 
         toolBar.setNavigationOnClickListener {
             if (selectionInput.text.toString() == types.get(0)){
-                val intent = Intent(this.baseContext, BirthdayItemActivity::class.java)
+                val intent = Intent(this.baseContext, YearlyItemActivity::class.java)
                 intent.putExtra(Constants.ID, id)
                 intent.putExtra(Constants.NAME, name)
                 intent.putExtra(Constants.DATE, date)
@@ -77,7 +75,7 @@ class EditItemActivity : AppCompatActivity() {
                 startActivity(intent)
             }
             else if (selectionInput.text.toString() == types.get(1)) {
-                val intent = Intent(this.baseContext, EventItemActivity::class.java)
+                val intent = Intent(this.baseContext, OnetimeItemActivity::class.java)
                 intent.putExtra(Constants.ID, id)
                 intent.putExtra(Constants.NAME, name)
                 intent.putExtra(Constants.DATE, date)
@@ -117,8 +115,8 @@ class EditItemActivity : AppCompatActivity() {
             } else {
                 if (selectionInput.text.toString() == types.get(0)){
                     val birthday = Birthday(id, nameInput.text.toString(), birthDate, commentInput.text.toString())
-                    birthdaysViewModel.editBirthday(birthday)
-                    val intent = Intent(this.baseContext, BirthdayItemActivity::class.java)
+                    yearlyViewModel.editBirthday(birthday)
+                    val intent = Intent(this.baseContext, YearlyItemActivity::class.java)
                     intent.putExtra(Constants.ID, birthday.id)
                     intent.putExtra(Constants.NAME, birthday.name)
                     intent.putExtra(Constants.DATE, "${birthday.date.format(Constants.gettingLocalFormatter)}")
@@ -127,8 +125,8 @@ class EditItemActivity : AppCompatActivity() {
                 }
                 else if (selectionInput.text.toString() == types.get(1)) {
                     val event = Event(id, nameInput.text.toString(), birthDate, commentInput.text.toString())
-                    eventsViewModel.editEvent(event)
-                    val intent = Intent(this.baseContext, EventItemActivity::class.java)
+                    onetimeViewModel.editEvent(event)
+                    val intent = Intent(this.baseContext, OnetimeItemActivity::class.java)
                     intent.putExtra(Constants.ID, event.id)
                     intent.putExtra(Constants.NAME, event.name)
                     intent.putExtra(Constants.DATE, "${event.date.format(Constants.gettingLocalFormatter)}")

@@ -2,8 +2,8 @@ package com.pahomovichk.remindMeDate.data.database
 
 import android.content.Context
 import androidx.room.Room
-import com.pahomovichk.remindMeDate.domain.BirthdayRepository
-import com.pahomovichk.remindMeDate.domain.EventsRepository
+import com.pahomovichk.remindMeDate.domain.YearlyEventsRepository
+import com.pahomovichk.remindMeDate.domain.OnetimeEventsRepository
 import com.pahomovichk.remindMeDate.domain.entity.Birthday
 import com.pahomovichk.remindMeDate.domain.entity.Event
 import kotlinx.coroutines.Dispatchers
@@ -12,7 +12,7 @@ import kotlinx.coroutines.withContext
 
 class LocalDatabaseSource(
     context: Context
-) : BirthdayRepository, EventsRepository {
+) : YearlyEventsRepository, OnetimeEventsRepository {
     private val eventsDatabase = Room.databaseBuilder(
             context,
             EventsDatabase::class.java,

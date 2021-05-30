@@ -2,7 +2,6 @@ package com.pahomovichk.remindMeDate
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
-import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.widget.*
@@ -11,17 +10,15 @@ import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProvider
 import com.pahomovichk.remindMeDate.domain.entity.Birthday
 import com.pahomovichk.remindMeDate.domain.entity.Event
-import com.pahomovichk.remindMeDate.presentation.viewModel.BirthdaysViewModel
-import com.pahomovichk.remindMeDate.presentation.viewModel.EventsViewModel
-import java.text.SimpleDateFormat
+import com.pahomovichk.remindMeDate.presentation.viewModel.YearlyViewModel
+import com.pahomovichk.remindMeDate.presentation.viewModel.OnetimeViewModel
 import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 class AddItemActivity : AppCompatActivity() {
 
-    private lateinit var birthdaysViewModel: BirthdaysViewModel
-    private lateinit var eventsViewModel: EventsViewModel
+    private lateinit var yearlyViewModel: YearlyViewModel
+    private lateinit var onetimeViewModel: OnetimeViewModel
     private lateinit var toolBar: Toolbar
 
     private lateinit var nameInput: EditText
@@ -35,8 +32,8 @@ class AddItemActivity : AppCompatActivity() {
     @SuppressLint("ShowToast")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        birthdaysViewModel = ViewModelProvider(this).get(BirthdaysViewModel::class.java)
-        eventsViewModel = ViewModelProvider(this).get(EventsViewModel::class.java)
+        yearlyViewModel = ViewModelProvider(this).get(YearlyViewModel::class.java)
+        onetimeViewModel = ViewModelProvider(this).get(OnetimeViewModel::class.java)
         setContentView(R.layout.add_activity)
         toolBar = findViewById(R.id.add_activity_toolbar)
         setSupportActionBar(toolBar)
@@ -83,12 +80,12 @@ class AddItemActivity : AppCompatActivity() {
             } else {
                     if (selectionInput.text.toString() == selection.get(0)){
                         val birthday = Birthday(0L, nameInput.text.toString(), birthDate, commentInput.text.toString())
-                        birthdaysViewModel.addBirthday(birthday)
+                        yearlyViewModel.addBirthday(birthday)
                         finish()
                     }
                     else if (selectionInput.text.toString() == selection.get(1)) {
                         val event = Event(0L, nameInput.text.toString(), birthDate, commentInput.text.toString())
-                        eventsViewModel.addEvent(event)
+                        onetimeViewModel.addEvent(event)
                         finish()
                     }
                 else{

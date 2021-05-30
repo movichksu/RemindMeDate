@@ -9,16 +9,16 @@ import com.pahomovichk.remindMeDate.Constants
 import com.pahomovichk.remindMeDate.R
 import com.pahomovichk.remindMeDate.domain.entity.Birthday
 
-class BirthdayAdapter internal constructor(
+class YearlyEventAdapter internal constructor(
     private var birthdays: List<Birthday>
-) : RecyclerView.Adapter<BirthdayAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<YearlyEventAdapter.ViewHolder>() {
 
-    private var listener: BirthdayClickListener? = null
+    private var listener: YearlyEventClickListener? = null
     //val localFormatter = DateTimeFormatter.ofPattern("MMMM dd, yyyy")
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(viewGroup.context)
-            .inflate(R.layout.birthday_item, viewGroup, false)
+            .inflate(R.layout.yearly_event_item, viewGroup, false)
         return ViewHolder(view)
     }
 
@@ -45,7 +45,7 @@ class BirthdayAdapter internal constructor(
         val birthdayDate: TextView = view.findViewById<TextView>(R.id.birth_date)
     }
 
-    fun setListener(birthdayClickListener: BirthdayClickListener?) {
-        listener = birthdayClickListener
+    fun setListener(yearlyEventClickListener: YearlyEventClickListener?) {
+        listener = yearlyEventClickListener
     }
 }

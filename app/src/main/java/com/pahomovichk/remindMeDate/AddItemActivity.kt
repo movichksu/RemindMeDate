@@ -24,16 +24,13 @@ class AddItemActivity : AppCompatActivity() {
     private lateinit var eventsViewModel: EventsViewModel
     private lateinit var toolBar: Toolbar
 
-    val localFormatter = DateTimeFormatter.ofPattern("dd MMMM yyyy")
-    private var birthDate: LocalDate = LocalDate.of(2000, 5, 31)
-
     private lateinit var nameInput: EditText
     private lateinit var dateInput: EditText
     private lateinit var commentInput: EditText
     private lateinit var selectionInput: AutoCompleteTextView
     private lateinit var createItemBtn: Button
 
-    private val dateFormat = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault())
+    private var birthDate: LocalDate = LocalDate.of(2000, 5, 31)
 
     @SuppressLint("ShowToast")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,8 +49,7 @@ class AddItemActivity : AppCompatActivity() {
         createItemBtn.setText("Create")
 
         toolBar.setNavigationOnClickListener {
-            val intent = Intent(this.baseContext, MainActivity::class.java)
-            startActivity(intent)
+            finish()
         }
 
         dateInput.setOnClickListener {
@@ -66,9 +62,9 @@ class AddItemActivity : AppCompatActivity() {
                     selectDate.set(Calendar.YEAR, year)
                     selectDate.set(Calendar.MONTH, month)
                     selectDate.set(Calendar.DAY_OF_MONTH, day)
-                    val date = dateFormat.format(selectDate.time)
+                    val date = Constants.simpleDateFormatter.format(selectDate.time)
                     dateInput.setText(date)
-                    birthDate = LocalDate.parse(dateInput.text.toString(),localFormatter)
+                    birthDate = LocalDate.parse(dateInput.text.toString(),Constants.gettingLocalFormatter)
                 },
                 getCalendar.get(Calendar.YEAR),
                 getCalendar.get(Calendar.MONTH),
@@ -88,14 +84,12 @@ class AddItemActivity : AppCompatActivity() {
                     if (selectionInput.text.toString() == selection.get(0)){
                         val birthday = Birthday(0L, nameInput.text.toString(), birthDate, commentInput.text.toString())
                         birthdaysViewModel.addBirthday(birthday)
-                        val intent = Intent(this.baseContext, MainActivity::class.java)
-                        startActivity(intent)
+                        finish()
                     }
                     else if (selectionInput.text.toString() == selection.get(1)) {
                         val event = Event(0L, nameInput.text.toString(), birthDate, commentInput.text.toString())
                         eventsViewModel.addEvent(event)
-                        val intent = Intent(this.baseContext, MainActivity::class.java)
-                        startActivity(intent)
+                        finish()
                     }
                 else{
                         Toast.makeText(this, "Choose database!", Toast.LENGTH_SHORT).show()

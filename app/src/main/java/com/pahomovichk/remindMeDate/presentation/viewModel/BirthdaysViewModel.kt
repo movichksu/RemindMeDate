@@ -37,18 +37,14 @@ class BirthdaysViewModel : ViewModel() {
     }
 
     fun addBirthday(birthday: Birthday) {
-        viewModelScope.launch {
-            withContext(Dispatchers.IO) {
+        viewModelScope.launch(Dispatchers.IO) {
                 birthdaysUseCase.addBirthday(birthday)
-            }
         }
     }
 
     fun editBirthday(birthday: Birthday) {
-        viewModelScope.launch {
-            withContext(Dispatchers.IO) {
+        viewModelScope.launch(Dispatchers.IO) {
                 birthdaysUseCase.editBirthday(birthday)
-            }
         }
     }
 

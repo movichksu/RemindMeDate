@@ -13,11 +13,6 @@ import kotlinx.coroutines.withContext
 class LocalDatabaseSource(
     context: Context
 ) : BirthdayRepository, EventsRepository {
-    private val birthdaysDatabase = Room.databaseBuilder(
-        context,
-        BirthdayDatabase::class.java,
-        "personDataBase"
-    ).build()
     private val eventsDatabase = Room.databaseBuilder(
             context,
             EventsDatabase::class.java,
@@ -25,33 +20,35 @@ class LocalDatabaseSource(
     ).build()
 
     override fun getBirthdays(): Flow<List<Birthday>> =
-        birthdaysDatabase.getBirthdayDao().selectAllBirthdays()
+        eventsDatabase.getBirthdaysDao().selectAllBirthdays()
 
     override suspend fun deleteBirthday(birthday: Birthday) {
         withContext(Dispatchers.IO) {
-            birthdaysDatabase.getBirthdayDao().deleteBirthday(birthday)
+            eventsDatabase.getBirthdaysDao().deleteBirthday(birthday)
         }
     }
 
     override suspend fun deleteBirthday(id: Long) {
-        birthdaysDatabase.getBirthdayDao().deleteBirthday(id)
+        withContext(Dispatchers.IO) {
+            eventsDatabase.getBirthdaysDao().deleteBirthday(id)
+        }
     }
 
     override suspend fun addBirthday(birthday: Birthday) {
         withContext(Dispatchers.IO) {
-            birthdaysDatabase.getBirthdayDao().insertBirthday(birthday)
+            eventsDatabase.getBirthdaysDao().insertBirthday(birthday)
         }
     }
 
     override suspend fun editBirthday(birthday: Birthday) {
         withContext(Dispatchers.IO) {
-            birthdaysDatabase.getBirthdayDao().updateBirthday(birthday)
+            eventsDatabase.getBirthdaysDao().updateBirthday(birthday)
         }
     }
 
     override suspend fun cleanBirthdaysDb(){
         withContext(Dispatchers.IO) {
-            birthdaysDatabase.getBirthdayDao().deleteAllBirthdays()
+            eventsDatabase.getBirthdaysDao().deleteAllBirthdays()
         }
     }
 
@@ -59,19 +56,27 @@ class LocalDatabaseSource(
             eventsDatabase.getEventsDao().selectAllEvents()
 
     override suspend fun deleteEvent(event: Event) {
-        eventsDatabase.getEventsDao().deleteEvent(event)
+        withContext(Dispatchers.IO) {
+            eventsDatabase.getEventsDao().deleteEvent(event)
+        }
     }
 
     override suspend fun deleteEvent(id: Long) {
-        eventsDatabase.getEventsDao().deleteEvent(id)
+        withContext(Dispatchers.IO) {
+            eventsDatabase.getEventsDao().deleteEvent(id)
+        }
     }
 
     override suspend fun addEvent(event: Event) {
-        eventsDatabase.getEventsDao().insertEvent(event)
+        withContext(Dispatchers.IO) {
+            eventsDatabase.getEventsDao().insertEvent(event)
+        }
     }
 
     override suspend fun editEvent(event: Event) {
-        eventsDatabase.getEventsDao().updateEvent(event)
+        withContext(Dispatchers.IO) {
+            eventsDatabase.getEventsDao().updateEvent(event)
+        }
     }
 
     override suspend fun cleanEventsDb() {

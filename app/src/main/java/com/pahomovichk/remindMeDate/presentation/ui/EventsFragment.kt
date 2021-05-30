@@ -31,8 +31,6 @@ class EventsFragment : Fragment(), EventClickListener {
     private lateinit var eventsList: RecyclerView
     private var adapter = EventAdapter(listOf())
 
-    val localFormatter = DateTimeFormatter.ofPattern("dd MMMM yyyy")
-
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
@@ -70,7 +68,7 @@ class EventsFragment : Fragment(), EventClickListener {
         val intent = Intent(this.context, EventItemActivity::class.java)
         intent.putExtra(Constants.ID, event.id)
         intent.putExtra(Constants.NAME, event.name)
-        intent.putExtra(Constants.DATE, "${event.date.format(localFormatter)}")
+        intent.putExtra(Constants.DATE, "${event.date.format(Constants.gettingLocalFormatter)}")
         intent.putExtra(Constants.COMMENT, event.comments)
         startActivity(intent)
     }

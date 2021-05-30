@@ -33,8 +33,6 @@ class BirthdaysFragment : Fragment(), BirthdayClickListener {
     private lateinit var birthdaysList: RecyclerView
     private var adapter = BirthdayAdapter(listOf())
 
-    val localFormatter = DateTimeFormatter.ofPattern("dd MMMM yyyy")
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -71,13 +69,9 @@ class BirthdaysFragment : Fragment(), BirthdayClickListener {
         val intent = Intent(this.context, BirthdayItemActivity::class.java)
         intent.putExtra(Constants.ID, birthday.id)
         intent.putExtra(Constants.NAME, birthday.name)
-        intent.putExtra(Constants.DATE, "${birthday.date.format(localFormatter)}")
+        intent.putExtra(Constants.DATE, "${birthday.date.format(Constants.gettingLocalFormatter)}")
         intent.putExtra(Constants.COMMENT, birthday.comments)
         startActivity(intent)
-    }
-
-    fun onClickDelete(){
-
     }
 
     override fun onDestroyView() {

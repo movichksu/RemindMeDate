@@ -48,8 +48,7 @@ class EventItemActivity: AppCompatActivity() {
         }
 
         toolBar.setNavigationOnClickListener {
-            val intent = Intent(this.baseContext, MainActivity::class.java)
-            startActivity(intent)
+            finish()
         }
 
         eventCardData.text = eventDate
@@ -66,8 +65,9 @@ class EventItemActivity: AppCompatActivity() {
         return when (item.itemId) {
             R.id.item_bar_delete -> {
                 viewModel.onItemSelected(eventId)
-                val intent = Intent(this.baseContext, MainActivity::class.java)
-                startActivity(intent)
+                finish()
+//                val intent = Intent(this.baseContext, MainActivity::class.java)
+//                startActivity(intent)
                 true
             }
             R.id.item_bar_edit -> {
@@ -76,7 +76,7 @@ class EventItemActivity: AppCompatActivity() {
                 intent.putExtra(Constants.NAME, eventName)
                 intent.putExtra(Constants.DATE, eventDate)
                 intent.putExtra(Constants.COMMENT, eventComments)
-                intent.putExtra(Constants.SELECTION_ITEM, "Event")
+                intent.putExtra(Constants.SELECTION_ITEM, resources.getStringArray(R.array.add_selection).get(1))
                 startActivity(intent)
                 true
             }
@@ -85,7 +85,7 @@ class EventItemActivity: AppCompatActivity() {
     }
 
     private fun setActivityContent(){
-        findViewById<TextView>(R.id.date_card_label).setText("Event date")
+        findViewById<TextView>(R.id.date_card_label).setText("${resources.getStringArray(R.array.add_selection).get(1)} date")
         findViewById<ImageView>(R.id.date_card_icon).setImageResource(R.drawable.ic_notifications)
         findViewById<ImageView>(R.id.appbar_background).setImageResource(R.drawable.book_1)
     }

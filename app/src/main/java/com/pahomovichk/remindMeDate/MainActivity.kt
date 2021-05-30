@@ -7,6 +7,8 @@ import android.view.MenuItem
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -14,6 +16,8 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.pahomovichk.remindMeDate.domain.BirthdayUseCase
 import com.pahomovichk.remindMeDate.domain.EventsUseCase
+import com.pahomovichk.remindMeDate.presentation.viewModel.BirthdaysViewModel
+import com.pahomovichk.remindMeDate.presentation.viewModel.EventsViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -30,10 +34,16 @@ class MainActivity : AppCompatActivity() {
 
     private val birthdaysUseCase: BirthdayUseCase by lazy { Dependencies.getBirthdayUseCase() }
     private val eventsUseCase: EventsUseCase by lazy { Dependencies.getEventsUseCase() }
+    private lateinit var birthdaysViewModel: BirthdaysViewModel
+    private lateinit var eventsViewModel: EventsViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
+
+        birthdaysViewModel = ViewModelProvider(this).get(BirthdaysViewModel::class.java)
+        eventsViewModel = ViewModelProvider(this).get(EventsViewModel::class.java)
+
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
         navView.background = null
         navView.menu.getItem(2).isEnabled = false
@@ -71,13 +81,13 @@ class MainActivity : AppCompatActivity() {
         // Handle item selection
         return when (item.itemId) {
             R.id.main_bar_delete_all_birthdays -> {
-                GlobalScope.launch(Dispatchers.IO) {
+                birthdaysViewModel.viewModelScope.launch(Dispatchers.IO) {
                     birthdaysUseCase.cleanDb()
                 }
                 true
             }
             R.id.main_bar_delete_all_events -> {
-                GlobalScope.launch(Dispatchers.IO) {
+                eventsViewModel.viewModelScope.launch(Dispatchers.IO) {
                     eventsUseCase.cleanDb()
                 }
                 true

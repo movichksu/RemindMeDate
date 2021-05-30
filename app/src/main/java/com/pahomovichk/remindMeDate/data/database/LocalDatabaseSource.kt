@@ -68,11 +68,15 @@ class LocalDatabaseSource(
     }
 
     override suspend fun addEvent(event: Event) {
-        eventsDatabase.getEventsDao().insertEvent(event)
+        withContext(Dispatchers.IO) {
+            eventsDatabase.getEventsDao().insertEvent(event)
+        }
     }
 
     override suspend fun editEvent(event: Event) {
-        eventsDatabase.getEventsDao().updateEvent(event)
+        withContext(Dispatchers.IO) {
+            eventsDatabase.getEventsDao().updateEvent(event)
+        }
     }
 
     override suspend fun cleanEventsDb() {

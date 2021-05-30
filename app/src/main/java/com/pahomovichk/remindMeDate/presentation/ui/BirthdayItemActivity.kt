@@ -67,8 +67,6 @@ class BirthdayItemActivity : AppCompatActivity() {
             R.id.item_bar_delete -> {
                 viewModel.onItemSelected(birthId)
                 finish()
-//                val intent = Intent(this.baseContext, MainActivity::class.java)
-//                startActivity(intent)
                 true
             }
             R.id.item_bar_edit -> {

@@ -66,7 +66,6 @@ class EditItemActivity : AppCompatActivity() {
         selectionInput.setText(selectionItem)
         editItemBtn = findViewById(R.id.create_btn)
         editItemBtn.setText("Edit")
-        val types = resources.getStringArray(R.array.add_selection)
 
         toolBar.setNavigationOnClickListener {
             if (selectionInput.text.toString() == types.get(0)){

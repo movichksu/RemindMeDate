@@ -74,10 +74,6 @@ class BirthdaysFragment : Fragment(), BirthdayClickListener {
         startActivity(intent)
     }
 
-    fun onClickDelete(){
-
-    }
-
     override fun onDestroyView() {
         adapter.setListener(null)
         super.onDestroyView()

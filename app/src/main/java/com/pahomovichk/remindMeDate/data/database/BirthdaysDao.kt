@@ -5,7 +5,7 @@ import com.pahomovichk.remindMeDate.domain.entity.Birthday
 import kotlinx.coroutines.flow.Flow
 
 @Dao
-interface BirthdayDao {
+interface BirthdaysDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertBirthday(birthday: Birthday)
 

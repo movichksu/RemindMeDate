@@ -37,6 +37,7 @@ class EditItemActivity : AppCompatActivity() {
     private lateinit var commentInput: EditText
     private lateinit var selectionInput: AutoCompleteTextView
     private lateinit var editItemBtn: Button
+    private val types = resources.getStringArray(R.array.add_selection)
 
     private var birthDate: LocalDate = LocalDate.of(2000, 5, 31)
 
@@ -115,7 +116,7 @@ class EditItemActivity : AppCompatActivity() {
             if (nameInput.text.isEmpty() || dateInput.text.isEmpty()) {
                 Toast.makeText(this, "input fields are empty!", Toast.LENGTH_SHORT).show()
             } else {
-                if (selectionInput.text.toString() == "Birthday"){
+                if (selectionInput.text.toString() == types.get(0)){
                     val birthday = Birthday(id, nameInput.text.toString(), birthDate, commentInput.text.toString())
                     birthdaysViewModel.editBirthday(birthday)
                     val intent = Intent(this.baseContext, BirthdayItemActivity::class.java)
@@ -125,7 +126,7 @@ class EditItemActivity : AppCompatActivity() {
                     intent.putExtra(Constants.COMMENT, birthday.comments)
                     startActivity(intent)
                 }
-                else if (selectionInput.text.toString() == "Event") {
+                else if (selectionInput.text.toString() == types.get(1)) {
                     val event = Event(id, nameInput.text.toString(), birthDate, commentInput.text.toString())
                     eventsViewModel.editEvent(event)
                     val intent = Intent(this.baseContext, EventItemActivity::class.java)

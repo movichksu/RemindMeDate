@@ -86,7 +86,7 @@ class BirthdayItemActivity : AppCompatActivity() {
     }
 
     private fun setActivityContent(){
-        findViewById<TextView>(R.id.date_card_label).setText("Birthday date")
+        findViewById<TextView>(R.id.date_card_label).setText("${resources.getStringArray(R.array.add_selection).get(0)} date")
         findViewById<ImageView>(R.id.date_card_icon).setImageResource(R.drawable.ic_cake)
         findViewById<ImageView>(R.id.appbar_background).setImageResource(R.drawable.pink_cacke)
     }

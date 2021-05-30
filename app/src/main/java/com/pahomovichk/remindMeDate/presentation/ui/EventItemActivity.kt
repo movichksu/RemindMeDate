@@ -76,7 +76,7 @@ class EventItemActivity: AppCompatActivity() {
                 intent.putExtra(Constants.NAME, eventName)
                 intent.putExtra(Constants.DATE, eventDate)
                 intent.putExtra(Constants.COMMENT, eventComments)
-                intent.putExtra(Constants.SELECTION_ITEM, "Event")
+                intent.putExtra(Constants.SELECTION_ITEM, resources.getStringArray(R.array.add_selection).get(1))
                 startActivity(intent)
                 true
             }

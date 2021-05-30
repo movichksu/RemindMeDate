@@ -1,5 +1,9 @@
 package com.pahomovichk.remindMeDate
 
+import java.text.SimpleDateFormat
+import java.time.format.DateTimeFormatter
+import java.util.*
+
 object Constants {
     // keys
     const val ID = "ID"
@@ -9,4 +13,7 @@ object Constants {
 
     const val SELECTION_ITEM = "SELECTION_ITEM"
 
+    val viewLocalFormatter = DateTimeFormatter.ofPattern("MMMM dd, yyyy")
+    val gettingLocalFormatter = DateTimeFormatter.ofPattern("dd MMMM yyyy")
+    val simpleDateFormatter = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault())
 }

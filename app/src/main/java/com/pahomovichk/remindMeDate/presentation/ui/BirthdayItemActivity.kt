@@ -77,7 +77,7 @@ class BirthdayItemActivity : AppCompatActivity() {
                 intent.putExtra(Constants.NAME, birthName)
                 intent.putExtra(Constants.DATE, birthDate)
                 intent.putExtra(Constants.COMMENT, birthComments)
-                intent.putExtra(Constants.SELECTION_ITEM, "Birthday")
+                intent.putExtra(Constants.SELECTION_ITEM, resources.getStringArray(R.array.add_selection).get(0))
                 startActivity(intent)
                 true
             }
@@ -86,7 +86,7 @@ class BirthdayItemActivity : AppCompatActivity() {
     }
 
     private fun setActivityContent(){
-        findViewById<TextView>(R.id.date_card_label).setText("Birthday")
+        findViewById<TextView>(R.id.date_card_label).setText("Birthday date")
         findViewById<ImageView>(R.id.date_card_icon).setImageResource(R.drawable.ic_cake)
         findViewById<ImageView>(R.id.appbar_background).setImageResource(R.drawable.pink_cacke)
     }

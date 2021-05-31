@@ -7,7 +7,7 @@ import java.time.LocalDate
 
 @Entity
 @TypeConverters(DateConverter::class)
-data class Event(
+data class OnetimeEvent(
         @PrimaryKey(autoGenerate = true)
         val id: Long,
 

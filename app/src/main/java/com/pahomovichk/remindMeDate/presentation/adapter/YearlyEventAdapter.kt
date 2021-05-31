@@ -7,10 +7,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.pahomovichk.remindMeDate.Constants
 import com.pahomovichk.remindMeDate.R
-import com.pahomovichk.remindMeDate.domain.entity.Birthday
+import com.pahomovichk.remindMeDate.domain.entity.YearlyEvent
 
 class YearlyEventAdapter internal constructor(
-    private var birthdays: List<Birthday>
+    private var events: List<YearlyEvent>
 ) : RecyclerView.Adapter<YearlyEventAdapter.ViewHolder>() {
 
     private var listener: YearlyEventClickListener? = null
@@ -23,26 +23,26 @@ class YearlyEventAdapter internal constructor(
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-        val birthday = birthdays[position]
-        viewHolder.birthdayName.text = birthday.name
-        viewHolder.birthdayDate.text = "${birthday.date.format(Constants.viewLocalFormatter)}"
+        val event = events[position]
+        viewHolder.eventName.text = event.name
+        viewHolder.eventDate.text = "${event.date.format(Constants.viewLocalFormatter)}"
         viewHolder.container.setOnClickListener {
-            listener?.onClick(birthday)
+            listener?.onClick(event)
             notifyItemRemoved(position)
         }
     }
 
-    override fun getItemCount() = birthdays.size
+    override fun getItemCount() = events.size
 
-    fun setData(data: List<Birthday>) {
-        this.birthdays = data
+    fun setData(data: List<YearlyEvent>) {
+        this.events = data
         notifyDataSetChanged()
     }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val container: View = view.findViewById(R.id.birthday_card)
-        val birthdayName: TextView = view.findViewById<TextView>(R.id.birth_name)
-        val birthdayDate: TextView = view.findViewById<TextView>(R.id.birth_date)
+        val container: View = view.findViewById(R.id.yearly_event_card)
+        val eventName: TextView = view.findViewById<TextView>(R.id.yearly_name)
+        val eventDate: TextView = view.findViewById<TextView>(R.id.yearly_date)
     }
 
     fun setListener(yearlyEventClickListener: YearlyEventClickListener?) {

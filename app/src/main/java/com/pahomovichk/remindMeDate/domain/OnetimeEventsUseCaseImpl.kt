@@ -1,32 +1,32 @@
 package com.pahomovichk.remindMeDate.domain
 
-import com.pahomovichk.remindMeDate.domain.entity.Event
+import com.pahomovichk.remindMeDate.domain.entity.OnetimeEvent
 import kotlinx.coroutines.flow.Flow
 
 class OnetimeEventsUseCaseImpl(
         private val onetimeEventsRepository: OnetimeEventsRepository
 ): OnetimeEventsUseCase {
-    override fun getEvents(): Flow<List<Event>> {
-        return onetimeEventsRepository.getEvents()
+    override fun getEvents(): Flow<List<OnetimeEvent>> {
+        return onetimeEventsRepository.getOnetimeEvents()
     }
 
-    override suspend fun deleteEvent(event: Event) {
-        onetimeEventsRepository.deleteEvent(event)
+    override suspend fun deleteEvent(event: OnetimeEvent) {
+        onetimeEventsRepository.deleteOnetimeEvent(event)
     }
 
     override suspend fun deleteEvent(id: Long) {
-        onetimeEventsRepository.deleteEvent(id)
+        onetimeEventsRepository.deleteOnetimeEvent(id)
     }
 
-    override suspend fun addEvent(event: Event) {
-        onetimeEventsRepository.addEvent(event)
+    override suspend fun addEvent(event: OnetimeEvent) {
+        onetimeEventsRepository.addOnetimeEvent(event)
     }
 
-    override suspend fun editEvent(event: Event) {
-        onetimeEventsRepository.editEvent(event)
+    override suspend fun editEvent(event: OnetimeEvent) {
+        onetimeEventsRepository.editOnetimeEvent(event)
     }
 
     override suspend fun cleanDb() {
-        onetimeEventsRepository.cleanEventsDb()
+        onetimeEventsRepository.cleanOnetimeEventsDb()
     }
 }

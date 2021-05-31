@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.pahomovichk.remindMeDate.Constants
 import com.pahomovichk.remindMeDate.R
-import com.pahomovichk.remindMeDate.domain.entity.Event
+import com.pahomovichk.remindMeDate.domain.entity.OnetimeEvent
 import com.pahomovichk.remindMeDate.presentation.adapter.OnetimeEventAdapter
 import com.pahomovichk.remindMeDate.presentation.adapter.OnetimeEventClickListener
 import com.pahomovichk.remindMeDate.presentation.viewModel.OnetimeViewModel
@@ -38,7 +38,7 @@ class OnetimeFragment : Fragment(), OnetimeEventClickListener {
         viewModel =
                 ViewModelProvider(this).get(OnetimeViewModel::class.java)
         val root = inflater.inflate(R.layout.ontime_events_fragment, container, false)
-        val textView: TextView = root.findViewById(R.id.dates_text)
+        val textView: TextView = root.findViewById(R.id.onetime_events_text)
         viewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
             textView.setVisibility(View.INVISIBLE)
@@ -48,7 +48,7 @@ class OnetimeFragment : Fragment(), OnetimeEventClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        eventsList = view.findViewById(R.id.events_list)
+        eventsList = view.findViewById(R.id.onetime_events_list)
         eventsList.layoutManager = LinearLayoutManager(requireContext())
         eventsList.adapter = adapter
         adapter.setListener(this)
@@ -58,12 +58,12 @@ class OnetimeFragment : Fragment(), OnetimeEventClickListener {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(OnetimeViewModel::class.java)
 
-        viewModel.getEvents().observe(viewLifecycleOwner, Observer {
+        viewModel.getOnetimeEvents().observe(viewLifecycleOwner, Observer {
             adapter.setData(it)
         })
     }
 
-    override fun onClick(event: Event) {
+    override fun onClick(event: OnetimeEvent) {
         val intent = Intent(this.context, OnetimeItemActivity::class.java)
         intent.putExtra(Constants.ID, event.id)
         intent.putExtra(Constants.NAME, event.name)

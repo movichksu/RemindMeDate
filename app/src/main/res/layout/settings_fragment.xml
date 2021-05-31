@@ -25,7 +25,7 @@
             android:paddingBottom="5dp">
 
             <TextView
-                android:id="@+id/birth_date"
+                android:id="@+id/yearly_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
@@ -44,7 +44,7 @@
                 android:background="?android:attr/listDivider"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/birth_date" />
+                app:layout_constraintTop_toBottomOf="@id/yearly_date" />
 
             <ImageView
                 android:id="@+id/settings_card_icon"

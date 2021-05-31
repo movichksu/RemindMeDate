@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.pahomovichk.remindMeDate.Dependencies
 import com.pahomovichk.remindMeDate.domain.OnetimeEventsUseCase
-import com.pahomovichk.remindMeDate.domain.entity.Event
+import com.pahomovichk.remindMeDate.domain.entity.OnetimeEvent
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -14,15 +14,15 @@ import kotlinx.coroutines.withContext
 
 class OnetimeViewModel : ViewModel() {
 
-    private val onetimeEventsUseCase: OnetimeEventsUseCase by lazy { Dependencies.getEventsUseCase() }
+    private val onetimeEventsUseCase: OnetimeEventsUseCase by lazy { Dependencies.getOnetimeEventUseCase() }
 
     private val _text = MutableLiveData<String>().apply {
         value = "No dates"
     }
     val text: LiveData<String> = _text
 
-    private var events = MutableLiveData<List<Event>>(listOf())
-    fun getEvents(): LiveData<List<Event>>{
+    private var events = MutableLiveData<List<OnetimeEvent>>(listOf())
+    fun getOnetimeEvents(): LiveData<List<OnetimeEvent>>{
         return events
     }
 
@@ -34,7 +34,7 @@ class OnetimeViewModel : ViewModel() {
         }
     }
 
-    fun addEvent(event: Event) {
+    fun addEvent(event: OnetimeEvent) {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 onetimeEventsUseCase.addEvent(event)
@@ -42,7 +42,7 @@ class OnetimeViewModel : ViewModel() {
         }
     }
 
-    fun editEvent(event: Event) {
+    fun editEvent(event: OnetimeEvent) {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 onetimeEventsUseCase.editEvent(event)

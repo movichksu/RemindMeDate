@@ -3,12 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/events_navigation"
+        android:id="@+id/onetime_events_navigation"
         android:icon="@drawable/ic_notifications"
         android:title="@string/onetime_events_title" />
 
     <item
-        android:id="@+id/birthdays_navigation"
+        android:id="@+id/yearly_events_navigation"
         android:icon="@drawable/ic_cake"
         android:title="@string/yearly_events_title" />
     <item

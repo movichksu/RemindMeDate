@@ -7,7 +7,7 @@ import java.time.LocalDate
 
 @Entity
 @TypeConverters(DateConverter::class)
-data class Birthday (
+data class YearlyEvent (
         @PrimaryKey(autoGenerate = true)
         val id: Long,
 

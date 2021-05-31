@@ -8,7 +8,7 @@
     tools:context=".presentation.ui.OnetimeFragment">
 
     <TextView
-        android:id="@+id/dates_text"
+        android:id="@+id/onetime_events_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/events_list"
+        android:id="@+id/onetime_events_list"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintEnd_toEndOf="parent"

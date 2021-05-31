@@ -1,26 +1,26 @@
 package com.pahomovichk.remindMeDate.data.database
 
 import androidx.room.*
-import com.pahomovichk.remindMeDate.domain.entity.Birthday
+import com.pahomovichk.remindMeDate.domain.entity.YearlyEvent
 import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface YearlyEventsDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertBirthday(birthday: Birthday)
+    fun insert(event: YearlyEvent)
 
     @Delete
-    fun deleteBirthday(birthday: Birthday)
+    fun delete(event: YearlyEvent)
 
     @Update
-    fun updateBirthday(birthday: Birthday)
+    fun update(event: YearlyEvent)
 
-    @Query("Select * From Birthday")
-    fun selectAllBirthdays(): Flow<List<Birthday>>
+    @Query("Select * From YearlyEvent")
+    fun selectAll(): Flow<List<YearlyEvent>>
 
-    @Query("Delete From Birthday")
-    fun deleteAllBirthdays()
+    @Query("Delete From YearlyEvent")
+    fun deleteAll()
 
-    @Query("Delete From Birthday Where id = :id")
-    fun deleteBirthday(id: Long)
+    @Query("Delete From YearlyEvent Where id = :id")
+    fun delete(id: Long)
 }

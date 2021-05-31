@@ -9,8 +9,8 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProvider
-import com.pahomovichk.remindMeDate.domain.entity.Birthday
-import com.pahomovichk.remindMeDate.domain.entity.Event
+import com.pahomovichk.remindMeDate.domain.entity.YearlyEvent
+import com.pahomovichk.remindMeDate.domain.entity.OnetimeEvent
 import com.pahomovichk.remindMeDate.presentation.ui.YearlyItemActivity
 import com.pahomovichk.remindMeDate.presentation.ui.OnetimeItemActivity
 import com.pahomovichk.remindMeDate.presentation.viewModel.YearlyViewModel
@@ -114,8 +114,8 @@ class EditItemActivity : AppCompatActivity() {
                 Toast.makeText(this, "input fields are empty!", Toast.LENGTH_SHORT).show()
             } else {
                 if (selectionInput.text.toString() == types.get(0)){
-                    val birthday = Birthday(id, nameInput.text.toString(), birthDate, commentInput.text.toString())
-                    yearlyViewModel.editBirthday(birthday)
+                    val birthday = YearlyEvent(id, nameInput.text.toString(), birthDate, commentInput.text.toString())
+                    yearlyViewModel.editEvent(birthday)
                     val intent = Intent(this.baseContext, YearlyItemActivity::class.java)
                     intent.putExtra(Constants.ID, birthday.id)
                     intent.putExtra(Constants.NAME, birthday.name)
@@ -124,7 +124,7 @@ class EditItemActivity : AppCompatActivity() {
                     startActivity(intent)
                 }
                 else if (selectionInput.text.toString() == types.get(1)) {
-                    val event = Event(id, nameInput.text.toString(), birthDate, commentInput.text.toString())
+                    val event = OnetimeEvent(id, nameInput.text.toString(), birthDate, commentInput.text.toString())
                     onetimeViewModel.editEvent(event)
                     val intent = Intent(this.baseContext, OnetimeItemActivity::class.java)
                     intent.putExtra(Constants.ID, event.id)

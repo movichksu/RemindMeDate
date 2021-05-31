@@ -31,8 +31,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var addBtn: FloatingActionButton
     private lateinit var toolBar: Toolbar
 
-    private val birthdaysUseCase: YearlyEventsUseCase by lazy { Dependencies.getBirthdayUseCase() }
-    private val onetimeEventsUseCase: OnetimeEventsUseCase by lazy { Dependencies.getEventsUseCase() }
+    private val birthdaysUseCase: YearlyEventsUseCase by lazy { Dependencies.getYearlyEventUseCase() }
+    private val onetimeEventsUseCase: OnetimeEventsUseCase by lazy { Dependencies.getOnetimeEventUseCase() }
     private lateinit var yearlyViewModel: YearlyViewModel
     private lateinit var onetimeViewModel: OnetimeViewModel
 
@@ -60,8 +60,8 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment)
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.events_navigation,
-                R.id.birthdays_navigation,
+                R.id.onetime_events_navigation,
+                R.id.yearly_events_navigation,
                 R.id.calendar_navigation,
                 R.id.settings_navigation
             )

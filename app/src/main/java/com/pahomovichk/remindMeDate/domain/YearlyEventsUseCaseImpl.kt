@@ -1,33 +1,33 @@
 package com.pahomovichk.remindMeDate.domain
 
-import com.pahomovichk.remindMeDate.domain.entity.Birthday
+import com.pahomovichk.remindMeDate.domain.entity.YearlyEvent
 import kotlinx.coroutines.flow.Flow
 
 class YearlyEventsUseCaseImpl(
     private val yearlyEventsRepository: YearlyEventsRepository
 ) : YearlyEventsUseCase {
-    override fun getBirthdays(): Flow<List<Birthday>> {
-        return yearlyEventsRepository.getBirthdays()
+    override fun getEvents(): Flow<List<YearlyEvent>> {
+        return yearlyEventsRepository.getYearlyEvents()
     }
 
-    override suspend fun deleteBirthday(birthday: Birthday) {
-        yearlyEventsRepository.deleteBirthday(birthday)
+    override suspend fun deleteEvent(event: YearlyEvent) {
+        yearlyEventsRepository.deleteYearlyEvent(event)
     }
 
-    override suspend fun deleteBirthday(id: Long) {
-        yearlyEventsRepository.deleteBirthday(id)
+    override suspend fun deleteEvent(id: Long) {
+        yearlyEventsRepository.deleteYearlyEvent(id)
     }
 
-    override suspend fun addBirthday(birthday: Birthday) {
-        yearlyEventsRepository.addBirthday(birthday)
+    override suspend fun addEvent(event: YearlyEvent) {
+        yearlyEventsRepository.addYearlyEvent(event)
     }
 
-    override suspend fun editBirthday(birthday: Birthday) {
-        yearlyEventsRepository.editBirthday(birthday)
+    override suspend fun editEvent(event: YearlyEvent) {
+        yearlyEventsRepository.editYearlyEvent(event)
     }
 
     override suspend fun cleanDb() {
-        yearlyEventsRepository.cleanBirthdaysDb()
+        yearlyEventsRepository.cleanYearlyEventsDb()
     }
 
 

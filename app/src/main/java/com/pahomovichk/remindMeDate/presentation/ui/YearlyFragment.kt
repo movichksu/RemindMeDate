@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.pahomovichk.remindMeDate.Constants
 import com.pahomovichk.remindMeDate.R
-import com.pahomovichk.remindMeDate.domain.entity.Birthday
+import com.pahomovichk.remindMeDate.domain.entity.YearlyEvent
 import com.pahomovichk.remindMeDate.presentation.adapter.YearlyEventAdapter
 import com.pahomovichk.remindMeDate.presentation.adapter.YearlyEventClickListener
 import com.pahomovichk.remindMeDate.presentation.viewModel.YearlyViewModel
@@ -29,7 +29,7 @@ class YearlyFragment : Fragment(), YearlyEventClickListener {
 
     private lateinit var viewModel: YearlyViewModel
 
-    private lateinit var birthdaysList: RecyclerView
+    private lateinit var eventsList: RecyclerView
     private var adapter = YearlyEventAdapter(listOf())
 
     override fun onCreateView(
@@ -39,7 +39,7 @@ class YearlyFragment : Fragment(), YearlyEventClickListener {
     ): View? {
         viewModel = ViewModelProvider(this).get(YearlyViewModel::class.java)
         val root = inflater.inflate(R.layout.yearly_events_fragment, container, false)
-        val textView: TextView = root.findViewById(R.id.birthdays_text)
+        val textView: TextView = root.findViewById(R.id.yearly_events_text)
         viewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
             textView.setVisibility(INVISIBLE)
@@ -49,9 +49,9 @@ class YearlyFragment : Fragment(), YearlyEventClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        birthdaysList = view.findViewById(R.id.persons_list)
-        birthdaysList.layoutManager = LinearLayoutManager(requireContext())
-        birthdaysList.adapter = adapter
+        eventsList = view.findViewById(R.id.yearly_events_list)
+        eventsList.layoutManager = LinearLayoutManager(requireContext())
+        eventsList.adapter = adapter
         adapter.setListener(this)
     }
 
@@ -59,17 +59,17 @@ class YearlyFragment : Fragment(), YearlyEventClickListener {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(YearlyViewModel::class.java)
 
-        viewModel.getBirthdays().observe(viewLifecycleOwner, Observer {
+        viewModel.getYearlyEvents().observe(viewLifecycleOwner, Observer {
             adapter.setData(it)
         })
     }
 
-    override fun onClick(birthday: Birthday) {
+    override fun onClick(event: YearlyEvent) {
         val intent = Intent(this.context, YearlyItemActivity::class.java)
-        intent.putExtra(Constants.ID, birthday.id)
-        intent.putExtra(Constants.NAME, birthday.name)
-        intent.putExtra(Constants.DATE, "${birthday.date.format(Constants.gettingLocalFormatter)}")
-        intent.putExtra(Constants.COMMENT, birthday.comments)
+        intent.putExtra(Constants.ID, event.id)
+        intent.putExtra(Constants.NAME, event.name)
+        intent.putExtra(Constants.DATE, "${event.date.format(Constants.gettingLocalFormatter)}")
+        intent.putExtra(Constants.COMMENT, event.comments)
         startActivity(intent)
     }
 

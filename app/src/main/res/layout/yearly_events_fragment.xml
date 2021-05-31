@@ -9,7 +9,7 @@
     >
 
     <TextView
-        android:id="@+id/birthdays_text"
+        android:id="@+id/yearly_events_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/persons_list"
+        android:id="@+id/yearly_events_list"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintEnd_toEndOf="parent"

@@ -1,26 +1,26 @@
 package com.pahomovichk.remindMeDate.data.database
 
 import androidx.room.*
-import com.pahomovichk.remindMeDate.domain.entity.Event
+import com.pahomovichk.remindMeDate.domain.entity.OnetimeEvent
 import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface OnetimeEventsDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertEvent(event: Event)
+    fun insert(event: OnetimeEvent)
 
     @Delete
-    fun deleteEvent(event: Event)
+    fun delete(event: OnetimeEvent)
 
     @Update
-    fun updateEvent(event: Event)
+    fun update(event: OnetimeEvent)
 
-    @Query("Select * From Event")
-    fun selectAllEvents(): Flow<List<Event>>
+    @Query("Select * From OnetimeEvent")
+    fun selectAll(): Flow<List<OnetimeEvent>>
 
-    @Query("Delete From Event")
-    fun deleteAllEvents()
+    @Query("Delete From OnetimeEvent")
+    fun deleteAll()
 
-    @Query("Delete From Event Where id = :id")
-    fun deleteEvent(id: Long)
+    @Query("Delete From OnetimeEvent Where id = :id")
+    fun delete(id: Long)
 }

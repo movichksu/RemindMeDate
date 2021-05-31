@@ -7,10 +7,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.pahomovichk.remindMeDate.Constants
 import com.pahomovichk.remindMeDate.R
-import com.pahomovichk.remindMeDate.domain.entity.Event
+import com.pahomovichk.remindMeDate.domain.entity.OnetimeEvent
 
 class OnetimeEventAdapter internal constructor(
-        private var events: List<Event>
+        private var events: List<OnetimeEvent>
 ) : RecyclerView.Adapter<OnetimeEventAdapter.ViewHolder>() {
 
     private var listenerOnetime: OnetimeEventClickListener? = null
@@ -34,15 +34,15 @@ class OnetimeEventAdapter internal constructor(
 
     override fun getItemCount() = events.size
 
-    fun setData(data: List<Event>) {
+    fun setData(data: List<OnetimeEvent>) {
         this.events = data
         notifyDataSetChanged()
     }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val container: View = view.findViewById(R.id.event_card)
-        val eventName: TextView = view.findViewById<TextView>(R.id.event_name)
-        val eventDate: TextView = view.findViewById<TextView>(R.id.event_date)
+        val container: View = view.findViewById(R.id.onetime_event_card)
+        val eventName: TextView = view.findViewById<TextView>(R.id.onetime_name)
+        val eventDate: TextView = view.findViewById<TextView>(R.id.onetime_date)
     }
 
     fun setListener(onetimeEventClickListener: OnetimeEventClickListener?) {

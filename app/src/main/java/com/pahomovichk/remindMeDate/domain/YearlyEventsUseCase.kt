@@ -1,13 +1,13 @@
 package com.pahomovichk.remindMeDate.domain
 
-import com.pahomovichk.remindMeDate.domain.entity.Birthday
+import com.pahomovichk.remindMeDate.domain.entity.YearlyEvent
 import kotlinx.coroutines.flow.Flow
 
 interface YearlyEventsUseCase {
-    fun getBirthdays(): Flow<List<Birthday>>
-    suspend fun deleteBirthday(birthday: Birthday)
-    suspend fun deleteBirthday(id: Long)
-    suspend fun addBirthday(birthday: Birthday)
-    suspend fun editBirthday(birthday: Birthday)
+    fun getEvents(): Flow<List<YearlyEvent>>
+    suspend fun deleteEvent(event: YearlyEvent)
+    suspend fun deleteEvent(id: Long)
+    suspend fun addEvent(event: YearlyEvent)
+    suspend fun editEvent(event: YearlyEvent)
     suspend fun cleanDb()
 }

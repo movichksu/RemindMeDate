@@ -10,12 +10,12 @@
     app:cardElevation="4dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/birthday_card"
+        android:id="@+id/yearly_event_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/birth_date"
+            android:id="@+id/yearly_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
@@ -34,10 +34,10 @@
             android:background="?android:attr/listDivider"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/birth_date" />
+            app:layout_constraintTop_toBottomOf="@id/yearly_date" />
 
         <ImageView
-            android:id="@+id/birthday_item_icon"
+            android:id="@+id/yearly_item_icon"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_margin="15dp"
@@ -47,14 +47,14 @@
             app:layout_constraintTop_toBottomOf="@id/divider" />
 
         <TextView
-            android:id="@+id/birth_name"
+            android:id="@+id/yearly_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:padding="10dp"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/birthday_item_icon"
+            app:layout_constraintStart_toEndOf="@+id/yearly_item_icon"
             app:layout_constraintTop_toBottomOf="@id/divider"
 
             tools:text="Mom" />

@@ -4,8 +4,8 @@ import android.content.Context
 import androidx.room.Room
 import com.pahomovichk.remindMeDate.domain.YearlyEventsRepository
 import com.pahomovichk.remindMeDate.domain.OnetimeEventsRepository
-import com.pahomovichk.remindMeDate.domain.entity.Birthday
-import com.pahomovichk.remindMeDate.domain.entity.Event
+import com.pahomovichk.remindMeDate.domain.entity.YearlyEvent
+import com.pahomovichk.remindMeDate.domain.entity.OnetimeEvent
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
@@ -19,68 +19,68 @@ class LocalDatabaseSource(
             "eventsDataBase"
     ).build()
 
-    override fun getBirthdays(): Flow<List<Birthday>> =
-        eventsDatabase.getBirthdaysDao().selectAllBirthdays()
+    override fun getYearlyEvents(): Flow<List<YearlyEvent>> =
+        eventsDatabase.getYearlyEventsDao().selectAll()
 
-    override suspend fun deleteBirthday(birthday: Birthday) {
+    override suspend fun deleteYearlyEvent(event: YearlyEvent) {
         withContext(Dispatchers.IO) {
-            eventsDatabase.getBirthdaysDao().deleteBirthday(birthday)
+            eventsDatabase.getYearlyEventsDao().delete(event)
         }
     }
 
-    override suspend fun deleteBirthday(id: Long) {
+    override suspend fun deleteYearlyEvent(id: Long) {
         withContext(Dispatchers.IO) {
-            eventsDatabase.getBirthdaysDao().deleteBirthday(id)
+            eventsDatabase.getYearlyEventsDao().delete(id)
         }
     }
 
-    override suspend fun addBirthday(birthday: Birthday) {
+    override suspend fun addYearlyEvent(event: YearlyEvent) {
         withContext(Dispatchers.IO) {
-            eventsDatabase.getBirthdaysDao().insertBirthday(birthday)
+            eventsDatabase.getYearlyEventsDao().insert(event)
         }
     }
 
-    override suspend fun editBirthday(birthday: Birthday) {
+    override suspend fun editYearlyEvent(event: YearlyEvent) {
         withContext(Dispatchers.IO) {
-            eventsDatabase.getBirthdaysDao().updateBirthday(birthday)
+            eventsDatabase.getYearlyEventsDao().update(event)
         }
     }
 
-    override suspend fun cleanBirthdaysDb(){
+    override suspend fun cleanYearlyEventsDb(){
         withContext(Dispatchers.IO) {
-            eventsDatabase.getBirthdaysDao().deleteAllBirthdays()
+            eventsDatabase.getYearlyEventsDao().deleteAll()
         }
     }
 
-    override fun getEvents(): Flow<List<Event>> =
-            eventsDatabase.getEventsDao().selectAllEvents()
+    override fun getOnetimeEvents(): Flow<List<OnetimeEvent>> =
+            eventsDatabase.getOnetimeEventsDao().selectAll()
 
-    override suspend fun deleteEvent(event: Event) {
+    override suspend fun deleteOnetimeEvent(event: OnetimeEvent) {
         withContext(Dispatchers.IO) {
-            eventsDatabase.getEventsDao().deleteEvent(event)
+            eventsDatabase.getOnetimeEventsDao().delete(event)
         }
     }
 
-    override suspend fun deleteEvent(id: Long) {
+    override suspend fun deleteOnetimeEvent(id: Long) {
         withContext(Dispatchers.IO) {
-            eventsDatabase.getEventsDao().deleteEvent(id)
+            eventsDatabase.getOnetimeEventsDao().delete(id)
         }
     }
 
-    override suspend fun addEvent(event: Event) {
+    override suspend fun addOnetimeEvent(event: OnetimeEvent) {
         withContext(Dispatchers.IO) {
-            eventsDatabase.getEventsDao().insertEvent(event)
+            eventsDatabase.getOnetimeEventsDao().insert(event)
         }
     }
 
-    override suspend fun editEvent(event: Event) {
+    override suspend fun editOnetimeEvent(event: OnetimeEvent) {
         withContext(Dispatchers.IO) {
-            eventsDatabase.getEventsDao().updateEvent(event)
+            eventsDatabase.getOnetimeEventsDao().update(event)
         }
     }
 
-    override suspend fun cleanEventsDb() {
-        eventsDatabase.getEventsDao().deleteAllEvents()
+    override suspend fun cleanOnetimeEventsDb() {
+        eventsDatabase.getOnetimeEventsDao().deleteAll()
     }
 
 

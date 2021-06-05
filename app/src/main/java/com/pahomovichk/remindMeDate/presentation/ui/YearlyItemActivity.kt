@@ -19,40 +19,44 @@ class YearlyItemActivity : AppCompatActivity() {
     private lateinit var toolBar: Toolbar
     private lateinit var viewModel: YearlyViewModel
 
-    private var birthId = 0L
-    private lateinit var birthName : String
-    private lateinit var birthDate : String
-    private lateinit var birthComments : String
+    private var eventId = 0L
+    private lateinit var eventName: String
+    private lateinit var eventType: String
+    private lateinit var eventDate: String
+    private lateinit var eventComments: String
 
-    private lateinit var birthCardData : TextView
-    private lateinit var birthCommentsData: TextView
+    private lateinit var eventCardData: TextView
+    private lateinit var eventCommentsData: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.item_activity)
-        setActivityContent()
-        viewModel = ViewModelProvider(this).get(YearlyViewModel::class.java)
-        birthCardData = findViewById(R.id.date_card_data)
-        birthCommentsData = findViewById(R.id.date_comment_data)
 
-        birthId = intent.getLongExtra(Constants.ID, 0L)
-        birthName = intent.getStringExtra(Constants.NAME) ?: ""
-        birthDate = intent.getStringExtra(Constants.DATE) ?: ""
-        birthComments = intent.getStringExtra(Constants.COMMENT) ?: ""
+        viewModel = ViewModelProvider(this).get(YearlyViewModel::class.java)
+        eventCardData = findViewById(R.id.date_card_data)
+        eventCommentsData = findViewById(R.id.date_comment_data)
+
+        eventId = intent.getLongExtra(Constants.ID, 0L)
+        eventName = intent.getStringExtra(Constants.NAME) ?: ""
+        eventType = intent.getStringExtra(Constants.TYPE) ?: ""
+        eventDate = intent.getStringExtra(Constants.DATE) ?: ""
+        eventComments = intent.getStringExtra(Constants.COMMENT) ?: ""
+
+        setActivityContent()
 
         toolBar = findViewById(R.id.item_activity_toolbar)
         setSupportActionBar(toolBar)
         supportActionBar?.apply {
             titleColor = resources.getColor(R.color.white)
-            title = birthName
+            title = eventName
         }
 
         toolBar.setNavigationOnClickListener {
             finish()
         }
 
-        birthCardData.text = birthDate
-        birthCommentsData.text = birthComments
+        eventCardData.text = eventDate
+        eventCommentsData.text = eventComments
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -64,26 +68,27 @@ class YearlyItemActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.item_bar_delete -> {
-                viewModel.onItemSelected(birthId)
+                viewModel.onItemSelected(eventId)
                 finish()
                 true
             }
             R.id.item_bar_edit -> {
                 val intent = Intent(this.baseContext, EditItemActivity::class.java)
-                intent.putExtra(Constants.ID, birthId)
-                intent.putExtra(Constants.NAME, birthName)
-                intent.putExtra(Constants.DATE, birthDate)
-                intent.putExtra(Constants.COMMENT, birthComments)
-                intent.putExtra(Constants.SELECTION_ITEM, resources.getStringArray(R.array.add_selection).get(0))
+                intent.putExtra(Constants.ID, eventId)
+                intent.putExtra(Constants.NAME, eventName)
+                intent.putExtra(Constants.TYPE, eventType)
+                intent.putExtra(Constants.DATE, eventDate)
+                intent.putExtra(Constants.COMMENT, eventComments)
                 startActivity(intent)
+                finish()
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
     }
 
-    private fun setActivityContent(){
-        findViewById<TextView>(R.id.date_card_label).setText("${resources.getStringArray(R.array.add_selection).get(0)} date")
+    private fun setActivityContent() {
+        findViewById<TextView>(R.id.date_card_label).setText("$eventType date")
         findViewById<ImageView>(R.id.date_card_icon).setImageResource(R.drawable.ic_cake)
         findViewById<ImageView>(R.id.appbar_background).setImageResource(R.drawable.pink_cacke)
     }

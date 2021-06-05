@@ -13,6 +13,8 @@ data class YearlyEvent (
 
         val name: String,
 
+        val type: String,
+
         val date: LocalDate,
 
         val comments: String

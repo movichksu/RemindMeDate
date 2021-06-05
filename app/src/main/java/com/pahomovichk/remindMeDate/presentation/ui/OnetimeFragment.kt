@@ -22,7 +22,7 @@ class OnetimeFragment : Fragment(), OnetimeEventClickListener {
 
     companion object {
         fun newInstance() =
-                OnetimeFragment()
+            OnetimeFragment()
     }
 
     private lateinit var viewModel: OnetimeViewModel
@@ -31,12 +31,12 @@ class OnetimeFragment : Fragment(), OnetimeEventClickListener {
     private var adapter = OnetimeEventAdapter(listOf())
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         viewModel =
-                ViewModelProvider(this).get(OnetimeViewModel::class.java)
+            ViewModelProvider(this).get(OnetimeViewModel::class.java)
         val root = inflater.inflate(R.layout.ontime_events_fragment, container, false)
         val textView: TextView = root.findViewById(R.id.onetime_events_text)
         viewModel.text.observe(viewLifecycleOwner, Observer {
@@ -67,6 +67,7 @@ class OnetimeFragment : Fragment(), OnetimeEventClickListener {
         val intent = Intent(this.context, OnetimeItemActivity::class.java)
         intent.putExtra(Constants.ID, event.id)
         intent.putExtra(Constants.NAME, event.name)
+        intent.putExtra(Constants.TYPE, event.type)
         intent.putExtra(Constants.DATE, "${event.date.format(Constants.gettingLocalFormatter)}")
         intent.putExtra(Constants.COMMENT, event.comments)
         startActivity(intent)

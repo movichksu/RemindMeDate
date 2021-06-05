@@ -68,6 +68,7 @@ class YearlyFragment : Fragment(), YearlyEventClickListener {
         val intent = Intent(this.context, YearlyItemActivity::class.java)
         intent.putExtra(Constants.ID, event.id)
         intent.putExtra(Constants.NAME, event.name)
+        intent.putExtra(Constants.TYPE, event.type)
         intent.putExtra(Constants.DATE, "${event.date.format(Constants.gettingLocalFormatter)}")
         intent.putExtra(Constants.COMMENT, event.comments)
         startActivity(intent)

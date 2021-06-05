@@ -13,6 +13,8 @@ data class OnetimeEvent(
 
         val name: String,
 
+        val type: String,
+
         val date: LocalDate,
 
         val comments: String

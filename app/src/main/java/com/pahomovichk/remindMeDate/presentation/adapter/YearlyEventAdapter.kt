@@ -14,7 +14,6 @@ class YearlyEventAdapter internal constructor(
 ) : RecyclerView.Adapter<YearlyEventAdapter.ViewHolder>() {
 
     private var listener: YearlyEventClickListener? = null
-    //val localFormatter = DateTimeFormatter.ofPattern("MMMM dd, yyyy")
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(viewGroup.context)

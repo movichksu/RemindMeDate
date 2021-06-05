@@ -1,14 +1,18 @@
 <resources>
     <string name="app_name">Remind Me Date</string>
-    <string name="onetime_events_title">One-time events</string>
+    <string name="onetime_events_title">One-time</string>
     <string name="calendar_title">Calendar</string>
-    <string name="yearly_events_title">Yearly events</string>
+    <string name="yearly_events_title">Yearly</string>
     <string name="settings_title">More</string>
     <string name="add_activity_name">Form</string>
     
     <string-array name="add_selection">
         <item>Birthday</item>
         <item>Event</item>
+        <item>Anniversary</item>
+        <item>Celebration</item>
+        <item>Conference</item>
+        <item>Wedding</item>
     </string-array>
 
     <string-array name="yearly_events">

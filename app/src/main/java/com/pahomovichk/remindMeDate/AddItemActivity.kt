@@ -22,9 +22,9 @@ class AddItemActivity : AppCompatActivity() {
     private lateinit var toolBar: Toolbar
 
     private lateinit var nameInput: EditText
+    private lateinit var typeInput: AutoCompleteTextView
     private lateinit var dateInput: EditText
     private lateinit var commentInput: EditText
-    private lateinit var selectionInput: AutoCompleteTextView
     private lateinit var createItemBtn: Button
 
     private var eventDate: LocalDate = LocalDate.of(2000, 5, 31)
@@ -41,7 +41,7 @@ class AddItemActivity : AppCompatActivity() {
         nameInput = findViewById(R.id.name_input)
         dateInput = findViewById(R.id.date_input)
         commentInput = findViewById(R.id.comments_input)
-        selectionInput = findViewById(R.id.selection_input)
+        typeInput = findViewById(R.id.selection_input)
         createItemBtn = findViewById(R.id.create_btn)
         createItemBtn.setText("Create")
 
@@ -61,7 +61,8 @@ class AddItemActivity : AppCompatActivity() {
                     selectDate.set(Calendar.DAY_OF_MONTH, day)
                     val date = Constants.simpleDateFormatter.format(selectDate.time)
                     dateInput.setText(date)
-                    eventDate = LocalDate.parse(dateInput.text.toString(),Constants.gettingLocalFormatter)
+                    eventDate =
+                        LocalDate.parse(dateInput.text.toString(), Constants.gettingLocalFormatter)
                 },
                 getCalendar.get(Calendar.YEAR),
                 getCalendar.get(Calendar.MONTH),
@@ -70,26 +71,41 @@ class AddItemActivity : AppCompatActivity() {
             datePicker.show()
         }
 
-        val selection = resources.getStringArray(R.array.add_selection)
-        val arrayAdapter = ArrayAdapter(this.baseContext, R.layout.selection_db_dropdown_item, selection)
-        selectionInput.setAdapter(arrayAdapter)
+        val selection: Array<String> = resources.getStringArray(R.array.add_selection)
+        val arrayAdapter =
+            ArrayAdapter(this.baseContext, R.layout.selection_db_dropdown_item, selection)
+        typeInput.setAdapter(arrayAdapter)
 
         createItemBtn.setOnClickListener {
             if (nameInput.text.isEmpty() || dateInput.text.isEmpty()) {
-                Toast.makeText(this, "input fields are empty!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Input fields are empty!", Toast.LENGTH_SHORT).show()
             } else {
-                    if (selectionInput.text.toString() == selection.get(0)){
-                        val event = YearlyEvent(0L, nameInput.text.toString(), eventDate, commentInput.text.toString())
-                        yearlyViewModel.addEvent(event)
-                        finish()
-                    }
-                    else if (selectionInput.text.toString() == selection.get(1)) {
-                        val event = OnetimeEvent(0L, nameInput.text.toString(), eventDate, commentInput.text.toString())
-                        onetimeViewModel.addEvent(event)
-                        finish()
-                    }
-                else{
-                        Toast.makeText(this, "Choose database!", Toast.LENGTH_SHORT).show()
+                if (resources.getStringArray(R.array.yearly_events)
+                        .contains(typeInput.text.toString())
+                ) {
+                    val event = YearlyEvent(
+                        0L,
+                        nameInput.text.toString(),
+                        typeInput.text.toString(),
+                        eventDate,
+                        commentInput.text.toString()
+                    )
+                    yearlyViewModel.addEvent(event)
+                    finish()
+                } else if (resources.getStringArray(R.array.one_time_events)
+                        .contains(typeInput.text.toString())
+                ) {
+                    val event = OnetimeEvent(
+                        0L,
+                        nameInput.text.toString(),
+                        typeInput.text.toString(),
+                        eventDate,
+                        commentInput.text.toString()
+                    )
+                    onetimeViewModel.addEvent(event)
+                    finish()
+                } else {
+                    Toast.makeText(this, "Choose the type!", Toast.LENGTH_SHORT).show()
                 }
             }
         }

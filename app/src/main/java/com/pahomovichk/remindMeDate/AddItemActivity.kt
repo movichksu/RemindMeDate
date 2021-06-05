@@ -80,9 +80,7 @@ class AddItemActivity : AppCompatActivity() {
             if (nameInput.text.isEmpty() || dateInput.text.isEmpty()) {
                 Toast.makeText(this, "Input fields are empty!", Toast.LENGTH_SHORT).show()
             } else {
-                if (resources.getStringArray(R.array.yearly_events)
-                        .contains(typeInput.text.toString())
-                ) {
+                if (resources.getStringArray(R.array.yearly_events).contains(typeInput.text.toString())) {
                     val event = YearlyEvent(
                         0L,
                         nameInput.text.toString(),
@@ -92,9 +90,7 @@ class AddItemActivity : AppCompatActivity() {
                     )
                     yearlyViewModel.addEvent(event)
                     finish()
-                } else if (resources.getStringArray(R.array.one_time_events)
-                        .contains(typeInput.text.toString())
-                ) {
+                } else if (resources.getStringArray(R.array.one_time_events).contains(typeInput.text.toString())) {
                     val event = OnetimeEvent(
                         0L,
                         nameInput.text.toString(),

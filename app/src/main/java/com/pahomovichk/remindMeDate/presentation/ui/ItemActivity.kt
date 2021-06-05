@@ -13,12 +13,15 @@ import com.pahomovichk.remindMeDate.Constants
 import com.pahomovichk.remindMeDate.EditItemActivity
 import com.pahomovichk.remindMeDate.R
 import com.pahomovichk.remindMeDate.presentation.viewModel.OnetimeViewModel
+import com.pahomovichk.remindMeDate.presentation.viewModel.YearlyViewModel
 
-class OnetimeItemActivity : AppCompatActivity() {
+class ItemActivity: AppCompatActivity() {
+
     private lateinit var toolBar: Toolbar
-    private lateinit var viewModel: OnetimeViewModel
+    private lateinit var onetimeViewModel: OnetimeViewModel
+    private lateinit var yearlyViewModel:YearlyViewModel
 
-    private var eventId: Long = 0L
+    private var eventId = 0L
     private lateinit var eventName: String
     private lateinit var eventType: String
     private lateinit var eventDate: String
@@ -30,7 +33,9 @@ class OnetimeItemActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.item_activity)
-        viewModel = ViewModelProvider(this).get(OnetimeViewModel::class.java)
+        onetimeViewModel = ViewModelProvider(this).get(OnetimeViewModel::class.java)
+        yearlyViewModel = ViewModelProvider(this).get(YearlyViewModel::class.java)
+
         eventCardData = findViewById(R.id.date_card_data)
         eventCommentsData = findViewById(R.id.date_comment_data)
 
@@ -39,8 +44,6 @@ class OnetimeItemActivity : AppCompatActivity() {
         eventType = intent.getStringExtra(Constants.TYPE) ?: ""
         eventDate = intent.getStringExtra(Constants.DATE) ?: ""
         eventComments = intent.getStringExtra(Constants.COMMENT) ?: ""
-
-        setActivityContent()
 
         toolBar = findViewById(R.id.item_activity_toolbar)
         setSupportActionBar(toolBar)
@@ -55,8 +58,19 @@ class OnetimeItemActivity : AppCompatActivity() {
 
         eventCardData.text = eventDate
         eventCommentsData.text = eventComments
-    }
 
+        if (resources.getStringArray(R.array.one_time_events).contains(eventType)) {
+            findViewById<TextView>(R.id.date_card_label).setText("$eventType date")
+            findViewById<ImageView>(R.id.date_card_icon).setImageResource(R.drawable.ic_notifications)
+            findViewById<ImageView>(R.id.appbar_background).setImageResource(R.drawable.book_1)
+
+        } else if (resources.getStringArray(R.array.yearly_events).contains(eventType)) {
+            findViewById<TextView>(R.id.date_card_label).setText("$eventType date")
+            findViewById<ImageView>(R.id.date_card_icon).setImageResource(R.drawable.ic_cake)
+            findViewById<ImageView>(R.id.appbar_background).setImageResource(R.drawable.pink_cacke)
+        }
+
+    }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         super.onCreateOptionsMenu(menu)
         menuInflater.inflate(R.menu.item_toolbar, menu)
@@ -66,7 +80,11 @@ class OnetimeItemActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.item_bar_delete -> {
-                viewModel.onItemSelected(eventId)
+                if (resources.getStringArray(R.array.one_time_events).contains(eventType)) {
+                    onetimeViewModel.onItemSelected(eventId)
+                } else if (resources.getStringArray(R.array.yearly_events).contains(eventType)) {
+                    yearlyViewModel.onItemSelected(eventId)
+                }
                 finish()
                 true
             }
@@ -84,11 +102,4 @@ class OnetimeItemActivity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
-
-    private fun setActivityContent() {
-        findViewById<TextView>(R.id.date_card_label).setText("$eventType date")
-        findViewById<ImageView>(R.id.date_card_icon).setImageResource(R.drawable.ic_notifications)
-        findViewById<ImageView>(R.id.appbar_background).setImageResource(R.drawable.book_1)
-    }
-
 }

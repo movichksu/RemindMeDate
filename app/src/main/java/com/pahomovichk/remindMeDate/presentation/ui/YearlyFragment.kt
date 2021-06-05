@@ -65,7 +65,7 @@ class YearlyFragment : Fragment(), YearlyEventClickListener {
     }
 
     override fun onClick(event: YearlyEvent) {
-        val intent = Intent(this.context, YearlyItemActivity::class.java)
+        val intent = Intent(this.context, ItemActivity::class.java)
         intent.putExtra(Constants.ID, event.id)
         intent.putExtra(Constants.NAME, event.name)
         intent.putExtra(Constants.TYPE, event.type)

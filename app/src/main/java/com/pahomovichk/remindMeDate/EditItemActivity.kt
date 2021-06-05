@@ -11,8 +11,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProvider
 import com.pahomovichk.remindMeDate.domain.entity.YearlyEvent
 import com.pahomovichk.remindMeDate.domain.entity.OnetimeEvent
-import com.pahomovichk.remindMeDate.presentation.ui.YearlyItemActivity
-import com.pahomovichk.remindMeDate.presentation.ui.OnetimeItemActivity
+import com.pahomovichk.remindMeDate.presentation.ui.ItemActivity
 import com.pahomovichk.remindMeDate.presentation.viewModel.YearlyViewModel
 import com.pahomovichk.remindMeDate.presentation.viewModel.OnetimeViewModel
 import java.time.LocalDate
@@ -65,10 +64,8 @@ class EditItemActivity : AppCompatActivity() {
         editItemBtn.setText("Edit")
 
         toolBar.setNavigationOnClickListener {
-            if (resources.getStringArray(R.array.yearly_events)
-                    .contains(typeInput.text.toString())
-            ) {
-                val intent = Intent(this.baseContext, YearlyItemActivity::class.java)
+            if (resources.getStringArray(R.array.yearly_events).contains(typeInput.text.toString())) {
+                val intent = Intent(this.baseContext, ItemActivity::class.java)
                 intent.putExtra(Constants.ID, id)
                 intent.putExtra(Constants.NAME, name)
                 intent.putExtra(Constants.TYPE, type)
@@ -76,10 +73,8 @@ class EditItemActivity : AppCompatActivity() {
                 intent.putExtra(Constants.COMMENT, comments)
                 startActivity(intent)
                 finish()
-            } else if (resources.getStringArray(R.array.one_time_events)
-                    .contains(typeInput.text.toString())
-            ) {
-                val intent = Intent(this.baseContext, OnetimeItemActivity::class.java)
+            } else if (resources.getStringArray(R.array.one_time_events).contains(typeInput.text.toString())) {
+                val intent = Intent(this.baseContext, ItemActivity::class.java)
                 intent.putExtra(Constants.ID, id)
                 intent.putExtra(Constants.NAME, name)
                 intent.putExtra(Constants.TYPE, type)
@@ -104,8 +99,7 @@ class EditItemActivity : AppCompatActivity() {
                     selectDate.set(Calendar.DAY_OF_MONTH, day)
                     val date = Constants.simpleDateFormatter.format(selectDate.time)
                     dateInput.setText(date)
-                    eventDate =
-                        LocalDate.parse(dateInput.text.toString(), Constants.gettingLocalFormatter)
+                    eventDate = LocalDate.parse(dateInput.text.toString(), Constants.gettingLocalFormatter)
                 },
                 getCalendar.get(Calendar.YEAR),
                 getCalendar.get(Calendar.MONTH),
@@ -118,9 +112,7 @@ class EditItemActivity : AppCompatActivity() {
             if (nameInput.text.isEmpty() || dateInput.text.isEmpty()) {
                 Toast.makeText(this, "input fields are empty!", Toast.LENGTH_SHORT).show()
             } else {
-                if (resources.getStringArray(R.array.yearly_events)
-                        .contains(typeInput.text.toString())
-                ) {
+                if (resources.getStringArray(R.array.yearly_events).contains(typeInput.text.toString())) {
                     val event = YearlyEvent(
                         id,
                         nameInput.text.toString(),
@@ -129,20 +121,15 @@ class EditItemActivity : AppCompatActivity() {
                         commentInput.text.toString()
                     )
                     yearlyViewModel.editEvent(event)
-                    val intent = Intent(this.baseContext, YearlyItemActivity::class.java)
+                    val intent = Intent(this.baseContext, ItemActivity::class.java)
                     intent.putExtra(Constants.ID, event.id)
                     intent.putExtra(Constants.NAME, event.name)
                     intent.putExtra(Constants.TYPE, type)
-                    intent.putExtra(
-                        Constants.DATE,
-                        "${event.date.format(Constants.gettingLocalFormatter)}"
-                    )
+                    intent.putExtra(Constants.DATE, "${event.date.format(Constants.gettingLocalFormatter)}")
                     intent.putExtra(Constants.COMMENT, event.comments)
                     startActivity(intent)
                     finish()
-                } else if (resources.getStringArray(R.array.one_time_events)
-                        .contains(typeInput.text.toString())
-                ) {
+                } else if (resources.getStringArray(R.array.one_time_events).contains(typeInput.text.toString())) {
                     val event = OnetimeEvent(
                         id,
                         nameInput.text.toString(),
@@ -151,14 +138,11 @@ class EditItemActivity : AppCompatActivity() {
                         commentInput.text.toString()
                     )
                     onetimeViewModel.editEvent(event)
-                    val intent = Intent(this.baseContext, OnetimeItemActivity::class.java)
+                    val intent = Intent(this.baseContext, ItemActivity::class.java)
                     intent.putExtra(Constants.ID, event.id)
                     intent.putExtra(Constants.NAME, event.name)
                     intent.putExtra(Constants.TYPE, type)
-                    intent.putExtra(
-                        Constants.DATE,
-                        "${event.date.format(Constants.gettingLocalFormatter)}"
-                    )
+                    intent.putExtra(Constants.DATE, "${event.date.format(Constants.gettingLocalFormatter)}")
                     intent.putExtra(Constants.COMMENT, event.comments)
                     startActivity(intent)
                     finish()

@@ -28,10 +28,7 @@
             android:label="@string/add_activity_name">
         </activity>
         <activity
-            android:name=".presentation.ui.YearlyItemActivity">
-        </activity>
-        <activity
-            android:name=".presentation.ui.OnetimeItemActivity">
+            android:name=".presentation.ui.ItemActivity">
         </activity>
     </application>
 

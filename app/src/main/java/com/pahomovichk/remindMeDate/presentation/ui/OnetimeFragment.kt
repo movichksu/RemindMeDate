@@ -64,7 +64,7 @@ class OnetimeFragment : Fragment(), OnetimeEventClickListener {
     }
 
     override fun onClick(event: OnetimeEvent) {
-        val intent = Intent(this.context, OnetimeItemActivity::class.java)
+        val intent = Intent(this.context, ItemActivity::class.java)
         intent.putExtra(Constants.ID, event.id)
         intent.putExtra(Constants.NAME, event.name)
         intent.putExtra(Constants.TYPE, event.type)

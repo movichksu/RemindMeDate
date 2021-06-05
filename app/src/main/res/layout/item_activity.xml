@@ -22,7 +22,7 @@
             <ImageView
                 android:id="@+id/appbar_background"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
+                android:layout_height="@dimen/background_img_height"
                 android:scaleType="centerCrop"
                 android:src="@drawable/pink_cacke" />
 
@@ -41,11 +41,11 @@
         android:id="@+id/date_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
-        app:cardCornerRadius="0dp"
-        app:cardElevation="4dp"
+        android:layout_marginLeft="@dimen/small_card_margin"
+        android:layout_marginTop="@dimen/small_card_margin"
+        android:layout_marginRight="@dimen/small_card_margin"
+        app:cardCornerRadius="@dimen/card_corner_radius"
+        app:cardElevation="@dimen/card_elevation"
         app:layout_constraintTop_toBottomOf="@+id/item_activity_appbar_layout">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -56,9 +56,9 @@
 
             <ImageView
                 android:id="@+id/date_card_icon"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_margin="15dp"
+                android:layout_width="@dimen/standard_img_size"
+                android:layout_height="@dimen/standard_img_size"
+                android:layout_margin="@dimen/big_item_margin"
                 android:src="@drawable/ic_cake"
                 app:layout_constraintStart_toStartOf="@+id/inner_date_card"
                 app:layout_constraintTop_toTopOf="@+id/inner_date_card" />
@@ -67,9 +67,9 @@
                 android:id="@+id/date_card_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="5dp"
-                android:padding="5dp"
+                android:layout_marginStart="@dimen/big_margin"
+                android:layout_marginTop="@dimen/small_item_margin"
+                android:padding="@dimen/small_item_margin"
                 app:layout_constraintStart_toEndOf="@+id/date_card_icon"
                 app:layout_constraintTop_toTopOf="@+id/inner_date_card" />
 
@@ -77,8 +77,8 @@
                 android:id="@+id/date_card_data"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:padding="5dp"
+                android:layout_marginStart="@dimen/big_margin"
+                android:padding="@dimen/small_item_margin"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/date_card_icon"
                 app:layout_constraintTop_toBottomOf="@+id/date_card_label"
@@ -90,11 +90,11 @@
         android:id="@+id/comments_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
-        app:cardCornerRadius="0dp"
-        app:cardElevation="4dp"
+        android:layout_marginLeft="@dimen/small_card_margin"
+        android:layout_marginTop="@dimen/small_card_margin"
+        android:layout_marginRight="@dimen/small_card_margin"
+        app:cardCornerRadius="@dimen/card_corner_radius"
+        app:cardElevation="@dimen/card_elevation"
         app:layout_constraintTop_toBottomOf="@+id/date_card">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -105,9 +105,9 @@
 
             <ImageView
                 android:id="@+id/comment_card_icon"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_margin="15dp"
+                android:layout_width="@dimen/standard_img_size"
+                android:layout_height="@dimen/standard_img_size"
+                android:layout_margin="@dimen/big_item_margin"
                 android:src="@drawable/ic_note"
                 app:layout_constraintStart_toStartOf="@+id/inner_comment_card"
                 app:layout_constraintTop_toTopOf="@+id/inner_comment_card" />
@@ -116,9 +116,9 @@
                 android:id="@+id/comment_card_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="5dp"
-                android:padding="5dp"
+                android:layout_marginStart="@dimen/big_margin"
+                android:layout_marginTop="@dimen/small_item_margin"
+                android:padding="@dimen/small_item_margin"
                 android:text="Notes"
                 app:layout_constraintStart_toEndOf="@+id/comment_card_icon"
                 app:layout_constraintTop_toTopOf="@+id/inner_comment_card" />
@@ -127,12 +127,13 @@
                 android:id="@+id/date_comment_data"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="@dimen/big_margin"
                 android:breakStrategy="balanced"
-                android:padding="5dp"
+                android:padding="@dimen/small_item_margin"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/comment_card_icon"
                 app:layout_constraintTop_toBottomOf="@+id/comment_card_label"
+
                 tools:text="asdfgyhuioiuytreswasdrfgyhujiopoiuytrfd" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

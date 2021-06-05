@@ -5,7 +5,18 @@
     <string name="yearly_events_title">Yearly</string>
     <string name="settings_title">More</string>
     <string name="add_activity_name">Form</string>
-    
+    <string name="settings_fr_description">This app is created by Kseniya Pahomovich</string>
+    <string name="ksu_gmail">pahomovichk@gmail.com</string>
+    <string name="ksu_mail">mmf.pahomovi@bsu.by</string>
+    <string name="item_act_notes">Notes</string>
+    <string name="form_name_input_hint">Name</string>
+    <string name="form_date_input_hint">Date</string>
+    <string name="form_comments_input_hint">Comments</string>
+    <string name="form_type_selection_hint">Select list</string>
+    <string name="empty_fields_toast">input fields are empty!</string>
+    <string name="empty_type_toast">Choose the type!</string>
+    <string name="app_version">App version 1.0</string>
+
     <string-array name="add_selection">
         <item>Birthday</item>
         <item>Event</item>

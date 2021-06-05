@@ -17,7 +17,7 @@ class YearlyViewModel : ViewModel() {
     private val yearlyEventsUseCase: YearlyEventsUseCase by lazy { Dependencies.getYearlyEventUseCase() }
 
     private var _text = MutableLiveData<String>().apply {
-        value = "No birthdays"
+        value = " "
     }
     val text: LiveData<String> = _text
 

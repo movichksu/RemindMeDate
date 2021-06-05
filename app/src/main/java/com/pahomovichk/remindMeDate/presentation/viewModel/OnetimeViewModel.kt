@@ -17,7 +17,7 @@ class OnetimeViewModel : ViewModel() {
     private val onetimeEventsUseCase: OnetimeEventsUseCase by lazy { Dependencies.getOnetimeEventUseCase() }
 
     private val _text = MutableLiveData<String>().apply {
-        value = "No dates"
+        value = " "
     }
     val text: LiveData<String> = _text
 

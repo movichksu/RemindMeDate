@@ -53,8 +53,6 @@ class MainActivity : AppCompatActivity() {
         addBtn.setOnClickListener {
             val intent = Intent(this.baseContext, AddItemActivity::class.java)
             startActivity(intent)
-//            val intent = Intent(this.baseContext, ItemActivity::class.java)
-//            startActivity(intent)
         }
 
         val navController = findNavController(R.id.nav_host_fragment)

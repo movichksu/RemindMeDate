@@ -12,4 +12,5 @@
     <dimen name="card_elevation">4dp</dimen>
     <dimen name="background_img_height">300dp</dimen>
     <dimen name="middle_card_margin">20dp</dimen>
+    <dimen name="form_btn_width">120dp</dimen>
 </resources>

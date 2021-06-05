@@ -110,7 +110,7 @@ class EditItemActivity : AppCompatActivity() {
 
         editItemBtn.setOnClickListener {
             if (nameInput.text.isEmpty() || dateInput.text.isEmpty()) {
-                Toast.makeText(this, "input fields are empty!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.empty_fields_toast), Toast.LENGTH_SHORT).show()
             } else {
                 if (resources.getStringArray(R.array.yearly_events).contains(typeInput.text.toString())) {
                     val event = YearlyEvent(
@@ -147,7 +147,7 @@ class EditItemActivity : AppCompatActivity() {
                     startActivity(intent)
                     finish()
                 } else {
-                    Toast.makeText(this, "Choose database!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.empty_type_toast), Toast.LENGTH_SHORT).show()
                 }
             }
         }

@@ -28,10 +28,7 @@
             android:label="@string/add_activity_name">
         </activity>
         <activity
-            android:name=".presentation.ui.BirthdayItemActivity">
-        </activity>
-        <activity
-            android:name=".presentation.ui.EventItemActivity">
+            android:name=".presentation.ui.ItemActivity">
         </activity>
     </application>
 

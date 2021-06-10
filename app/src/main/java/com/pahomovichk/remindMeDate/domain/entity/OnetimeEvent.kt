@@ -7,13 +7,15 @@ import java.time.LocalDate
 
 @Entity
 @TypeConverters(DateConverter::class)
-data class Birthday (
+data class OnetimeEvent(
         @PrimaryKey(autoGenerate = true)
         val id: Long,
 
         val name: String,
 
+        val type: String,
+
         val date: LocalDate,
 
         val comments: String
-        )
+)

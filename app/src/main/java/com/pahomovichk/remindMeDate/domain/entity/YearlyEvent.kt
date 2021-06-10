@@ -7,13 +7,15 @@ import java.time.LocalDate
 
 @Entity
 @TypeConverters(DateConverter::class)
-data class Event(
+data class YearlyEvent (
         @PrimaryKey(autoGenerate = true)
         val id: Long,
 
         val name: String,
 
+        val type: String,
+
         val date: LocalDate,
 
         val comments: String
-)
+        )

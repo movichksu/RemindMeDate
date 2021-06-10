@@ -1,9 +1,9 @@
     <TextView
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/selection_db_dropdown_item"
+        android:id="@+id/selection_dropdown_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="18sp"
-        android:padding="15dp"
+        android:padding="@dimen/big_item_margin"
         android:textColor="@color/black"
         android:text="TextView" />

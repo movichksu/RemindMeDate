@@ -3,19 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/birthdays_navigation">
+    app:startDestination="@+id/yearly_events_navigation">
 
     <fragment
-        android:id="@+id/events_navigation"
-        android:name="com.pahomovichk.remindMeDate.presentation.ui.EventsFragment"
-        android:label="@string/events_title"
-        tools:layout="@layout/events_fragment" />
+        android:id="@+id/onetime_events_navigation"
+        android:name="com.pahomovichk.remindMeDate.presentation.ui.OnetimeFragment"
+        android:label="@string/onetime_events_title"
+        tools:layout="@layout/ontime_events_fragment" />
 
     <fragment
-        android:id="@+id/birthdays_navigation"
-        android:name="com.pahomovichk.remindMeDate.presentation.ui.BirthdaysFragment"
-        android:label="@string/birthdays_title"
-        tools:layout="@layout/birthdays_fragment" />
+        android:id="@+id/yearly_events_navigation"
+        android:name="com.pahomovichk.remindMeDate.presentation.ui.YearlyFragment"
+        android:label="@string/yearly_events_title"
+        tools:layout="@layout/yearly_events_fragment" />
 
     <fragment
         android:id="@+id/calendar_navigation"

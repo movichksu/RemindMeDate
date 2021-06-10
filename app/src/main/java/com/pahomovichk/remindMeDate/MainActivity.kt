@@ -14,12 +14,11 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.pahomovichk.remindMeDate.domain.BirthdayUseCase
-import com.pahomovichk.remindMeDate.domain.EventsUseCase
-import com.pahomovichk.remindMeDate.presentation.viewModel.BirthdaysViewModel
-import com.pahomovichk.remindMeDate.presentation.viewModel.EventsViewModel
+import com.pahomovichk.remindMeDate.domain.YearlyEventsUseCase
+import com.pahomovichk.remindMeDate.domain.OnetimeEventsUseCase
+import com.pahomovichk.remindMeDate.presentation.viewModel.YearlyViewModel
+import com.pahomovichk.remindMeDate.presentation.viewModel.OnetimeViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
@@ -32,17 +31,17 @@ class MainActivity : AppCompatActivity() {
     private lateinit var addBtn: FloatingActionButton
     private lateinit var toolBar: Toolbar
 
-    private val birthdaysUseCase: BirthdayUseCase by lazy { Dependencies.getBirthdayUseCase() }
-    private val eventsUseCase: EventsUseCase by lazy { Dependencies.getEventsUseCase() }
-    private lateinit var birthdaysViewModel: BirthdaysViewModel
-    private lateinit var eventsViewModel: EventsViewModel
+    private val birthdaysUseCase: YearlyEventsUseCase by lazy { Dependencies.getYearlyEventUseCase() }
+    private val onetimeEventsUseCase: OnetimeEventsUseCase by lazy { Dependencies.getOnetimeEventUseCase() }
+    private lateinit var yearlyViewModel: YearlyViewModel
+    private lateinit var onetimeViewModel: OnetimeViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
 
-        birthdaysViewModel = ViewModelProvider(this).get(BirthdaysViewModel::class.java)
-        eventsViewModel = ViewModelProvider(this).get(EventsViewModel::class.java)
+        yearlyViewModel = ViewModelProvider(this).get(YearlyViewModel::class.java)
+        onetimeViewModel = ViewModelProvider(this).get(OnetimeViewModel::class.java)
 
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
         navView.background = null
@@ -54,15 +53,13 @@ class MainActivity : AppCompatActivity() {
         addBtn.setOnClickListener {
             val intent = Intent(this.baseContext, AddItemActivity::class.java)
             startActivity(intent)
-//            val intent = Intent(this.baseContext, ItemActivity::class.java)
-//            startActivity(intent)
         }
 
         val navController = findNavController(R.id.nav_host_fragment)
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.events_navigation,
-                R.id.birthdays_navigation,
+                R.id.onetime_events_navigation,
+                R.id.yearly_events_navigation,
                 R.id.calendar_navigation,
                 R.id.settings_navigation
             )
@@ -81,14 +78,14 @@ class MainActivity : AppCompatActivity() {
         // Handle item selection
         return when (item.itemId) {
             R.id.main_bar_delete_all_birthdays -> {
-                birthdaysViewModel.viewModelScope.launch(Dispatchers.IO) {
+                yearlyViewModel.viewModelScope.launch(Dispatchers.IO) {
                     birthdaysUseCase.cleanDb()
                 }
                 true
             }
             R.id.main_bar_delete_all_events -> {
-                eventsViewModel.viewModelScope.launch(Dispatchers.IO) {
-                    eventsUseCase.cleanDb()
+                onetimeViewModel.viewModelScope.launch(Dispatchers.IO) {
+                    onetimeEventsUseCase.cleanDb()
                 }
                 true
             }

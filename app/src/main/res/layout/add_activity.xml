@@ -33,7 +33,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
         android:layout_marginRight="20dp"
-        android:hint="Name"
+        android:hint="@string/form_name_input_hint"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/add_activity_appbar_layout">
@@ -53,7 +53,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
         android:layout_marginRight="20dp"
-        android:hint="Date"
+        android:hint="@string/form_date_input_hint"
         app:endIconMode="dropdown_menu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -66,27 +66,6 @@
             android:focusable="false" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!--    <com.google.android.material.textfield.TextInputLayout-->
-    <!--        android:id="@+id/time_input_field"-->
-    <!--        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginLeft="20dp"-->
-    <!--        android:layout_marginTop="10dp"-->
-    <!--        android:layout_marginRight="20dp"-->
-    <!--        android:hint="Time"-->
-    <!--        app:endIconMode="dropdown_menu"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@+id/date_input_field">-->
-
-    <!--        <AutoCompleteTextView-->
-    <!--            android:id="@+id/time_input"-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="match_parent"-->
-    <!--            android:focusable="false" />-->
-    <!--    </com.google.android.material.textfield.TextInputLayout>-->
-
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/comments_input_field"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -95,7 +74,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
         android:layout_marginRight="20dp"
-        android:hint="Comments"
+        android:hint="@string/form_comments_input_hint"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/date_input_field">
@@ -115,7 +94,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
         android:layout_marginRight="20dp"
-        android:hint="Select list"
+        android:hint="@string/form_type_selection_hint"
         app:endIconMode="dropdown_menu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -130,10 +109,9 @@
 
     <Button
         android:id="@+id/create_btn"
-        android:layout_width="110dp"
+        android:layout_width="@dimen/form_btn_width"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
-        android:text="Create"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

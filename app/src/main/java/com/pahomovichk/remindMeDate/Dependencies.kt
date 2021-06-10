@@ -5,20 +5,20 @@ import com.pahomovichk.remindMeDate.data.database.LocalDatabaseSource
 import com.pahomovichk.remindMeDate.domain.*
 
 object Dependencies {
-    private val birthdayRepository: BirthdayRepository by lazy {LocalDatabaseSource(App.instance)}
-    private val eventsRepository: EventsRepository by lazy{LocalDatabaseSource(App.instance)}
+    private val yearlyEventsRepository: YearlyEventsRepository by lazy {LocalDatabaseSource(App.instance)}
+    private val onetimeEventsRepository: OnetimeEventsRepository by lazy{LocalDatabaseSource(App.instance)}
 
-    private fun getBirthdaysRepository(): BirthdayRepository{
-        return birthdayRepository
+    private fun getYearlyEventRepository(): YearlyEventsRepository{
+        return yearlyEventsRepository
     }
-    private fun getEventRepository(): EventsRepository{
-        return eventsRepository
+    private fun getOnetimeEventRepository(): OnetimeEventsRepository{
+        return onetimeEventsRepository
     }
 
-    fun getBirthdayUseCase(): BirthdayUseCase{
-        return BirthdayUseCaseImpl(getBirthdaysRepository())
+    fun getYearlyEventUseCase(): YearlyEventsUseCase{
+        return YearlyEventsUseCaseImpl(getYearlyEventRepository())
     }
-    fun getEventsUseCase(): EventsUseCase{
-        return EventsUseCaseImpl(getEventRepository())
+    fun getOnetimeEventUseCase(): OnetimeEventsUseCase{
+        return OnetimeEventsUseCaseImpl(getOnetimeEventRepository())
     }
 }

@@ -11,11 +11,11 @@
         android:id="@+id/settings_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="10dp"
-        app:cardCornerRadius="0dp"
-        app:cardElevation="4dp"
+        android:layout_marginLeft="@dimen/small_card_margin"
+        android:layout_marginTop="@dimen/middle_card_margin"
+        android:layout_marginRight="@dimen/small_card_margin"
+        app:cardCornerRadius="@dimen/card_corner_radius"
+        app:cardElevation="@dimen/card_elevation"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -25,13 +25,13 @@
             android:paddingBottom="5dp">
 
             <TextView
-                android:id="@+id/birth_date"
+                android:id="@+id/yearly_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:layout_marginTop="8dp"
-                android:padding="5dp"
-                android:text="This app is created by Kseniya Pahomovich"
+                android:layout_marginStart="@dimen/middle_item_margin"
+                android:layout_marginTop="@dimen/middle_item_margin"
+                android:padding="@dimen/small_item_margin"
+                android:text="@string/settings_fr_description"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -44,27 +44,26 @@
                 android:background="?android:attr/listDivider"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/birth_date" />
+                app:layout_constraintTop_toBottomOf="@id/yearly_date" />
 
             <ImageView
                 android:id="@+id/settings_card_icon"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_margin="15dp"
-                android:layout_marginStart="12dp"
+                android:layout_width="@dimen/standard_img_size"
+                android:layout_height="@dimen/standard_img_size"
+                android:layout_margin="@dimen/big_item_margin"
+                android:layout_marginStart="@dimen/middle_item_margin"
                 android:src="@drawable/ic_email"
                 app:layout_constraintStart_toStartOf="@+id/inner_settings_card"
-                app:layout_constraintTop_toBottomOf="@+id/divider"
-                app:layout_constraintVertical_bias="0.438" />
+                app:layout_constraintTop_toBottomOf="@+id/divider"/>
 
             <TextView
                 android:id="@+id/email_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="8dp"
-                android:padding="10dp"
-                android:text="pahomovichk@gmail.com"
+                android:layout_marginStart="@dimen/big_item_margin"
+                android:layout_marginTop="@dimen/middle_item_margin"
+                android:padding="@dimen/middle_item_margin"
+                android:text="@string/ksu_gmail"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toTopOf="@id/email_divider"
                 app:layout_constraintStart_toEndOf="@+id/settings_card_icon"
@@ -74,7 +73,7 @@
                 android:id="@+id/email_divider"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="@dimen/middle_item_margin"
                 android:background="?android:attr/listDivider"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -82,9 +81,9 @@
 
             <ImageView
                 android:id="@+id/settings_card_icon_second"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_margin="15dp"
+                android:layout_width="@dimen/standard_img_size"
+                android:layout_height="@dimen/standard_img_size"
+                android:layout_margin="@dimen/big_item_margin"
                 android:src="@drawable/ic_email"
                 app:layout_constraintStart_toStartOf="@+id/inner_settings_card"
                 app:layout_constraintTop_toBottomOf="@+id/email_divider" />
@@ -93,10 +92,10 @@
                 android:id="@+id/bsu_email_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="8dp"
-                android:padding="10dp"
-                android:text="mmf.pahomovi@bsu.by"
+                android:layout_marginLeft="@dimen/big_item_margin"
+                android:layout_marginTop="@dimen/middle_item_margin"
+                android:padding="@dimen/middle_item_margin"
+                android:text="@string/ksu_mail"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/settings_card_icon_second"
@@ -108,9 +107,9 @@
         android:id="@+id/settings_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginStart="@dimen/middle_item_margin"
+        android:layout_marginTop="@dimen/big_item_margin"
+        android:layout_marginEnd="@dimen/middle_item_margin"
         android:textAlignment="viewEnd"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"

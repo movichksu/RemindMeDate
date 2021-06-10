@@ -2,41 +2,38 @@ package com.pahomovichk.remindMeDate
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
-import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProvider
-import com.pahomovichk.remindMeDate.domain.entity.Birthday
-import com.pahomovichk.remindMeDate.domain.entity.Event
-import com.pahomovichk.remindMeDate.presentation.viewModel.BirthdaysViewModel
-import com.pahomovichk.remindMeDate.presentation.viewModel.EventsViewModel
-import java.text.SimpleDateFormat
+import com.pahomovichk.remindMeDate.domain.entity.YearlyEvent
+import com.pahomovichk.remindMeDate.domain.entity.OnetimeEvent
+import com.pahomovichk.remindMeDate.presentation.viewModel.YearlyViewModel
+import com.pahomovichk.remindMeDate.presentation.viewModel.OnetimeViewModel
 import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 class AddItemActivity : AppCompatActivity() {
 
-    private lateinit var birthdaysViewModel: BirthdaysViewModel
-    private lateinit var eventsViewModel: EventsViewModel
+    private lateinit var yearlyViewModel: YearlyViewModel
+    private lateinit var onetimeViewModel: OnetimeViewModel
     private lateinit var toolBar: Toolbar
 
     private lateinit var nameInput: EditText
+    private lateinit var typeInput: AutoCompleteTextView
     private lateinit var dateInput: EditText
     private lateinit var commentInput: EditText
-    private lateinit var selectionInput: AutoCompleteTextView
     private lateinit var createItemBtn: Button
 
-    private var birthDate: LocalDate = LocalDate.of(2000, 5, 31)
+    private var eventDate: LocalDate = LocalDate.of(2000, 5, 31)
 
     @SuppressLint("ShowToast")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        birthdaysViewModel = ViewModelProvider(this).get(BirthdaysViewModel::class.java)
-        eventsViewModel = ViewModelProvider(this).get(EventsViewModel::class.java)
+        yearlyViewModel = ViewModelProvider(this).get(YearlyViewModel::class.java)
+        onetimeViewModel = ViewModelProvider(this).get(OnetimeViewModel::class.java)
         setContentView(R.layout.add_activity)
         toolBar = findViewById(R.id.add_activity_toolbar)
         setSupportActionBar(toolBar)
@@ -44,7 +41,7 @@ class AddItemActivity : AppCompatActivity() {
         nameInput = findViewById(R.id.name_input)
         dateInput = findViewById(R.id.date_input)
         commentInput = findViewById(R.id.comments_input)
-        selectionInput = findViewById(R.id.selection_input)
+        typeInput = findViewById(R.id.selection_input)
         createItemBtn = findViewById(R.id.create_btn)
         createItemBtn.setText("Create")
 
@@ -64,7 +61,8 @@ class AddItemActivity : AppCompatActivity() {
                     selectDate.set(Calendar.DAY_OF_MONTH, day)
                     val date = Constants.simpleDateFormatter.format(selectDate.time)
                     dateInput.setText(date)
-                    birthDate = LocalDate.parse(dateInput.text.toString(),Constants.gettingLocalFormatter)
+                    eventDate =
+                        LocalDate.parse(dateInput.text.toString(), Constants.gettingLocalFormatter)
                 },
                 getCalendar.get(Calendar.YEAR),
                 getCalendar.get(Calendar.MONTH),
@@ -73,26 +71,37 @@ class AddItemActivity : AppCompatActivity() {
             datePicker.show()
         }
 
-        val selection = resources.getStringArray(R.array.add_selection)
-        val arrayAdapter = ArrayAdapter(this.baseContext, R.layout.selection_db_dropdown_item, selection)
-        selectionInput.setAdapter(arrayAdapter)
+        val selection: Array<String> = resources.getStringArray(R.array.add_selection)
+        val arrayAdapter =
+            ArrayAdapter(this.baseContext, R.layout.selection_db_dropdown_item, selection)
+        typeInput.setAdapter(arrayAdapter)
 
         createItemBtn.setOnClickListener {
             if (nameInput.text.isEmpty() || dateInput.text.isEmpty()) {
-                Toast.makeText(this, "input fields are empty!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.empty_fields_toast), Toast.LENGTH_SHORT).show()
             } else {
-                    if (selectionInput.text.toString() == selection.get(0)){
-                        val birthday = Birthday(0L, nameInput.text.toString(), birthDate, commentInput.text.toString())
-                        birthdaysViewModel.addBirthday(birthday)
-                        finish()
-                    }
-                    else if (selectionInput.text.toString() == selection.get(1)) {
-                        val event = Event(0L, nameInput.text.toString(), birthDate, commentInput.text.toString())
-                        eventsViewModel.addEvent(event)
-                        finish()
-                    }
-                else{
-                        Toast.makeText(this, "Choose database!", Toast.LENGTH_SHORT).show()
+                if (resources.getStringArray(R.array.yearly_events).contains(typeInput.text.toString())) {
+                    val event = YearlyEvent(
+                        0L,
+                        nameInput.text.toString(),
+                        typeInput.text.toString(),
+                        eventDate,
+                        commentInput.text.toString()
+                    )
+                    yearlyViewModel.addEvent(event)
+                    finish()
+                } else if (resources.getStringArray(R.array.one_time_events).contains(typeInput.text.toString())) {
+                    val event = OnetimeEvent(
+                        0L,
+                        nameInput.text.toString(),
+                        typeInput.text.toString(),
+                        eventDate,
+                        commentInput.text.toString()
+                    )
+                    onetimeViewModel.addEvent(event)
+                    finish()
+                } else {
+                    Toast.makeText(this, getString(R.string.empty_type_toast), Toast.LENGTH_SHORT).show()
                 }
             }
         }

@@ -5,52 +5,52 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.pahomovichk.remindMeDate.Dependencies
-import com.pahomovichk.remindMeDate.domain.BirthdayUseCase
-import com.pahomovichk.remindMeDate.domain.entity.Birthday
+import com.pahomovichk.remindMeDate.domain.YearlyEventsUseCase
+import com.pahomovichk.remindMeDate.domain.entity.YearlyEvent
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collect
 
 
-class BirthdaysViewModel : ViewModel() {
+class YearlyViewModel : ViewModel() {
 
 
-    private val birthdaysUseCase: BirthdayUseCase by lazy { Dependencies.getBirthdayUseCase() }
+    private val yearlyEventsUseCase: YearlyEventsUseCase by lazy { Dependencies.getYearlyEventUseCase() }
 
     private var _text = MutableLiveData<String>().apply {
-        value = "No birthdays"
+        value = " "
     }
     val text: LiveData<String> = _text
 
-    private var birthdays = MutableLiveData<List<Birthday>>(listOf())
-    fun getBirthdays(): LiveData<List<Birthday>>{
-        return birthdays
+    private var events = MutableLiveData<List<YearlyEvent>>(listOf())
+    fun getYearlyEvents(): LiveData<List<YearlyEvent>>{
+        return events
     }
 
     init{
         viewModelScope.launch {
-                birthdaysUseCase.getBirthdays().collect {
+                yearlyEventsUseCase.getEvents().collect {
                     //birthdaysList ->
                     //birthdays.value = birthdaysList.sortedBy { it.date }
-                    birthdays.value = it
+                    events.value = it
             }
             }
     }
 
-    fun addBirthday(birthday: Birthday) {
+    fun addEvent(event: YearlyEvent) {
         viewModelScope.launch(Dispatchers.IO) {
-                birthdaysUseCase.addBirthday(birthday)
+                yearlyEventsUseCase.addEvent(event)
         }
     }
 
-    fun editBirthday(birthday: Birthday) {
+    fun editEvent(event: YearlyEvent) {
         viewModelScope.launch(Dispatchers.IO) {
-                birthdaysUseCase.editBirthday(birthday)
+                yearlyEventsUseCase.editEvent(event)
         }
     }
 
     fun onItemSelected(id: Long) =
             viewModelScope.launch(Dispatchers.IO) {
-            birthdaysUseCase.deleteBirthday(id)
+            yearlyEventsUseCase.deleteEvent(id)
         }
 
 

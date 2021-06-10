@@ -8,6 +8,7 @@ object Constants {
     // keys
     const val ID = "ID"
     const val NAME = "NAME"
+    const val TYPE = "TYPE"
     const val DATE = "DATE"
     const val COMMENT = "COMMENT"
 

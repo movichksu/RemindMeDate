@@ -52,6 +52,10 @@ class YearlyViewModel : ViewModel() {
             viewModelScope.launch(Dispatchers.IO) {
             yearlyEventsUseCase.deleteEvent(id)
         }
+    fun cleanDb() =
+        viewModelScope.launch(Dispatchers.IO) {
+            yearlyEventsUseCase.cleanDb()
+        }
 
 
 }

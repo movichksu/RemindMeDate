@@ -27,7 +27,7 @@ class AddItemActivity : AppCompatActivity() {
     private lateinit var commentInput: EditText
     private lateinit var createItemBtn: Button
 
-    private var eventDate: LocalDate = LocalDate.of(2000, 5, 31)
+    private var eventDate = Constants.defaultDate
 
     @SuppressLint("ShowToast")
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -54,4 +54,9 @@ class OnetimeViewModel : ViewModel() {
             viewModelScope.launch(Dispatchers.IO) {
                 onetimeEventsUseCase.deleteEvent(id)
             }
+
+    fun cleanDb() =
+        viewModelScope.launch(Dispatchers.IO) {
+            onetimeEventsUseCase.cleanDb()
+        }
 }

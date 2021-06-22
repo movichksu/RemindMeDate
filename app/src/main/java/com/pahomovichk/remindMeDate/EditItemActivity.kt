@@ -109,52 +109,56 @@ class EditItemActivity : AppCompatActivity() {
         }
 
         editItemBtn.setOnClickListener {
-            if (nameInput.text.isEmpty() || dateInput.text.isEmpty()) {
-                Toast.makeText(this, getString(R.string.empty_fields_toast), Toast.LENGTH_SHORT).show()
-            } else {
-                if (resources.getStringArray(R.array.yearly_events).contains(typeInput.text.toString())) {
-                    val event = YearlyEvent(
-                        id,
-                        nameInput.text.toString(),
-                        typeInput.text.toString(),
-                        eventDate,
-                        commentInput.text.toString()
-                    )
-                    yearlyViewModel.editEvent(event)
-                    val intent = Intent(this.baseContext, ItemActivity::class.java)
-                    intent.putExtra(Constants.ID, event.id)
-                    intent.putExtra(Constants.NAME, event.name)
-                    intent.putExtra(Constants.TYPE, type)
-                    intent.putExtra(Constants.DATE, "${event.date.format(Constants.gettingLocalFormatter)}")
-                    intent.putExtra(Constants.COMMENT, event.comments)
-                    startActivity(intent)
-                    finish()
-                } else if (resources.getStringArray(R.array.one_time_events).contains(typeInput.text.toString())) {
-                    val event = OnetimeEvent(
-                        id,
-                        nameInput.text.toString(),
-                        typeInput.text.toString(),
-                        eventDate,
-                        commentInput.text.toString()
-                    )
-                    onetimeViewModel.editEvent(event)
-                    val intent = Intent(this.baseContext, ItemActivity::class.java)
-                    intent.putExtra(Constants.ID, event.id)
-                    intent.putExtra(Constants.NAME, event.name)
-                    intent.putExtra(Constants.TYPE, type)
-                    intent.putExtra(Constants.DATE, "${event.date.format(Constants.gettingLocalFormatter)}")
-                    intent.putExtra(Constants.COMMENT, event.comments)
-                    startActivity(intent)
-                    finish()
-                } else {
-                    Toast.makeText(this, getString(R.string.empty_type_toast), Toast.LENGTH_SHORT).show()
-                }
-            }
+            editEventAndGoBack()
         }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         super.onCreateOptionsMenu(menu)
         return true
+    }
+
+    private fun editEventAndGoBack(){
+        if (nameInput.text.isEmpty() || dateInput.text.isEmpty()) {
+            Toast.makeText(this, getString(R.string.empty_fields_toast), Toast.LENGTH_SHORT).show()
+        } else {
+            if (resources.getStringArray(R.array.yearly_events).contains(typeInput.text.toString())) {
+                val event = YearlyEvent(
+                    id,
+                    nameInput.text.toString(),
+                    typeInput.text.toString(),
+                    eventDate,
+                    commentInput.text.toString()
+                )
+                yearlyViewModel.editEvent(event)
+                val intent = Intent(this.baseContext, ItemActivity::class.java)
+                intent.putExtra(Constants.ID, event.id)
+                intent.putExtra(Constants.NAME, event.name)
+                intent.putExtra(Constants.TYPE, type)
+                intent.putExtra(Constants.DATE, "${event.date.format(Constants.gettingLocalFormatter)}")
+                intent.putExtra(Constants.COMMENT, event.comments)
+                startActivity(intent)
+                finish()
+            } else if (resources.getStringArray(R.array.one_time_events).contains(typeInput.text.toString())) {
+                val event = OnetimeEvent(
+                    id,
+                    nameInput.text.toString(),
+                    typeInput.text.toString(),
+                    eventDate,
+                    commentInput.text.toString()
+                )
+                onetimeViewModel.editEvent(event)
+                val intent = Intent(this.baseContext, ItemActivity::class.java)
+                intent.putExtra(Constants.ID, event.id)
+                intent.putExtra(Constants.NAME, event.name)
+                intent.putExtra(Constants.TYPE, type)
+                intent.putExtra(Constants.DATE, "${event.date.format(Constants.gettingLocalFormatter)}")
+                intent.putExtra(Constants.COMMENT, event.comments)
+                startActivity(intent)
+                finish()
+            } else {
+                Toast.makeText(this, getString(R.string.empty_type_toast), Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 }

@@ -13,74 +13,74 @@ import kotlinx.coroutines.withContext
 class LocalDatabaseSource(
     context: Context
 ) : YearlyEventsRepository, OnetimeEventsRepository {
-    private val eventsDatabase = Room.databaseBuilder(
+    private val database = Room.databaseBuilder(
             context,
             EventsDatabase::class.java,
-            "eventsDataBase"
+            "eventsDatabase"
     ).build()
 
     override fun getYearlyEvents(): Flow<List<YearlyEvent>> =
-        eventsDatabase.getYearlyEventsDao().selectAll()
+        database.getYearlyEventsDao().selectAll()
 
     override suspend fun deleteYearlyEvent(event: YearlyEvent) {
         withContext(Dispatchers.IO) {
-            eventsDatabase.getYearlyEventsDao().delete(event)
+            database.getYearlyEventsDao().delete(event)
         }
     }
 
     override suspend fun deleteYearlyEvent(id: Long) {
         withContext(Dispatchers.IO) {
-            eventsDatabase.getYearlyEventsDao().delete(id)
+            database.getYearlyEventsDao().delete(id)
         }
     }
 
     override suspend fun addYearlyEvent(event: YearlyEvent) {
         withContext(Dispatchers.IO) {
-            eventsDatabase.getYearlyEventsDao().insert(event)
+            database.getYearlyEventsDao().insert(event)
         }
     }
 
     override suspend fun editYearlyEvent(event: YearlyEvent) {
         withContext(Dispatchers.IO) {
-            eventsDatabase.getYearlyEventsDao().update(event)
+            database.getYearlyEventsDao().update(event)
         }
     }
 
     override suspend fun cleanYearlyEventsDb(){
         withContext(Dispatchers.IO) {
-            eventsDatabase.getYearlyEventsDao().deleteAll()
+            database.getYearlyEventsDao().deleteAll()
         }
     }
 
     override fun getOnetimeEvents(): Flow<List<OnetimeEvent>> =
-            eventsDatabase.getOnetimeEventsDao().selectAll()
+            database.getOnetimeEventsDao().selectAll()
 
     override suspend fun deleteOnetimeEvent(event: OnetimeEvent) {
         withContext(Dispatchers.IO) {
-            eventsDatabase.getOnetimeEventsDao().delete(event)
+            database.getOnetimeEventsDao().delete(event)
         }
     }
 
     override suspend fun deleteOnetimeEvent(id: Long) {
         withContext(Dispatchers.IO) {
-            eventsDatabase.getOnetimeEventsDao().delete(id)
+            database.getOnetimeEventsDao().delete(id)
         }
     }
 
     override suspend fun addOnetimeEvent(event: OnetimeEvent) {
         withContext(Dispatchers.IO) {
-            eventsDatabase.getOnetimeEventsDao().insert(event)
+            database.getOnetimeEventsDao().insert(event)
         }
     }
 
     override suspend fun editOnetimeEvent(event: OnetimeEvent) {
         withContext(Dispatchers.IO) {
-            eventsDatabase.getOnetimeEventsDao().update(event)
+            database.getOnetimeEventsDao().update(event)
         }
     }
 
     override suspend fun cleanOnetimeEventsDb() {
-        eventsDatabase.getOnetimeEventsDao().deleteAll()
+        database.getOnetimeEventsDao().deleteAll()
     }
 
 

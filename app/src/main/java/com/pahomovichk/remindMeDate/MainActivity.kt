@@ -78,15 +78,11 @@ class MainActivity : AppCompatActivity() {
         // Handle item selection
         return when (item.itemId) {
             R.id.main_bar_delete_all_birthdays -> {
-                yearlyViewModel.viewModelScope.launch(Dispatchers.IO) {
-                    birthdaysUseCase.cleanDb()
-                }
+                yearlyViewModel.cleanDb()
                 true
             }
             R.id.main_bar_delete_all_events -> {
-                onetimeViewModel.viewModelScope.launch(Dispatchers.IO) {
-                    onetimeEventsUseCase.cleanDb()
-                }
+                onetimeViewModel.cleanDb()
                 true
             }
             else -> super.onOptionsItemSelected(item)

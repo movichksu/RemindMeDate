@@ -23,8 +23,7 @@ import com.pahomovichk.remindMeDate.domain.entity.YearlyEvent
 class YearlyNotification() {
 
     companion object {
-        const val TAG = "PersonService"
-        const val CHANNEL_ID = "YEARLY_CHANNEL"
+        const val CHANNEL_ID = "YEARLY_NOTIFICATION_CHANNEL"
         const val NOTIFICATION_ID = 1
         const val notificationTitle = "NEW EVENT!"
     }
@@ -37,7 +36,7 @@ class YearlyNotification() {
             val builder = NotificationCompat.Builder(App.instance, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_notifications)
                 .setContentTitle(notificationTitle)
-                .setContentText("!!!!!!!!!!!!!!!!!!!!! some text !!!!!!!!!!!!!!!!!!!!!")
+                .setContentText("you have some events today!")
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .build()
             val notificationManager = NotificationManagerCompat.from(App.instance)
@@ -49,8 +48,8 @@ class YearlyNotification() {
 
     private fun createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val name = "Events Notification Channel"
-            val descriptionText = "Is a new person"
+            val name = "EventsNotificationChannel"
+            val descriptionText = "The user have some events today."
             val importance = NotificationManager.IMPORTANCE_DEFAULT
             val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
                 description = descriptionText

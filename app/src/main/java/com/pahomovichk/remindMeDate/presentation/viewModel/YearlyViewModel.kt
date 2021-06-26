@@ -1,19 +1,22 @@
 package com.pahomovichk.remindMeDate.presentation.viewModel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.pahomovichk.remindMeDate.Dependencies
+import com.pahomovichk.remindMeDate.domain.WorkerUseCase
 import com.pahomovichk.remindMeDate.domain.YearlyEventsUseCase
 import com.pahomovichk.remindMeDate.domain.entity.YearlyEvent
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collect
+import java.util.*
 
 
 class YearlyViewModel : ViewModel() {
 
-
+    private val workerUseCase: WorkerUseCase by lazy { Dependencies.getWorkerUseCase() }
     private val yearlyEventsUseCase: YearlyEventsUseCase by lazy { Dependencies.getYearlyEventUseCase() }
 
     private var _text = MutableLiveData<String>().apply {
@@ -27,6 +30,7 @@ class YearlyViewModel : ViewModel() {
     }
 
     init{
+        workerUseCase.yearlyNotificationRequest()
         viewModelScope.launch {
                 yearlyEventsUseCase.getEvents().collect {
                     //birthdaysList ->

@@ -12,7 +12,7 @@ class App : Application() {
         super.onCreate()
         instance = this
 
-        //workerUseCase.yearlyNotificationRequest()
+        workerUseCase.yearlyNotificationRequest()
     }
 
     companion object {

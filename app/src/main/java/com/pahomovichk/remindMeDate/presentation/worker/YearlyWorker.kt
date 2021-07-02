@@ -10,11 +10,8 @@ import com.pahomovichk.remindMeDate.Dependencies
 import com.pahomovichk.remindMeDate.domain.YearlyEventsUseCase
 import com.pahomovichk.remindMeDate.domain.entity.YearlyEvent
 import com.pahomovichk.remindMeDate.presentation.notification.YearlyNotification
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
 import java.lang.Exception
 import java.security.PrivateKey
 import java.time.LocalDate
@@ -33,17 +30,17 @@ class YearlyWorker(
 
     override suspend fun doWork(): Result {
         try {
-                yearlyUseCase.getAllEvents()
-                Log.d("DO_WORK", "worker")
-                val notification = YearlyNotification()
-                now = LocalDate.now()
-                for (i in 0..events.size) {
-                    if (now == events.get(i).date) {
-                        Log.d("DO_WORK", "${now.format(DateTimeFormatter.ISO_DATE)} == ${events.get(i).date}")
-                        notification.showNotification(App.instance, events.get(i))
+                events = yearlyUseCase.getAllEvents()
+                    Log.d("DO_WORK", "worker")
+                    val notification = YearlyNotification()
+                    now = LocalDate.now()
+                    for (i in 0..events.size) {
+                        if (now == events.get(i).date) {
+                            Log.d("DO_WORK", "${now.format(DateTimeFormatter.ISO_DATE)} == ${events.get(i).date}")
+                            notification.showNotification(App.instance, events.get(i))
+                        }
                     }
-                }
-            return Result.success()
+                    return Result.success()
         }
         catch (e: Exception){
             return Result.failure()

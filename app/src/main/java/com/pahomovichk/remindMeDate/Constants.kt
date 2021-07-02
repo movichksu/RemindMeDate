@@ -20,4 +20,6 @@ object Constants {
     val simpleDateFormatter = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault())
 
     val defaultDate: LocalDate = LocalDate.of(2000, 1, 1)
+
+    val workerNotificationTag = "EVENTS_WORKER_TAG"
 }

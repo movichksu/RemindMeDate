@@ -27,6 +27,7 @@ class YearlyNotification() {
         const val CHANNEL_NAME = "EventsNotificationChannel"
         const val NOTIFICATION_ID = 1
         const val notificationTitle = "NEW EVENT!"
+        const val eventsNotificationChannelName = "EventsNotificationChannel"
     }
 
     private val ioScope = CoroutineScope(Dispatchers.IO + Job())
@@ -50,10 +51,9 @@ class YearlyNotification() {
 
     private fun createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val name = "EventsNotificationChannel"
             val descriptionText = "The user have some events today."
             val importance = NotificationManager.IMPORTANCE_DEFAULT
-            val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
+            val channel = NotificationChannel(CHANNEL_ID, eventsNotificationChannelName, importance).apply {
                 description = descriptionText
             }
             val notificationManager: NotificationManager =

@@ -18,6 +18,9 @@ interface OnetimeEventsDao {
     @Query("Select * From OnetimeEvent")
     fun selectAll(): Flow<List<OnetimeEvent>>
 
+    @Query("Select * From OnetimeEvent")
+    fun selectAllOnce(): List<OnetimeEvent>
+
     @Query("Delete From OnetimeEvent")
     fun deleteAll()
 

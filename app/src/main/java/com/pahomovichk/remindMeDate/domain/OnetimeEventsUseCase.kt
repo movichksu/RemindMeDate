@@ -5,6 +5,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface OnetimeEventsUseCase {
     fun getEvents(): Flow<List<OnetimeEvent>>
+    suspend fun getAllEvents(): List<OnetimeEvent>
     suspend fun deleteEvent(event: OnetimeEvent)
     suspend fun deleteEvent(id: Long)
     suspend fun addEvent(event: OnetimeEvent)

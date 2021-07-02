@@ -10,4 +10,5 @@ interface YearlyEventsRepository {
     suspend fun addYearlyEvent(event: YearlyEvent)
     suspend fun editYearlyEvent(event: YearlyEvent)
     suspend fun cleanYearlyEventsDb()
+    fun getAllYearlyEvents(): List<YearlyEvent>
 }

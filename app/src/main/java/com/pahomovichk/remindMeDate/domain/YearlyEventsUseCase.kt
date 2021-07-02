@@ -5,6 +5,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface YearlyEventsUseCase {
     fun getEvents(): Flow<List<YearlyEvent>>
+    suspend fun getAllEvents(): List<YearlyEvent>
     suspend fun deleteEvent(event: YearlyEvent)
     suspend fun deleteEvent(id: Long)
     suspend fun addEvent(event: YearlyEvent)

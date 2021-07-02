@@ -42,7 +42,8 @@ class YearlyViewModel : ViewModel() {
 
     fun addEvent(event: YearlyEvent) {
         viewModelScope.launch(Dispatchers.IO) {
-                yearlyEventsUseCase.addEvent(event)
+            yearlyEventsUseCase.addEvent(event)
+            //workerUseCase.yearlyNotificationRequest()
         }
     }
 

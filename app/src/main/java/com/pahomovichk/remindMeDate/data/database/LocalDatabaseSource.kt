@@ -52,8 +52,14 @@ class LocalDatabaseSource(
         }
     }
 
+    override fun getAllYearlyEvents(): List<YearlyEvent> =
+        database.getYearlyEventsDao().selectAllOnce()
+
     override fun getOnetimeEvents(): Flow<List<OnetimeEvent>> =
             database.getOnetimeEventsDao().selectAll()
+
+    override fun getAllOnetimeEvents(): List<OnetimeEvent> =
+        database.getOnetimeEventsDao().selectAllOnce()
 
     override suspend fun deleteOnetimeEvent(event: OnetimeEvent) {
         withContext(Dispatchers.IO) {

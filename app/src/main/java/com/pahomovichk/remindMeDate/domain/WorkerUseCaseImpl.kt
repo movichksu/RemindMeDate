@@ -14,8 +14,8 @@ class WorkerUseCaseImpl(
 ): WorkerUseCase {
     override fun yearlyNotificationRequest() {
         val yearlyRequest = PeriodicWorkRequestBuilder<YearlyWorker>(
-            12, TimeUnit.HOURS, // repeatInterval (the period cycle)
-            15, TimeUnit.MINUTES) // flexInterval
+            2, TimeUnit.MINUTES, // repeatInterval (the period cycle)
+            30, TimeUnit.SECONDS) // flexInterval
             .addTag("yearly")
             .build()
         workManager.enqueue(yearlyRequest)

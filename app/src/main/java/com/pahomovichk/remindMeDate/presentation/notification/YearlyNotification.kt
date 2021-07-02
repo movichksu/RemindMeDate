@@ -24,6 +24,7 @@ class YearlyNotification() {
 
     companion object {
         const val CHANNEL_ID = "YEARLY_NOTIFICATION_CHANNEL"
+        const val CHANNEL_NAME = "EventsNotificationChannel"
         const val NOTIFICATION_ID = 1
         const val notificationTitle = "NEW EVENT!"
     }
@@ -38,11 +39,12 @@ class YearlyNotification() {
                 .setContentTitle(notificationTitle)
                 .setContentText("you have some events today!")
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setAutoCancel(true)
                 .build()
             val notificationManager = NotificationManagerCompat.from(App.instance)
             notificationManager.notify(NOTIFICATION_ID, builder)
-            Thread.sleep(5000)
-            notificationManager.cancel(NOTIFICATION_ID)
+//            Thread.sleep(5000)
+//            notificationManager.cancel(NOTIFICATION_ID)
         }
     }
 

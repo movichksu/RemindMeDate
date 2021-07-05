@@ -18,4 +18,12 @@ data class YearlyEvent(
     val date: LocalDate,
 
     val comments: String
-) : Event
+) : Event {
+    override fun getEventName(): String {
+        return name
+    }
+
+    override fun getEventType(): String {
+        return type
+    }
+}

@@ -17,6 +17,7 @@ import com.pahomovichk.remindMeDate.R
 import com.pahomovichk.remindMeDate.domain.YearlyEventsUseCase
 import kotlinx.coroutines.*
 import android.content.ContextWrapper
+import com.pahomovichk.remindMeDate.domain.entity.Event
 import com.pahomovichk.remindMeDate.domain.entity.YearlyEvent
 
 
@@ -32,20 +33,18 @@ class YearlyNotification() {
 
     private val ioScope = CoroutineScope(Dispatchers.IO + Job())
 
-    fun showNotification(context: Context, event: YearlyEvent) {
+    fun showNotification(context: Context, event: Event) {
         ioScope.launch {
             createNotificationChannel()
-            val builder = NotificationCompat.Builder(App.instance, CHANNEL_ID)
+            val builder = NotificationCompat.Builder(context, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_notifications)
                 .setContentTitle(notificationTitle)
-                .setContentText("you have some events today!")
+                .setContentText("today you have ${event.getEventName()} ${event.getEventType()}!")
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setAutoCancel(true)
                 .build()
-            val notificationManager = NotificationManagerCompat.from(App.instance)
+            val notificationManager = NotificationManagerCompat.from(context)
             notificationManager.notify(NOTIFICATION_ID, builder)
-//            Thread.sleep(5000)
-//            notificationManager.cancel(NOTIFICATION_ID)
         }
     }
 

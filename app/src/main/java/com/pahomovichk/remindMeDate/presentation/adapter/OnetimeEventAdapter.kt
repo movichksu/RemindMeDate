@@ -25,7 +25,7 @@ class OnetimeEventAdapter internal constructor(
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         val event = events[position]
         viewHolder.eventName.text = event.name
-        viewHolder.eventDate.text = "${event.date.format(Constants.viewLocalFormatter)}"
+        viewHolder.eventDate.text = "${event.date.format(Constants.VIEW_LOCAL_FORMATTER)}"
         viewHolder.container.setOnClickListener {
             listenerOnetime?.onClick(event)
             notifyItemRemoved(position)

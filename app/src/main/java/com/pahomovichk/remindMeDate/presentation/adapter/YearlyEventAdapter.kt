@@ -27,7 +27,7 @@ class YearlyEventAdapter internal constructor(
         val event = events[position]
         Log.d("DATE", "${event.date}, ${LocalDate.now()}")
         viewHolder.eventName.text = event.name
-        viewHolder.eventDate.text = "${event.date.format(Constants.viewLocalFormatter)}"
+        viewHolder.eventDate.text = "${event.date.format(Constants.VIEW_LOCAL_FORMATTER)}"
         viewHolder.container.setOnClickListener {
             listener?.onClick(event)
             notifyItemRemoved(position)

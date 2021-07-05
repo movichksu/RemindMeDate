@@ -1,9 +1,5 @@
 package com.pahomovichk.remindMeDate.domain
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.Observer
-import androidx.work.OneTimeWorkRequestBuilder
-import androidx.work.PeriodicWorkRequest
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import com.pahomovichk.remindMeDate.Constants
@@ -18,7 +14,7 @@ class WorkerUseCaseImpl(
         val yearlyRequest = PeriodicWorkRequestBuilder<YearlyWorker>(
             15, TimeUnit.MINUTES, // repeatInterval (the period cycle)
             10, TimeUnit.MINUTES) // flexInterval
-            .addTag(Constants.workerNotificationTag)
+            .addTag(Constants.EVENTS_WORKER_TAG)
             .build()
         workManager.enqueue(yearlyRequest)
     }

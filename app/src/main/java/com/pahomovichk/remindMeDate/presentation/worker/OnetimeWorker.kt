@@ -25,26 +25,22 @@ class OnetimeWorker(
 ) : CoroutineWorker(context, workerParameters) {
 
     private val onetimeUseCase: OnetimeEventsUseCase = Dependencies.getOnetimeEventUseCase()
-    private val ioScope = CoroutineScope(Dispatchers.IO + Job())
 
     private lateinit var now: LocalDate
     private lateinit var events: List<OnetimeEvent>
 
     override suspend fun doWork(): Result {
         try {
-            onetimeUseCase.getAllEvents()
-            Log.d("DO_WORK", "worker")
+            events = onetimeUseCase.getAllEvents()
             val notification = YearlyNotification()
             now = LocalDate.now()
             for (i in 0..events.size) {
                 if (now == events.get(i).date) {
-                    Log.d("DO_WORK", "${now.format(DateTimeFormatter.ISO_DATE)} == ${events.get(i).date}")
-                    //notification.showNotification(App.instance, events.get(i))
+                    notification.showNotification(App.instance, events.get(i))
                 }
             }
             return Result.success()
-        }
-        catch (e: Exception){
+        } catch (e: Exception) {
             return Result.failure()
         }
     }

@@ -16,7 +16,6 @@ import java.util.*
 
 class YearlyViewModel : ViewModel() {
 
-    private val workerUseCase: WorkerUseCase by lazy { Dependencies.getWorkerUseCase() }
     private val yearlyEventsUseCase: YearlyEventsUseCase by lazy { Dependencies.getYearlyEventUseCase() }
 
     private var _text = MutableLiveData<String>().apply {
@@ -30,7 +29,6 @@ class YearlyViewModel : ViewModel() {
     }
 
     init{
-        workerUseCase.yearlyNotificationRequest()
         viewModelScope.launch {
                 yearlyEventsUseCase.getEvents().collect {
                     //birthdaysList ->
@@ -43,7 +41,6 @@ class YearlyViewModel : ViewModel() {
     fun addEvent(event: YearlyEvent) {
         viewModelScope.launch(Dispatchers.IO) {
             yearlyEventsUseCase.addEvent(event)
-            //workerUseCase.yearlyNotificationRequest()
         }
     }
 

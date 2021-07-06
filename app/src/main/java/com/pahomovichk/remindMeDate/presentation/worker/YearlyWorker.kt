@@ -23,26 +23,22 @@ class YearlyWorker(
 ) : CoroutineWorker(context, workerParameters) {
 
     private val yearlyUseCase: YearlyEventsUseCase = Dependencies.getYearlyEventUseCase()
-    private val ioScope = CoroutineScope(Dispatchers.IO + Job())
 
     private lateinit var now: LocalDate
     private lateinit var events: List<YearlyEvent>
 
     override suspend fun doWork(): Result {
         try {
-                events = yearlyUseCase.getAllEvents()
-                    Log.d("DO_WORK", "worker")
-                    val notification = YearlyNotification()
-                    now = LocalDate.now()
-                    for (i in 0..events.size) {
-                        if (now == events.get(i).date) {
-                            Log.d("DO_WORK", "${now.format(DateTimeFormatter.ISO_DATE)} == ${events.get(i).date}")
-                            notification.showNotification(App.instance, events.get(i))
-                        }
-                    }
-                    return Result.success()
-        }
-        catch (e: Exception){
+            events = yearlyUseCase.getAllEvents()
+            val notification = YearlyNotification()
+            now = LocalDate.now()
+            for (i in 0..events.size) {
+                if (now == events.get(i).date) {
+                    notification.showNotification(App.instance, events.get(i))
+                }
+            }
+            return Result.success()
+        } catch (e: Exception) {
             return Result.failure()
         }
     }

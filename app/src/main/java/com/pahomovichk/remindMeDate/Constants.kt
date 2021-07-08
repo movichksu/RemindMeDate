@@ -15,9 +15,12 @@ object Constants {
 
     const val SELECTION_ITEM = "SELECTION_ITEM"
 
-    val viewLocalFormatter = DateTimeFormatter.ofPattern("MMMM dd, yyyy")
-    val gettingLocalFormatter = DateTimeFormatter.ofPattern("dd MMMM yyyy")
-    val simpleDateFormatter = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault())
+    val VIEW_LOCAL_FORMATTER = DateTimeFormatter.ofPattern("MMMM dd, yyyy")
+    val GETTING_LOCAL_FORMATTER = DateTimeFormatter.ofPattern("dd MMMM yyyy")
+    val SIMPLE_DATE_FORMATTER = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault())
 
-    val defaultDate: LocalDate = LocalDate.of(2000, 1, 1)
+    val DEFAULT_DATE: LocalDate = LocalDate.of(2000, 1, 1)
+
+    val YEARLY_EVENTS_WORKER_TAG = "YEARLY_EVENTS_WORKER_TAG"
+    val ONETIME_EVENTS_WORKER_TAG = "ONETIME_EVENTS_WORKER_TAG"
 }

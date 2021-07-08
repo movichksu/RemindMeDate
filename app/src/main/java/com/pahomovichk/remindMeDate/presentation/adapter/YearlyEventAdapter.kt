@@ -1,5 +1,6 @@
 package com.pahomovichk.remindMeDate.presentation.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.pahomovichk.remindMeDate.Constants
 import com.pahomovichk.remindMeDate.R
 import com.pahomovichk.remindMeDate.domain.entity.YearlyEvent
+import java.time.LocalDate
 
 class YearlyEventAdapter internal constructor(
     private var events: List<YearlyEvent>
@@ -23,8 +25,9 @@ class YearlyEventAdapter internal constructor(
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         val event = events[position]
+        Log.d("DATE", "${event.date}, ${LocalDate.now()}")
         viewHolder.eventName.text = event.name
-        viewHolder.eventDate.text = "${event.date.format(Constants.viewLocalFormatter)}"
+        viewHolder.eventDate.text = "${event.date.format(Constants.VIEW_LOCAL_FORMATTER)}"
         viewHolder.container.setOnClickListener {
             listener?.onClick(event)
             notifyItemRemoved(position)

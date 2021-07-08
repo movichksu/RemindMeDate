@@ -27,7 +27,7 @@ class AddItemActivity : AppCompatActivity() {
     private lateinit var commentInput: EditText
     private lateinit var createItemBtn: Button
 
-    private var eventDate = Constants.defaultDate
+    private var eventDate = Constants.DEFAULT_DATE
 
     @SuppressLint("ShowToast")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,10 +59,10 @@ class AddItemActivity : AppCompatActivity() {
                     selectDate.set(Calendar.YEAR, year)
                     selectDate.set(Calendar.MONTH, month)
                     selectDate.set(Calendar.DAY_OF_MONTH, day)
-                    val date = Constants.simpleDateFormatter.format(selectDate.time)
+                    val date = Constants.SIMPLE_DATE_FORMATTER.format(selectDate.time)
                     dateInput.setText(date)
                     eventDate =
-                        LocalDate.parse(dateInput.text.toString(), Constants.gettingLocalFormatter)
+                        LocalDate.parse(dateInput.text.toString(), Constants.GETTING_LOCAL_FORMATTER)
                 },
                 getCalendar.get(Calendar.YEAR),
                 getCalendar.get(Calendar.MONTH),

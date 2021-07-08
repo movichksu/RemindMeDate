@@ -68,7 +68,7 @@ class OnetimeFragment : Fragment(), OnetimeEventClickListener {
         intent.putExtra(Constants.ID, event.id)
         intent.putExtra(Constants.NAME, event.name)
         intent.putExtra(Constants.TYPE, event.type)
-        intent.putExtra(Constants.DATE, "${event.date.format(Constants.gettingLocalFormatter)}")
+        intent.putExtra(Constants.DATE, "${event.date.format(Constants.GETTING_LOCAL_FORMATTER)}")
         intent.putExtra(Constants.COMMENT, event.comments)
         startActivity(intent)
     }

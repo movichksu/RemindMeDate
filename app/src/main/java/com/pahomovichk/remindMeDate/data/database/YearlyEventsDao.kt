@@ -18,6 +18,9 @@ interface YearlyEventsDao {
     @Query("Select * From YearlyEvent")
     fun selectAll(): Flow<List<YearlyEvent>>
 
+    @Query("Select * From YearlyEvent")
+    fun selectAllOnce(): List<YearlyEvent>
+
     @Query("Delete From YearlyEvent")
     fun deleteAll()
 

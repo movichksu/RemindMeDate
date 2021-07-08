@@ -35,7 +35,7 @@ class EditItemActivity : AppCompatActivity() {
     private lateinit var commentInput: EditText
     private lateinit var editItemBtn: Button
 
-    private var eventDate = Constants.defaultDate
+    private var eventDate = Constants.DEFAULT_DATE
 
     @SuppressLint("ShowToast")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -97,9 +97,9 @@ class EditItemActivity : AppCompatActivity() {
                     selectDate.set(Calendar.YEAR, year)
                     selectDate.set(Calendar.MONTH, month)
                     selectDate.set(Calendar.DAY_OF_MONTH, day)
-                    val date = Constants.simpleDateFormatter.format(selectDate.time)
+                    val date = Constants.SIMPLE_DATE_FORMATTER.format(selectDate.time)
                     dateInput.setText(date)
-                    eventDate = LocalDate.parse(dateInput.text.toString(), Constants.gettingLocalFormatter)
+                    eventDate = LocalDate.parse(dateInput.text.toString(), Constants.GETTING_LOCAL_FORMATTER)
                 },
                 getCalendar.get(Calendar.YEAR),
                 getCalendar.get(Calendar.MONTH),
@@ -135,7 +135,7 @@ class EditItemActivity : AppCompatActivity() {
                 intent.putExtra(Constants.ID, event.id)
                 intent.putExtra(Constants.NAME, event.name)
                 intent.putExtra(Constants.TYPE, type)
-                intent.putExtra(Constants.DATE, "${event.date.format(Constants.gettingLocalFormatter)}")
+                intent.putExtra(Constants.DATE, "${event.date.format(Constants.GETTING_LOCAL_FORMATTER)}")
                 intent.putExtra(Constants.COMMENT, event.comments)
                 startActivity(intent)
                 finish()
@@ -152,7 +152,7 @@ class EditItemActivity : AppCompatActivity() {
                 intent.putExtra(Constants.ID, event.id)
                 intent.putExtra(Constants.NAME, event.name)
                 intent.putExtra(Constants.TYPE, type)
-                intent.putExtra(Constants.DATE, "${event.date.format(Constants.gettingLocalFormatter)}")
+                intent.putExtra(Constants.DATE, "${event.date.format(Constants.GETTING_LOCAL_FORMATTER)}")
                 intent.putExtra(Constants.COMMENT, event.comments)
                 startActivity(intent)
                 finish()

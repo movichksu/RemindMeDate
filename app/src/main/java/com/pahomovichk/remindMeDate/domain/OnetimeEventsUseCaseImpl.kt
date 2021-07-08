@@ -10,6 +10,10 @@ class OnetimeEventsUseCaseImpl(
         return onetimeEventsRepository.getOnetimeEvents()
     }
 
+    override suspend fun getAllEvents(): List<OnetimeEvent>{
+        return onetimeEventsRepository.getAllOnetimeEvents()
+    }
+
     override suspend fun deleteEvent(event: OnetimeEvent) {
         onetimeEventsRepository.deleteOnetimeEvent(event)
     }

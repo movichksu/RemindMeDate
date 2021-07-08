@@ -10,6 +10,10 @@ class YearlyEventsUseCaseImpl(
         return yearlyEventsRepository.getYearlyEvents()
     }
 
+    override suspend fun getAllEvents(): List<YearlyEvent>{
+        return yearlyEventsRepository.getAllYearlyEvents()
+    }
+
     override suspend fun deleteEvent(event: YearlyEvent) {
         yearlyEventsRepository.deleteYearlyEvent(event)
     }

@@ -1,18 +1,20 @@
 package com.pahomovichk.remindMeDate.presentation.viewModel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.pahomovichk.remindMeDate.Dependencies
+import com.pahomovichk.remindMeDate.domain.WorkerUseCase
 import com.pahomovichk.remindMeDate.domain.YearlyEventsUseCase
 import com.pahomovichk.remindMeDate.domain.entity.YearlyEvent
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collect
+import java.util.*
 
 
 class YearlyViewModel : ViewModel() {
-
 
     private val yearlyEventsUseCase: YearlyEventsUseCase by lazy { Dependencies.getYearlyEventUseCase() }
 
@@ -38,7 +40,7 @@ class YearlyViewModel : ViewModel() {
 
     fun addEvent(event: YearlyEvent) {
         viewModelScope.launch(Dispatchers.IO) {
-                yearlyEventsUseCase.addEvent(event)
+            yearlyEventsUseCase.addEvent(event)
         }
     }
 
@@ -56,6 +58,5 @@ class YearlyViewModel : ViewModel() {
         viewModelScope.launch(Dispatchers.IO) {
             yearlyEventsUseCase.cleanDb()
         }
-
 
 }
